@@ -1,35 +1,67 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>関西大学 統一祭 | 公式サイト</title>
+<meta name="description" content="関西大学 統一祭 公式サイト。2026年11月1日(日)〜11月4日(水)、千里山キャンパスにて開催。入場無料。">
+<meta name="theme-color" content="#0a0a0d">
 <script src="./support.js"></script>
 </head>
 <body>
 <x-dc>
 <helmet data-dc-atomics>
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;700;800&family=Yuji+Syuku&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 html{scroll-behavior:smooth}
-body{margin:0;background:#0a0a0d;font-family:"Noto Sans JP",system-ui,sans-serif;color:#fff}
+body{margin:0;background:#0a0a0d;font-family:"Noto Sans JP",system-ui,sans-serif;color:#fff;-webkit-text-size-adjust:100%}
 a{color:#a89ae0;text-decoration:none}a:hover{color:#c5bbee}
 summary{cursor:pointer}summary::-webkit-details-marker{display:none}
 @keyframes slowZoom{0%{transform:scale(1)}100%{transform:scale(1.08)}}
+
+.hero{position:relative;min-height:640px;height:100vh;overflow:hidden}
+@supports(height:100dvh){.hero{height:100dvh}}
+/* カウントダウン */
+.cd{display:flex;align-items:baseline;gap:18px;font-family:'Shippori Mincho B1',serif;color:#fff}
+.cd-num{font-size:30px}
+.cd-unit{font-size:12px;margin-left:4px;color:rgba(255,255,255,.6)}
+/* ハンバーガーメニュー */
+.nav-toggle{display:none;background:none;border:0;padding:10px;margin:-10px;cursor:pointer;flex-direction:column;gap:5px;-webkit-tap-highlight-color:transparent}
+.nav-toggle span{display:block;width:24px;height:2px;background:#fff;border-radius:1px}
+.mobile-menu{position:fixed;inset:0;z-index:1000;background:rgba(8,8,11,.96);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px}
+.mobile-menu a{font-size:16px;letter-spacing:.2em;color:rgba(255,255,255,.9)}
+.mobile-menu-close{position:absolute;top:16px;right:20px;background:none;border:0;color:#fff;font-size:32px;line-height:1;cursor:pointer;padding:10px;-webkit-tap-highlight-color:transparent}
+@media(max-width:860px){
+  .site-nav{display:none!important}
+  .nav-toggle{display:flex}
+}
+@media(max-width:480px){
+  .logo-sub{display:none}
+}
+@media(max-width:640px){
+  .hero{min-height:560px}
+  .hero-title-wrap{top:96px;right:20px;height:min(54vh,380px)}
+  .hero-date{bottom:150px}
+  .cd{gap:12px}
+  .cd-num{font-size:22px}
+  .cd-note{display:none}
+}
 </style>
 </helmet>
 
 <!-- ================= HERO ================= -->
-<header data-screen-label="トップ" style="position:relative;min-height:680px;height:100vh;overflow:hidden">
+<header class="hero" data-screen-label="トップ">
   <img src="uploads/toitu-sozai-1.jpg" alt="統一祭の夜を彩る花火" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;animation:slowZoom 24s ease-in-out infinite alternate">
   <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,6,10,.6) 0%,rgba(6,6,10,.15) 40%,rgba(6,6,10,.85) 100%)"></div>
 
-  <div style="position:absolute;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:20px clamp(20px,4vw,36px)">
+  <div style="position:absolute;top:0;left:0;right:0;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px clamp(20px,4vw,36px)">
     <div style="display:flex;align-items:baseline;gap:12px">
-      <span style="font-family:'Yuji Syuku',serif;font-size:31px;color:#fff">統一祭</span>
-      <span style="font-size:10px;letter-spacing:.25em;color:rgba(255,255,255,.55)">TOITSU-SAI XXXX</span>
+      <span style="font-family:'Yuji Syuku',serif;font-size:31px;color:#fff">関西大学統一祭</span>
+      <span class="logo-sub" style="font-size:10px;letter-spacing:.25em;color:rgba(255,255,255,.55)">TOITSU-SAI XXXX</span>
     </div>
-    <nav style="display:flex;gap:clamp(14px,2.4vw,26px);flex-wrap:wrap;font-size:12.5px;letter-spacing:.12em">
+    <nav class="site-nav" style="display:flex;gap:clamp(14px,2.4vw,26px);font-size:12.5px;letter-spacing:.12em">
       <a href="#news" style="color:rgba(255,255,255,.85)">お知らせ</a>
       <a href="#about" style="color:rgba(255,255,255,.85)">開催概要</a>
       <a href="#stage" style="color:rgba(255,255,255,.85)">ステージ企画</a>
@@ -37,23 +69,38 @@ summary{cursor:pointer}summary::-webkit-details-marker{display:none}
       <a href="#faq" style="color:rgba(255,255,255,.85)">注意事項・FAQ</a>
       <a href="#access" style="color:#a89ae0">アクセス</a>
     </nav>
+    <button class="nav-toggle" type="button" onclick="{{ toggleMenu }}" aria-label="メニューを開く" aria-expanded="{{ menuOpen }}">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 
-  <div style="position:absolute;top:clamp(90px,14vh,130px);right:clamp(24px,7vw,88px);display:flex;flex-direction:row;gap:clamp(14px,2.4vw,26px);height:min(62vh,440px)">
+  <sc-if value="{{ menuOpen }}">
+    <div class="mobile-menu">
+      <button class="mobile-menu-close" type="button" onclick="{{ closeMenu }}" aria-label="メニューを閉じる">×</button>
+      <a href="#news" onclick="{{ closeMenu }}">お知らせ</a>
+      <a href="#about" onclick="{{ closeMenu }}">開催概要</a>
+      <a href="#stage" onclick="{{ closeMenu }}">ステージ企画</a>
+      <a href="#food" onclick="{{ closeMenu }}">模擬店</a>
+      <a href="#faq" onclick="{{ closeMenu }}">注意事項・FAQ</a>
+      <a href="#access" onclick="{{ closeMenu }}">アクセス</a>
+    </div>
+  </sc-if>
+
+  <div class="hero-title-wrap" style="position:absolute;top:clamp(90px,14vh,130px);right:clamp(24px,7vw,88px);display:flex;flex-direction:row;gap:clamp(14px,2.4vw,26px);height:min(62vh,440px)">
     <div style="writing-mode:vertical-rl;font-family:'Shippori Mincho B1',serif;font-size:clamp(15px,2vw,20px);letter-spacing:.5em;color:rgba(255,255,255,.75)">今年のスローガン「XXXX」</div>
     <div style="writing-mode:vertical-rl;font-family:'Yuji Syuku',serif;font-size:clamp(58px,9vw,96px);line-height:1.05;color:#fff;text-shadow:0 4px 40px rgba(0,0,0,.6)">統一祭</div>
   </div>
 
-  <div style="position:absolute;left:clamp(20px,4vw,36px);bottom:110px;display:flex;flex-direction:column;gap:8px">
+  <div class="hero-date" style="position:absolute;left:clamp(20px,4vw,36px);bottom:110px;display:flex;flex-direction:column;gap:8px">
     <div style="width:44px;height:3px;background:linear-gradient(90deg,#6b5ca5,#3c5aa8)"></div>
-    <div style="font-family:'Shippori Mincho B1',serif;font-size:clamp(16px,2.2vw,19px);letter-spacing:.18em">XXXX年XX月XX日(X)・XX日(X)</div>
+    <div style="font-family:'Shippori Mincho B1',serif;font-size:clamp(16px,2.2vw,19px);letter-spacing:.18em">2026年11月1日(日)〜11月4日(水)</div>
     <div style="font-size:12px;letter-spacing:.14em;color:rgba(255,255,255,.65)">関西大学 千里山キャンパス ／ 主催: 祭典実行委員会</div>
   </div>
 
-  <div style="position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:14px clamp(20px,4vw,36px);background:rgba(10,10,14,.72);backdrop-filter:blur(6px);border-top:1px solid rgba(168,154,224,.25)">
+  <div style="position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:14px clamp(20px,4vw,36px);background:rgba(10,10,14,.72);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);border-top:1px solid rgba(168,154,224,.25)">
     <div style="font-size:11px;letter-spacing:.3em;color:#a89ae0">開催まで COUNTDOWN</div>
     {{ countdown }}
-    <div style="font-size:10px;color:rgba(255,255,255,.4)">※開催日は仮設定です</div>
+    <div class="cd-note" style="font-size:10px;color:rgba(255,255,255,.4)">2026.11.1 11:00 開幕</div>
   </div>
 </header>
 
@@ -83,7 +130,7 @@ summary{cursor:pointer}summary::-webkit-details-marker{display:none}
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:40px;margin-top:36px;align-items:start">
     <div data-reveal style="display:flex;flex-direction:column">
       <div style="display:grid;grid-template-columns:110px 1fr;gap:8px 20px;padding:16px 0;border-top:1px solid rgba(255,255,255,.15);border-bottom:1px solid rgba(255,255,255,.09);font-size:14px"><span style="color:#a89ae0;letter-spacing:.2em;font-size:12px">名称</span><span>関西大学 統一祭「XXXX」</span></div>
-      <div style="display:grid;grid-template-columns:110px 1fr;gap:8px 20px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.09);font-size:14px"><span style="color:#a89ae0;letter-spacing:.2em;font-size:12px">日程</span><span>XXXX年XX月XX日(X)・XX日(X)<br><span style="font-size:12px;color:rgba(255,255,255,.55)">XX:XX〜XX:XX(予定)</span></span></div>
+      <div style="display:grid;grid-template-columns:110px 1fr;gap:8px 20px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.09);font-size:14px"><span style="color:#a89ae0;letter-spacing:.2em;font-size:12px">日程</span><span>2026年11月1日(日)〜11月4日(水)<br><span style="font-size:12px;color:rgba(255,255,255,.55)">11:00開幕(終了時刻は企画により異なります)</span></span></div>
       <div style="display:grid;grid-template-columns:110px 1fr;gap:8px 20px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.09);font-size:14px"><span style="color:#a89ae0;letter-spacing:.2em;font-size:12px">会場</span><span>関西大学 千里山キャンパス<br><span style="font-size:12px;color:rgba(255,255,255,.55)">〒564-8680 大阪府吹田市山手町3丁目3-35</span></span></div>
       <div style="display:grid;grid-template-columns:110px 1fr;gap:8px 20px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.09);font-size:14px"><span style="color:#a89ae0;letter-spacing:.2em;font-size:12px">入場</span><span>入場無料・どなたでもご来場いただけます</span></div>
       <div style="display:grid;grid-template-columns:110px 1fr;gap:8px 20px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.09);font-size:14px"><span style="color:#a89ae0;letter-spacing:.2em;font-size:12px">主催</span><span>祭典実行委員会</span></div>
@@ -195,6 +242,18 @@ summary{cursor:pointer}summary::-webkit-details-marker{display:none}
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
+  toggleMenu = () => {
+    this.setState((s) => {
+      const open = !s.menuOpen;
+      document.body.style.overflow = open ? 'hidden' : '';
+      return { menuOpen: open };
+    });
+  };
+  closeMenu = () => {
+    document.body.style.overflow = '';
+    this.setState({ menuOpen: false });
+  };
+
   componentDidMount() {
     // スクロールに合わせたフェードイン(reveal)
     const els = document.querySelectorAll('[data-reveal]');
@@ -214,7 +273,10 @@ class Component extends DCLogic {
     }, { threshold: 0.12 });
     els.forEach((el) => this.io.observe(el));
   }
-  componentWillUnmount() { if (this.io) this.io.disconnect(); }
+  componentWillUnmount() {
+    if (this.io) this.io.disconnect();
+    document.body.style.overflow = '';
+  }
 
   renderVals() {
     const news = [
@@ -229,7 +291,14 @@ class Component extends DCLogic {
       { q: 'ペットを連れて入場できますか？', a: '混雑時の安全確保のため、ペット同伴でのご入場はご遠慮いただいております(補助犬を除く)。' },
       { q: '落とし物・迷子はどこに問い合わせればよいですか？', a: '当日は本部テントにて落とし物・迷子の対応を行います。開催後は祭典実行委員会までお問い合わせください。' },
     ];
-    return { news, faqs, countdown: React.createElement(Countdown) };
+    return {
+      news,
+      faqs,
+      countdown: React.createElement(Countdown),
+      menuOpen: !!this.state.menuOpen,
+      toggleMenu: this.toggleMenu,
+      closeMenu: this.closeMenu,
+    };
   }
 }
 
@@ -242,8 +311,8 @@ class Countdown extends React.Component {
   componentDidMount() { this.timer = setInterval(() => this.setState({ now: Date.now() }), 1000); }
   componentWillUnmount() { clearInterval(this.timer); }
   render() {
-    // 仮の開催日: 2026-11-01 10:00 JST(正式日程決定後に差し替え)
-    const target = new Date('2026-11-01T10:00:00+09:00').getTime();
+    // 開催日: 2026-11-01 11:00 JST 開幕 — この瞬間にカウントがちょうど0になる
+    const target = new Date('2026-11-01T11:00:00+09:00').getTime();
     const diff = Math.max(0, target - this.state.now);
     const pad = (n) => String(n).padStart(2, '0');
     const parts = [
@@ -254,10 +323,10 @@ class Countdown extends React.Component {
     ];
     return React.createElement(
       'div',
-      { style: { display: 'flex', alignItems: 'baseline', gap: 18, fontFamily: "'Shippori Mincho B1',serif", color: '#fff' } },
+      { className: 'cd' },
       parts.map(([v, unit], i) => React.createElement(
-        'span', { key: i, style: { fontSize: 30 } }, String(v),
-        React.createElement('span', { style: { fontSize: 12, marginLeft: 4, color: 'rgba(255,255,255,.6)' } }, unit)
+        'span', { key: i, className: 'cd-num' }, String(v),
+        React.createElement('span', { className: 'cd-unit' }, unit)
       ))
     );
   }
