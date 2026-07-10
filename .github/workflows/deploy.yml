@@ -1,0 +1,51 @@
+name: Deploy to S3 + CloudFront
+
+# main ブランチに push されたら自動デプロイ。手動実行(Run workflow)も可能。
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# OIDC でAWSロールを引き受けるために id-token: write が必須
+permissions:
+  id-token: write
+  contents: read
+
+# 連続pushで多重デプロイしないよう直列化（新しい方を優先）
+concurrency:
+  group: deploy-production
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: リポジトリを取得
+        uses: actions/checkout@v4
+
+      # 長期キーを使わず、OIDCで一時認証情報を取得する。
+      # role-to-assume はTerraformで作った ku-fes-lp-github-deploy ロール。
+      - name: AWS認証（OIDC）
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::936506757425:role/ku-fes-lp-github-deploy
+          aws-region: ap-northeast-1
+
+      # サイト本体だけをS3へ同期。infra/ や .github/ など公開不要なものは除外。
+      # --delete でリポジトリから消したファイルはS3からも削除し、常に一致させる。
+      - name: S3へ同期
+        run: |
+          aws s3 sync . s3://ku-fes-lp-site-936506757425 \
+            --delete \
+            --exclude ".git/*" \
+            --exclude ".github/*" \
+            --exclude "infra/*" \
+            --exclude "README.md" \
+            --exclude ".gitignore"
+
+      # 変更を即座に反映するためエッジキャッシュを削除
+      - name: CloudFrontキャッシュを削除
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id E3L2ENV02ZXNSZ \
+            --paths "/*"

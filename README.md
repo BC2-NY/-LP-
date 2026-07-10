@@ -111,8 +111,32 @@ const navItems = [
 
 ## 公開（デプロイ）
 
-静的サイトなので、GitHub Pages・Netlify・Vercel などにそのまま置けます。
-ビルド作業は不要です（リポジトリの内容をそのまま公開するだけ）。
+**AWS（S3 + CloudFront）で公開しています。** 公開URL: https://d117phj074z82p.cloudfront.net
+
+### 更新のしかた（自動デプロイ）
+`main` ブランチに push すると、GitHub Actions が自動でデプロイします。**手作業でのアップロードは不要です。**
+
+```
+コードを編集 → git push origin main → 数分で本番反映
+```
+
+内部の流れ（[.github/workflows/deploy.yml](.github/workflows/deploy.yml)）:
+1. GitHub Actions が OIDC でAWSに一時認証（長期キーは未使用）
+2. サイト本体を S3 バケットへ同期（`infra/` `.github/` `README.md` は除外）
+3. CloudFront のキャッシュを削除して即時反映
+
+反映状況は GitHub の **Actions** タブで確認できます。反映まで通常2〜3分（CloudFrontのキャッシュ削除待ち）。
+
+### インフラの構成
+AWSリソースは Terraform（[infra/](infra/)）で管理しています。構成の詳細・再構築手順は [infra/](infra/) 内のコードを参照してください。主要リソース:
+
+| リソース | 役割 |
+|---|---|
+| S3（非公開） | サイトファイルの保管。CloudFront経由でのみ配信 |
+| CloudFront | HTTPS配信・CDN・セキュリティヘッダー付与 |
+| GitHub OIDCロール | Actionsからのデプロイ認証（mainブランチ限定） |
+
+> ⚠️ Terraformの `terraform.tfstate` や `terraform.tfvars` は秘匿情報を含むため **Gitにコミットされません**（`.gitignore` 済み）。インフラを操作する場合は別途 AWS認証情報が必要です。
 
 ## 制作
 
