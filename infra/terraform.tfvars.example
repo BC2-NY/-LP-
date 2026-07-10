@@ -1,0 +1,10 @@
+# このファイルを terraform.tfvars にコピーして値を埋めると設定が反映されます。
+# （terraform.tfvars は .gitignore 済みでコミットされません）
+
+# 予算超過アラートの通知先。空のままなら予算アラートは作られません。
+alert_email = "you@example.com"
+
+# 通常は変更不要ですが、必要なら上書きできます。
+# region      = "ap-northeast-1"
+# profile     = "ku-fes"
+# github_repo = "BC2-NY/-LP-"

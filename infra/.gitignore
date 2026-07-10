@@ -1,0 +1,9 @@
+# Terraform 作業ファイル・状態ファイル（秘匿情報を含むためコミット禁止）
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+# 実際の値を入れた変数ファイル（メールアドレス等）
+*.tfvars
+!*.tfvars.example
