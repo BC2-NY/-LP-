@@ -62,12 +62,9 @@ summary{cursor:pointer}summary::-webkit-details-marker{display:none}
       <span class="logo-sub" style="font-size:10px;letter-spacing:.25em;color:rgba(255,255,255,.55)">TOITSU-SAI XXXX</span>
     </div>
     <nav class="site-nav" style="display:flex;gap:clamp(14px,2.4vw,26px);font-size:12.5px;letter-spacing:.12em">
-      <a href="#news" style="color:rgba(255,255,255,.85)">お知らせ</a>
-      <a href="#about" style="color:rgba(255,255,255,.85)">開催概要</a>
-      <a href="#stage" style="color:rgba(255,255,255,.85)">ステージ企画</a>
-      <a href="#food" style="color:rgba(255,255,255,.85)">模擬店</a>
-      <a href="#faq" style="color:rgba(255,255,255,.85)">注意事項・FAQ</a>
-      <a href="#access" style="color:#a89ae0">アクセス</a>
+      <sc-for list="{{ navItems }}" as="m" hint-placeholder-count="6">
+        <a href="{{ m.href }}" style="color:{{ m.color }}">{{ m.label }}</a>
+      </sc-for>
     </nav>
     <button class="nav-toggle" type="button" onclick="{{ toggleMenu }}" aria-label="メニューを開く" aria-expanded="{{ menuOpen }}">
       <span></span><span></span><span></span>
@@ -77,12 +74,9 @@ summary{cursor:pointer}summary::-webkit-details-marker{display:none}
   <sc-if value="{{ menuOpen }}">
     <div class="mobile-menu">
       <button class="mobile-menu-close" type="button" onclick="{{ closeMenu }}" aria-label="メニューを閉じる">×</button>
-      <a href="#news" onclick="{{ closeMenu }}">お知らせ</a>
-      <a href="#about" onclick="{{ closeMenu }}">開催概要</a>
-      <a href="#stage" onclick="{{ closeMenu }}">ステージ企画</a>
-      <a href="#food" onclick="{{ closeMenu }}">模擬店</a>
-      <a href="#faq" onclick="{{ closeMenu }}">注意事項・FAQ</a>
-      <a href="#access" onclick="{{ closeMenu }}">アクセス</a>
+      <sc-for list="{{ navItems }}" as="m" hint-placeholder-count="6">
+        <a href="{{ m.href }}" onclick="{{ closeMenu }}">{{ m.label }}</a>
+      </sc-for>
     </div>
   </sc-if>
 
@@ -279,6 +273,15 @@ class Component extends DCLogic {
   }
 
   renderVals() {
+    // ナビメニュー項目(PC・スマホ共通)。ここを直せば両方に反映される
+    const navItems = [
+      { href: '#news', label: 'お知らせ', color: 'rgba(255,255,255,.85)' },
+      { href: '#about', label: '開催概要', color: 'rgba(255,255,255,.85)' },
+      { href: '#stage', label: 'ステージ企画', color: 'rgba(255,255,255,.85)' },
+      { href: '#food', label: '模擬店', color: 'rgba(255,255,255,.85)' },
+      { href: '#faq', label: '注意事項・FAQ', color: 'rgba(255,255,255,.85)' },
+      { href: '#access', label: 'アクセス', color: '#a89ae0' },
+    ];
     const news = [
       { date: 'XXXX.XX.XX', tag: '重要', tagBorder: '#6b5ca5', tagColor: '#a89ae0', text: '公式サイトを公開しました' },
       { date: 'XXXX.XX.XX', tag: '募集', tagBorder: 'rgba(255,255,255,.3)', tagColor: 'rgba(255,255,255,.6)', text: '模擬店出店団体の募集を開始しました' },
@@ -292,6 +295,7 @@ class Component extends DCLogic {
       { q: '落とし物・迷子はどこに問い合わせればよいですか？', a: '当日は本部テントにて落とし物・迷子の対応を行います。開催後は祭典実行委員会までお問い合わせください。' },
     ];
     return {
+      navItems,
       news,
       faqs,
       countdown: React.createElement(Countdown),
