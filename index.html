@@ -65,8 +65,10 @@
   --card-fade:rgba(17,16,19,.9); /* カード画像の裾グラデーション */
   --panel-border:rgba(107,92,165,.45);
   --panel-a:rgba(107,92,165,.14);--panel-b:rgba(60,90,168,.08);
-  --sel-bg:#6b5ca5;--sel-fg:#fff; /* テキスト選択色 */
+  --sel-bg:#f3a8c8;--sel-fg:#2a1830; /* テキスト選択色(パステルピンク) */
+  --sel-glow:rgba(243,168,200,.55);  /* 選択文字のグロー */
   --sb:#3a3450;            /* スクロールバー */
+  --dial-bg:#2a2440;--dial-line:rgba(168,154,224,.4); /* 回転ダイヤルナビ */
 }
 [data-theme=light]{
   color-scheme:light;
@@ -87,14 +89,17 @@
   --card-fade:rgba(255,254,251,.94);
   --panel-border:rgba(107,92,165,.35);
   --panel-a:rgba(107,92,165,.1);--panel-b:rgba(60,90,168,.06);
-  --sel-bg:#cdc3ec;--sel-fg:#23212b;
+  --sel-bg:#ffc9de;--sel-fg:#5a2440;
+  --sel-glow:rgba(255,150,190,.5);
   --sb:#b9b0d8;
+  --dial-bg:#e6ddf6;--dial-line:rgba(107,92,165,.4);
 }
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);font-family:"Noto Sans JP",system-ui,sans-serif;color:var(--text);-webkit-text-size-adjust:100%}
 a{color:var(--link);text-decoration:none}a:hover{color:var(--link-hover)}
-/* テキスト選択色 */
-::selection{background:var(--sel-bg);color:var(--sel-fg)}
+/* テキスト選択色(パステル+グロー) */
+::selection{background:var(--sel-bg);color:var(--sel-fg);text-shadow:0 0 6px var(--sel-glow)}
+::-moz-selection{background:var(--sel-bg);color:var(--sel-fg);text-shadow:0 0 6px var(--sel-glow)}
 /* カスタムスクロールバー(Chrome/Safari/Edge) */
 ::-webkit-scrollbar{width:10px;height:10px}
 ::-webkit-scrollbar-track{background:var(--bg)}
@@ -140,6 +145,26 @@ summary{cursor:pointer}summary::-webkit-details-marker{display:none}
   .cd-num{font-size:22px}
   .cd-note{display:none}
 }
+/* ==== 回転ダイヤルナビ(スマホ・右下) ==== */
+/* 開閉ボタン。開いている間はダイヤルの軸(ハブ)を兼ねる */
+.dial-fab{position:fixed;right:14px;bottom:14px;z-index:960;width:54px;height:54px;display:none;align-items:center;justify-content:center;border-radius:50%;border:1px solid var(--accent-border);background:var(--accent-strong);color:#fff;cursor:pointer;padding:0;box-shadow:0 4px 16px rgba(0,0,0,.35);-webkit-tap-highlight-color:transparent}
+.dial-fab .df-x{display:none;font-size:24px;line-height:1}
+.dial-fab.open .df-x{display:block}
+.dial-fab.open .df-dial{display:none}
+/* 円盤の中心を画面右下角に固定し、1/4だけ見せる */
+.dial-wheel{position:fixed;right:0;bottom:0;width:0;height:0;z-index:950}
+.dial-disc{position:absolute;right:-170px;bottom:-170px;width:340px;height:340px;border-radius:50%;transform:scale(0);transform-origin:50% 50%;transition:transform .45s cubic-bezier(.3,1.4,.5,1);pointer-events:none;touch-action:none;user-select:none;-webkit-user-select:none;filter:drop-shadow(0 6px 22px rgba(0,0,0,.32))}
+.dial-wheel.open .dial-disc{transform:scale(1);pointer-events:auto}
+/* 円盤本体: サインカーブで波打つ縁のSVG(回転の視覚フィードバックも兼ねる) */
+.dial-wave{position:absolute;inset:-20px;pointer-events:none}
+.dial-wave path{fill:var(--dial-bg)}
+.dial-face{position:absolute;inset:34px;border-radius:50%;border:1.5px dashed var(--dial-line);pointer-events:none}
+/* 選択位置マーカー(中心から見て左上45°/半径64px = 170-64*cos45) */
+.dial-pointer{position:absolute;left:125px;top:125px;transform:translate(-50%,-50%);font-size:13px;color:var(--accent);pointer-events:none}
+.dial-label{position:absolute;transform:translate(-50%,-50%);background:none;border:0;padding:6px;margin:0;font-family:inherit;font-size:12.5px;line-height:1.35;letter-spacing:.08em;color:var(--text-2);max-width:7.5em;text-align:center;cursor:pointer;transition:color .2s ease;-webkit-tap-highlight-color:transparent}
+.dial-label.on{color:var(--accent);font-weight:700}
+@media(max-width:860px){.dial-fab{display:flex}}
+@media(min-width:861px){.dial-fab,.dial-wheel{display:none!important}}
 </style>
 </helmet>
 
@@ -326,10 +351,24 @@ summary{cursor:pointer}summary::-webkit-details-marker{display:none}
       <span>ページ制作:Versear</span>
     </div>
   </div>
+  <!-- 制作クレジットの巨大ワードマーク(textLengthで常に画面幅ピッタリに伸ばす) -->
+  <svg viewBox="0 0 700 125" preserveAspectRatio="none" aria-hidden="true" style="display:block;width:100%;height:auto">
+    <text x="0" y="112" textLength="700" lengthAdjust="spacingAndGlyphs" fill="currentColor" style="font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:140px">Versear</text>
+  </svg>
 </footer>
 
 </x-dc>
 <script type="text/x-dc" data-dc-script>
+// ナビメニュー項目(PC・スマホ・回転ダイヤル共通)。ここを直せば全部に反映される
+const NAV_ITEMS = [
+  { href: '#news', label: 'お知らせ', color: 'rgba(255,255,255,.85)' },
+  { href: '#about', label: '開催概要', color: 'rgba(255,255,255,.85)' },
+  { href: '#stage', label: 'ステージ企画', color: 'rgba(255,255,255,.85)' },
+  { href: '#food', label: '模擬店', color: 'rgba(255,255,255,.85)' },
+  { href: '#faq', label: '注意事項・FAQ', color: 'rgba(255,255,255,.85)' },
+  { href: '#access', label: 'アクセス', color: '#a89ae0' },
+];
+
 class Component extends DCLogic {
   toggleMenu = () => {
     this.setState((s) => {
@@ -365,22 +404,17 @@ class Component extends DCLogic {
       });
     }, { threshold: 0.12 });
     els.forEach((el) => this.io.observe(el));
+    // 回転ダイヤルナビ(スマホ)。フレームワーク外のDOMとしてbody直下に生成する
+    this.dialCleanup = mountRotaryDial(NAV_ITEMS);
   }
   componentWillUnmount() {
     if (this.io) this.io.disconnect();
+    if (this.dialCleanup) this.dialCleanup();
     document.body.style.overflow = '';
   }
 
   renderVals() {
-    // ナビメニュー項目(PC・スマホ共通)。ここを直せば両方に反映される
-    const navItems = [
-      { href: '#news', label: 'お知らせ', color: 'rgba(255,255,255,.85)' },
-      { href: '#about', label: '開催概要', color: 'rgba(255,255,255,.85)' },
-      { href: '#stage', label: 'ステージ企画', color: 'rgba(255,255,255,.85)' },
-      { href: '#food', label: '模擬店', color: 'rgba(255,255,255,.85)' },
-      { href: '#faq', label: '注意事項・FAQ', color: 'rgba(255,255,255,.85)' },
-      { href: '#access', label: 'アクセス', color: '#a89ae0' },
-    ];
+    const navItems = NAV_ITEMS;
     const news = [
       { date: 'XXXX.XX.XX', tag: '重要', tagBorder: 'var(--accent-strong)', tagColor: 'var(--accent)', text: '公式サイトを公開しました' },
       { date: 'XXXX.XX.XX', tag: '募集', tagBorder: 'var(--tag-border)', tagColor: 'var(--text-2)', text: '模擬店出店団体の募集を開始しました' },
@@ -434,6 +468,164 @@ class Countdown extends React.Component {
       ))
     );
   }
+}
+
+// ===== 回転ダイヤルナビ(スマホ・右下) =====
+// 黒電話のダイヤルのように回してセクションへ移動する。
+// 円盤の中心は画面右下角。回して指を離すと60°ごとにスナップし、選択セクションへ自動スクロールして閉じる。
+function mountRotaryDial(items) {
+  if (document.getElementById('toitsu-dial')) return function () {};
+  const N = items.length, STEP = 360 / N; // 項目間の角度
+  const PTR = 225;  // 選択位置(中心から見て左上45°)
+  const C = 170;    // 円盤の半径 = 中心座標(px)
+  const LR = 112;   // ラベルを置く半径
+
+  const root = document.createElement('div');
+  root.id = 'toitsu-dial';
+  root.innerHTML =
+    '<div class="dial-wheel" aria-hidden="true"><div class="dial-disc">' +
+    '<svg class="dial-wave" viewBox="-190 -190 380 380"><path/></svg><div class="dial-face"></div>' +
+    '<span class="dial-pointer">✦</span><div class="dial-labels"></div>' +
+    '</div></div>' +
+    '<button class="dial-fab" type="button" aria-label="セクションナビを開く">' +
+    '<svg class="df-dial" width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">' +
+    '<circle cx="13" cy="13" r="11" stroke="currentColor" stroke-width="1.6"/>' +
+    '<circle cx="13" cy="5.5" r="1.6" fill="currentColor"/><circle cx="19.5" cy="8.5" r="1.6" fill="currentColor"/>' +
+    '<circle cx="20.5" cy="15.5" r="1.6" fill="currentColor"/><circle cx="6.5" cy="8.5" r="1.6" fill="currentColor"/>' +
+    '<circle cx="5.5" cy="15.5" r="1.6" fill="currentColor"/><circle cx="13" cy="13" r="2.2" fill="currentColor"/></svg>' +
+    '<span class="df-x">×</span></button>';
+  document.body.appendChild(root);
+
+  const wheel = root.querySelector('.dial-wheel');
+  const disc = root.querySelector('.dial-disc');
+  const wave = root.querySelector('.dial-wave');
+  const labelsBox = root.querySelector('.dial-labels');
+  const fab = root.querySelector('.dial-fab');
+
+  // 波打つ縁の円: r = 176 + 7·sin(12θ) を2°刻みで結ぶ(なめらかなサインカーブ12波)
+  (function () {
+    let d = '';
+    for (let i = 0; i <= 180; i++) {
+      const t = i * 2 * Math.PI / 180;
+      const r = 176 + 7 * Math.sin(12 * t);
+      d += (i ? 'L' : 'M') + (r * Math.cos(t)).toFixed(1) + ' ' + (r * Math.sin(t)).toFixed(1);
+    }
+    wave.querySelector('path').setAttribute('d', d + 'Z');
+  })();
+  const btns = items.map(function (m, i) {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'dial-label';
+    b.dataset.i = i;
+    b.textContent = m.label;
+    labelsBox.appendChild(b);
+    return b;
+  });
+
+  let R = 0;          // 現在の回転角(deg・無限に累積してよい)
+  let anim = null;    // スナップアニメのタイマー
+  let open = false;
+  const mod = (n, m) => ((n % m) + m) % m;
+  const selIndex = () => mod(Math.round(-R / STEP), N);
+
+  function layout() {
+    wave.style.transform = 'rotate(' + R + 'deg)';
+    const sel = selIndex();
+    btns.forEach(function (b, i) {
+      const a = (PTR + i * STEP + R) * Math.PI / 180;
+      b.style.left = (C + LR * Math.cos(a)) + 'px';
+      b.style.top = (C + LR * Math.sin(a)) + 'px';
+      b.classList.toggle('on', i === sel);
+    });
+  }
+  // スナップアニメ。rAFはバックグラウンドで完全停止して完了コールバックが飛ばなくなるためsetTimeoutで駆動する
+  function animateTo(target, done) {
+    if (anim) clearTimeout(anim);
+    const from = R, d = target - from, t0 = performance.now();
+    (function step() {
+      const k = Math.min(1, (performance.now() - t0) / 260);
+      R = from + d * (1 - Math.pow(1 - k, 3)); // ease-out
+      layout();
+      if (k < 1) { anim = setTimeout(step, 16); }
+      else { anim = null; if (done) done(); }
+    })();
+  }
+  // ジャンプしてもダイヤルは閉じない(FABの×で閉じるまで開いたまま)
+  function go(i) {
+    const el = document.querySelector(items[i].href);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  }
+  // 開いた瞬間、今見ているセクションが選択位置に来るよう合わせる
+  function syncToScroll() {
+    let best = 0, bd = Infinity;
+    items.forEach(function (m, i) {
+      const el = document.querySelector(m.href);
+      if (!el) return;
+      const d = Math.abs(el.getBoundingClientRect().top - 80);
+      if (d < bd) { bd = d; best = i; }
+    });
+    R = -best * STEP;
+  }
+  function setOpen(v) {
+    open = v;
+    wheel.classList.toggle('open', v);
+    fab.classList.toggle('open', v);
+    fab.setAttribute('aria-label', v ? 'ナビダイヤルを閉じる' : 'セクションナビを開く');
+    if (v) { syncToScroll(); layout(); }
+  }
+  fab.addEventListener('click', function () { setOpen(!open); });
+
+  // ドラッグで回転(中心=画面右下角まわりの角度差を積算)
+  let dragging = false, moved = 0, lastA = 0, startIdx = 0, downTarget = null;
+  const angAt = (e) => Math.atan2(e.clientY - window.innerHeight, e.clientX - window.innerWidth) * 180 / Math.PI;
+  disc.addEventListener('pointerdown', function (e) {
+    if (anim) { clearTimeout(anim); anim = null; }
+    dragging = true; moved = 0; lastA = angAt(e); startIdx = selIndex();
+    downTarget = e.target.closest ? e.target.closest('.dial-label') : null;
+    try { disc.setPointerCapture(e.pointerId); } catch (err) {}
+    e.preventDefault();
+  });
+  disc.addEventListener('pointermove', function (e) {
+    if (!dragging) return;
+    const a = angAt(e);
+    let d = a - lastA;
+    if (d > 180) d -= 360; if (d < -180) d += 360;
+    lastA = a;
+    const prevDetent = Math.round(-R / STEP);
+    R += d; moved += Math.abs(d);
+    // カチッと感: 目盛りをまたいだら振動(対応端末のみ)
+    if (Math.round(-R / STEP) !== prevDetent && navigator.vibrate) { try { navigator.vibrate(8); } catch (err) {} }
+    layout();
+  });
+  disc.addEventListener('pointerup', function () {
+    if (!dragging) return;
+    dragging = false;
+    const tapBtn = moved < 4 ? downTarget : null; // ほぼ動いていなければラベルのタップ扱い
+    let target;
+    if (tapBtn) {
+      let t = -(+tapBtn.dataset.i) * STEP; // そのラベルが選択位置に来る回転角(現在角に最も近い同値へ)
+      while (t - R > 180) t -= 360;
+      while (t - R < -180) t += 360;
+      target = t;
+    } else {
+      target = Math.round(R / STEP) * STEP;
+    }
+    animateTo(target, function () {
+      const idx = selIndex();
+      if (tapBtn || idx !== startIdx) go(idx); // 元の位置に戻しただけなら飛ばない
+    });
+  });
+  disc.addEventListener('pointercancel', function () {
+    if (!dragging) return;
+    dragging = false;
+    animateTo(Math.round(R / STEP) * STEP); // スナップだけして移動はしない
+  });
+
+  layout();
+  return function cleanup() {
+    if (anim) clearTimeout(anim);
+    root.remove();
+  };
 }
 </script>
 </body>
