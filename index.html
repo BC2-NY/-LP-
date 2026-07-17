@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>関西大学 統一祭 | 公式サイト</title>
+<title>関西大学統一学園祭 | 公式サイト</title>
 <meta name="description" content="関西大学 統一祭 公式サイト。2026年11月1日(日)〜11月4日(水)、千里山キャンパスにて開催。入場無料。">
 <meta name="theme-color" content="#0a0a0d">
 <script>
@@ -120,6 +120,8 @@ summary{cursor:pointer}summary::-webkit-details-marker{display:none}
 
 .hero{position:relative;min-height:640px;height:100vh;overflow:hidden}
 @supports(height:100dvh){.hero{height:100dvh}}
+/* hero-title-wrapの高さ(min(62vh,440px))に対して9文字が必ず収まるよう比率換算 */
+.hero-main-title{font-size:min(6.2vh,44px)}
 /* カウントダウン */
 .cd{display:flex;align-items:baseline;gap:18px;font-family:'Shippori Mincho B1',serif;color:#fff}
 .cd-num{font-size:30px}
@@ -140,6 +142,7 @@ summary{cursor:pointer}summary::-webkit-details-marker{display:none}
 @media(max-width:640px){
   .hero{min-height:560px}
   .hero-title-wrap{top:96px;right:20px;height:min(54vh,380px)}
+  .hero-main-title{font-size:min(5.4vh,38px)}
   .hero-date{bottom:150px}
   .cd{gap:12px}
   .cd-num{font-size:22px}
@@ -175,7 +178,7 @@ summary{cursor:pointer}summary::-webkit-details-marker{display:none}
 
   <div style="position:absolute;top:0;left:0;right:0;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px clamp(20px,4vw,36px)">
     <div style="display:flex;align-items:baseline;gap:12px">
-      <span style="font-family:'Yuji Syuku',serif;font-size:31px;color:#fff">関西大学統一祭</span>
+      <span style="font-family:'Yuji Syuku',serif;font-size:clamp(15px,4.5vw,31px);white-space:nowrap;color:#fff">関西大学統一学園祭</span>
       <span class="logo-sub" style="font-size:10px;letter-spacing:.25em;color:rgba(255,255,255,.55)">TOITSU-SAI XXXX</span>
     </div>
     <div style="display:flex;align-items:center;gap:clamp(14px,2.4vw,26px)">
@@ -201,8 +204,8 @@ summary{cursor:pointer}summary::-webkit-details-marker{display:none}
   </sc-if>
 
   <div class="hero-title-wrap" style="position:absolute;top:clamp(90px,14vh,130px);right:clamp(24px,7vw,88px);display:flex;flex-direction:row;gap:clamp(14px,2.4vw,26px);height:min(62vh,440px)">
-    <div style="writing-mode:vertical-rl;font-family:'Shippori Mincho B1',serif;font-size:clamp(15px,2vw,20px);letter-spacing:.5em;color:rgba(255,255,255,.75)">今年のスローガン「XXXX」</div>
-    <div style="writing-mode:vertical-rl;font-family:'Yuji Syuku',serif;font-size:clamp(58px,9vw,96px);line-height:1.05;color:#fff;text-shadow:0 4px 40px rgba(0,0,0,.6)">統一祭</div>
+    <div style="writing-mode:vertical-rl;font-family:'Shippori Mincho B1',serif;font-size:clamp(15px,2vw,20px);letter-spacing:.5em;color:rgba(255,255,255,.75)">今年のスローガン「疾風」</div>
+    <div class="hero-main-title" style="writing-mode:vertical-rl;font-family:'Yuji Syuku',serif;white-space:nowrap;line-height:1.05;color:#fff;text-shadow:0 4px 40px rgba(0,0,0,.6)">関西大学統一学園祭</div>
   </div>
 
   <div class="hero-date" style="position:absolute;left:clamp(20px,4vw,36px);bottom:110px;display:flex;flex-direction:column;gap:8px">
@@ -365,8 +368,8 @@ const NAV_ITEMS = [
   { href: '#about', label: '開催概要', color: 'rgba(255,255,255,.85)' },
   { href: '#stage', label: 'ステージ企画', color: 'rgba(255,255,255,.85)' },
   { href: '#food', label: '模擬店', color: 'rgba(255,255,255,.85)' },
-  { href: '#faq', label: '注意事項・FAQ', color: 'rgba(255,255,255,.85)' },
-  { href: '#access', label: 'アクセス', color: '#a89ae0' },
+  { href: '#access', label: 'アクセス', color: 'rgba(255,255,255,.85)' },
+  { href: '#faq', label: '注意事項・FAQ', color: '#a89ae0' },
 ];
 
 class Component extends DCLogic {
@@ -416,9 +419,9 @@ class Component extends DCLogic {
   renderVals() {
     const navItems = NAV_ITEMS;
     const news = [
-      { date: 'XXXX.XX.XX', tag: '重要', tagBorder: 'var(--accent-strong)', tagColor: 'var(--accent)', text: '公式サイトを公開しました' },
+      { date: '2026.07.15', tag: '重要', tagBorder: 'var(--accent-strong)', tagColor: 'var(--accent)', text: '公式サイトを公開しました' },
       { date: 'XXXX.XX.XX', tag: '募集', tagBorder: 'var(--tag-border)', tagColor: 'var(--text-2)', text: '模擬店出店団体の募集を開始しました' },
-      { date: 'XXXX.XX.XX', tag: 'お知らせ', tagBorder: 'var(--tag-border)', tagColor: 'var(--text-2)', text: '今年のスローガンが「XXXX」に決定しました' },
+      { date: '2026.07.01', tag: 'お知らせ', tagBorder: 'var(--tag-border)', tagColor: 'var(--text-2)', text: '今年のスローガンが「疾風」に決定しました' },
     ];
     const faqs = [
       { q: '入場料はかかりますか？', a: '入場無料です。チケット等は不要で、どなたでもご来場いただけます。' },
