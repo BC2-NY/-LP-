@@ -354,8 +354,8 @@ summary{cursor:pointer}summary::-webkit-details-marker{display:none}
       <span>ページ制作:Versear</span>
     </div>
   </div>
-  <!-- 制作クレジットの巨大ワードマーク(textLengthで常に画面幅ピッタリに伸ばす) -->
-  <svg viewBox="0 0 700 125" preserveAspectRatio="none" aria-hidden="true" style="display:block;width:100%;height:auto">
+  <!-- 制作クレジットの巨大ワードマーク(textLengthでコンテンツ幅ピッタリに伸ばす) -->
+  <svg viewBox="0 0 700 125" preserveAspectRatio="none" aria-hidden="true" style="display:block;width:100%;height:auto;padding:0 clamp(20px,4vw,36px) 14px;box-sizing:border-box">
     <text x="0" y="112" textLength="700" lengthAdjust="spacingAndGlyphs" fill="currentColor" style="font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:140px">Versear</text>
   </svg>
 </footer>
@@ -558,8 +558,8 @@ function mountRotaryDial(items) {
     const el = document.querySelector(items[i].href);
     if (el) el.scrollIntoView({ behavior: 'smooth' });
   }
-  // 開いた瞬間、今見ているセクションが選択位置に来るよう合わせる
-  function syncToScroll() {
+  // 今見ているセクション(ビューポート上端に最も近いもの)のindex
+  function nearestIdx() {
     let best = 0, bd = Infinity;
     items.forEach(function (m, i) {
       const el = document.querySelector(m.href);
@@ -567,8 +567,26 @@ function mountRotaryDial(items) {
       const d = Math.abs(el.getBoundingClientRect().top - 80);
       if (d < bd) { bd = d; best = i; }
     });
-    R = -best * STEP;
+    return best;
   }
+  // 開いた瞬間、今見ているセクションが選択位置に来るよう合わせる
+  let syncTarget = 0;
+  function syncToScroll() {
+    syncTarget = nearestIdx();
+    R = -syncTarget * STEP;
+  }
+  // ページのスクロール位置にダイヤルを追従させて回す(開いている間・指で操作中は除く)
+  function onScroll() {
+    if (!open || dragging) return;
+    const i = nearestIdx();
+    if (i === syncTarget) return;
+    syncTarget = i;
+    let t = -i * STEP; // 現在角に最も近い同値へ回す
+    while (t - R > 180) t -= 360;
+    while (t - R < -180) t += 360;
+    animateTo(t);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
   function setOpen(v) {
     open = v;
     wheel.classList.toggle('open', v);
@@ -578,24 +596,22 @@ function mountRotaryDial(items) {
   }
   fab.addEventListener('click', function () { setOpen(!open); });
 
-  // ドラッグで回転(中心=画面右下角まわりの角度差を積算)
-  let dragging = false, moved = 0, lastA = 0, startIdx = 0, downTarget = null;
-  const angAt = (e) => Math.atan2(e.clientY - window.innerHeight, e.clientX - window.innerWidth) * 180 / Math.PI;
+  // 上下スワイプで回転(スクロールと同じ指の動き。縦の移動量を弧の長さとして角度に換算)
+  const PX2DEG = 180 / (Math.PI * LR); // 1pxあたりの回転角
+  let dragging = false, moved = 0, lastY = 0, startIdx = 0, downTarget = null;
   disc.addEventListener('pointerdown', function (e) {
     if (anim) { clearTimeout(anim); anim = null; }
-    dragging = true; moved = 0; lastA = angAt(e); startIdx = selIndex();
+    dragging = true; moved = 0; lastY = e.clientY; startIdx = selIndex();
     downTarget = e.target.closest ? e.target.closest('.dial-label') : null;
     try { disc.setPointerCapture(e.pointerId); } catch (err) {}
     e.preventDefault();
   });
   disc.addEventListener('pointermove', function (e) {
     if (!dragging) return;
-    const a = angAt(e);
-    let d = a - lastA;
-    if (d > 180) d -= 360; if (d < -180) d += 360;
-    lastA = a;
+    const dy = e.clientY - lastY;
+    lastY = e.clientY;
     const prevDetent = Math.round(-R / STEP);
-    R += d; moved += Math.abs(d);
+    R += dy * PX2DEG; moved += Math.abs(dy);
     // カチッと感: 目盛りをまたいだら振動(対応端末のみ)
     if (Math.round(-R / STEP) !== prevDetent && navigator.vibrate) { try { navigator.vibrate(8); } catch (err) {} }
     layout();
@@ -603,7 +619,7 @@ function mountRotaryDial(items) {
   disc.addEventListener('pointerup', function () {
     if (!dragging) return;
     dragging = false;
-    const tapBtn = moved < 4 ? downTarget : null; // ほぼ動いていなければラベルのタップ扱い
+    const tapBtn = moved < 6 ? downTarget : null; // 縦移動がほぼ無ければラベルのタップ扱い
     let target;
     if (tapBtn) {
       let t = -(+tapBtn.dataset.i) * STEP; // そのラベルが選択位置に来る回転角(現在角に最も近い同値へ)
@@ -627,6 +643,7 @@ function mountRotaryDial(items) {
   layout();
   return function cleanup() {
     if (anim) clearTimeout(anim);
+    window.removeEventListener('scroll', onScroll);
     root.remove();
   };
 }
