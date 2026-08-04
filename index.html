@@ -4,7 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>関西大学統一学園祭 | 公式サイト</title>
-<meta name="description" content="関西大学 統一祭 公式サイト。2026年11月1日(日)〜11月4日(水)、千里山キャンパスにて開催。入場無料。">
+<meta name="description" content="関西大学統一学園祭「旋風」公式サイト。2026年11月1日(日)〜11月4日(水)、千里山キャンパスにて開催。入場無料。">
+<!-- OGP: SNS(LINE/X/Instagram等)でシェアされた時のカード表示 -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="関西大学統一学園祭">
+<meta property="og:title" content="関西大学統一学園祭「旋風」| 公式サイト">
+<meta property="og:description" content="2026年11月1日(日)〜11月4日(水)、関西大学千里山キャンパスにて開催。入場無料。">
+<meta property="og:url" content="https://d117phj074z82p.cloudfront.net/">
+<meta property="og:image" content="https://d117phj074z82p.cloudfront.net/uploads/toitu-sozai-1.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<!-- favicon(SVGデータURI: 紫地に「祭」) -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%236b5ca5'/><text x='32' y='46' font-size='38' text-anchor='middle' fill='%23fff' font-family='serif'>祭</text></svg>">
 <meta name="theme-color" content="#0a0a0d">
 <script>
 // テーマ初期化: localStorage > OS設定 の優先で、描画前に data-theme を確定させる(ちらつき防止)
@@ -43,7 +53,7 @@
 <helmet data-dc-atomics>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
-<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;700;800&family=Yuji+Syuku&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@500;700;900&family=Yuji+Syuku&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
 /* ==== テーマ変数(ダークが既定 / [data-theme=light] で上書き) ==== */
 :root{
@@ -95,7 +105,7 @@
   --dial-bg:#e6ddf6;--dial-line:rgba(107,92,165,.4);
 }
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);font-family:"Noto Sans JP",system-ui,sans-serif;color:var(--text);-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);font-family:"Zen Kaku Gothic New",system-ui,sans-serif;color:var(--text);-webkit-text-size-adjust:100%}
 a{color:var(--link);text-decoration:none}a:hover{color:var(--link-hover)}
 /* テキスト選択色(パステル+グロー) */
 ::selection{background:var(--sel-bg);color:var(--sel-fg);text-shadow:0 0 6px var(--sel-glow)}
@@ -123,7 +133,7 @@ summary{cursor:pointer}summary::-webkit-details-marker{display:none}
 /* hero-title-wrapの高さ(min(62vh,440px))に対して9文字が必ず収まるよう比率換算 */
 .hero-main-title{font-size:min(6.2vh,44px)}
 /* カウントダウン */
-.cd{display:flex;align-items:baseline;gap:18px;font-family:'Shippori Mincho B1',serif;color:#fff}
+.cd{display:flex;align-items:baseline;gap:18px;font-family:'Zen Old Mincho',serif;color:#fff}
 .cd-num{font-size:30px}
 .cd-unit{font-size:12px;margin-left:4px;color:rgba(255,255,255,.6)}
 /* ハンバーガーメニュー */
@@ -179,7 +189,6 @@ summary{cursor:pointer}summary::-webkit-details-marker{display:none}
   <div style="position:absolute;top:0;left:0;right:0;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px clamp(20px,4vw,36px)">
     <div style="display:flex;align-items:baseline;gap:12px">
       <span style="font-family:'Yuji Syuku',serif;font-size:clamp(15px,4.5vw,31px);white-space:nowrap;color:#fff">関西大学統一学園祭</span>
-      <span class="logo-sub" style="font-size:10px;letter-spacing:.25em;color:rgba(255,255,255,.55)">TOITSU-SAI XXXX</span>
     </div>
     <div style="display:flex;align-items:center;gap:clamp(14px,2.4vw,26px)">
       <nav class="site-nav" style="display:flex;gap:clamp(14px,2.4vw,26px);font-size:12.5px;letter-spacing:.12em">
@@ -204,27 +213,25 @@ summary{cursor:pointer}summary::-webkit-details-marker{display:none}
   </sc-if>
 
   <div class="hero-title-wrap" style="position:absolute;top:clamp(90px,14vh,130px);right:clamp(24px,7vw,88px);display:flex;flex-direction:row;gap:clamp(14px,2.4vw,26px);height:min(62vh,440px)">
-    <div style="writing-mode:vertical-rl;font-family:'Shippori Mincho B1',serif;font-size:clamp(15px,2vw,20px);letter-spacing:.5em;color:rgba(255,255,255,.75)">今年のスローガン「疾風」</div>
+    <div style="writing-mode:vertical-rl;font-family:'Zen Old Mincho',serif;font-size:clamp(15px,2vw,20px);letter-spacing:.5em;color:rgba(255,255,255,.75)">今年のスローガン「旋風」</div>
     <div class="hero-main-title" style="writing-mode:vertical-rl;font-family:'Yuji Syuku',serif;white-space:nowrap;line-height:1.05;color:#fff;text-shadow:0 4px 40px rgba(0,0,0,.6)">関西大学統一学園祭</div>
   </div>
 
   <div class="hero-date" style="position:absolute;left:clamp(20px,4vw,36px);bottom:110px;display:flex;flex-direction:column;gap:8px">
     <div style="width:44px;height:3px;background:linear-gradient(90deg,#6b5ca5,#3c5aa8)"></div>
-    <div style="font-family:'Shippori Mincho B1',serif;font-size:clamp(16px,2.2vw,19px);letter-spacing:.18em;color:#fff">2026年11月1日(日)〜11月4日(水)</div>
-    <div style="font-size:12px;letter-spacing:.14em;color:rgba(255,255,255,.65)">関西大学 千里山キャンパス ／ 主催: 祭典実行委員会</div>
+    <div style="font-family:'Zen Old Mincho',serif;font-size:clamp(16px,2.2vw,19px);letter-spacing:.18em;color:#fff">2026年11月1日(日)〜11月4日(水)</div>
+    <div style="font-size:12px;letter-spacing:.14em;color:rgba(255,255,255,.65)">関西大学 千里山キャンパス ／ 主催: 統一学園祭執行委員会</div>
   </div>
 
   <div style="position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:14px clamp(20px,4vw,36px);background:rgba(10,10,14,.72);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);border-top:1px solid rgba(168,154,224,.25)">
-    <div style="font-size:11px;letter-spacing:.3em;color:#a89ae0">開催まで COUNTDOWN</div>
     {{ countdown }}
-    <div class="cd-note" style="font-size:10px;color:rgba(255,255,255,.4)">2026.11.1 11:00 開幕</div>
   </div>
 </header>
 
 <!-- ================= NEWS ================= -->
 <section id="news" data-screen-label="お知らせ" style="scroll-margin-top:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:36px;max-width:1100px;margin:0 auto;padding:clamp(44px,7vw,72px) clamp(20px,4vw,36px);border-bottom:1px solid var(--line)">
   <div data-reveal style="max-width:220px">
-    <div style="font-family:'Shippori Mincho B1',serif;font-size:26px;letter-spacing:.2em">お知らせ</div>
+    <div style="font-family:'Zen Old Mincho',serif;font-size:26px;letter-spacing:.2em">お知らせ</div>
     <div style="font-size:10px;letter-spacing:.3em;color:var(--accent);margin-top:6px">NEWS</div>
   </div>
   <div data-reveal style="display:flex;flex-direction:column">
@@ -241,16 +248,16 @@ summary{cursor:pointer}summary::-webkit-details-marker{display:none}
 <!-- ================= ABOUT ================= -->
 <section id="about" data-screen-label="開催概要" style="scroll-margin-top:20px;max-width:1100px;margin:0 auto;padding:clamp(44px,7vw,72px) clamp(20px,4vw,36px);border-bottom:1px solid var(--line)">
   <div data-reveal>
-    <div style="font-family:'Shippori Mincho B1',serif;font-size:26px;letter-spacing:.2em">開催概要</div>
+    <div style="font-family:'Zen Old Mincho',serif;font-size:26px;letter-spacing:.2em">開催概要</div>
     <div style="font-size:10px;letter-spacing:.3em;color:var(--accent);margin-top:6px">OUTLINE</div>
   </div>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:40px;margin-top:36px;align-items:start">
     <div data-reveal style="display:flex;flex-direction:column">
-      <div style="display:grid;grid-template-columns:110px 1fr;gap:8px 20px;padding:16px 0;border-top:1px solid var(--line-strong);border-bottom:1px solid var(--line);font-size:14px"><span style="color:var(--accent);letter-spacing:.2em;font-size:12px">名称</span><span>関西大学 統一祭「XXXX」</span></div>
+      <div style="display:grid;grid-template-columns:110px 1fr;gap:8px 20px;padding:16px 0;border-top:1px solid var(--line-strong);border-bottom:1px solid var(--line);font-size:14px"><span style="color:var(--accent);letter-spacing:.2em;font-size:12px">名称</span><span>関西大学統一学園祭「旋風」</span></div>
       <div style="display:grid;grid-template-columns:110px 1fr;gap:8px 20px;padding:16px 0;border-bottom:1px solid var(--line);font-size:14px"><span style="color:var(--accent);letter-spacing:.2em;font-size:12px">日程</span><span>2026年11月1日(日)〜11月4日(水)<br><span style="font-size:12px;color:var(--text-3)">11:00開幕(終了時刻は企画により異なります)</span></span></div>
       <div style="display:grid;grid-template-columns:110px 1fr;gap:8px 20px;padding:16px 0;border-bottom:1px solid var(--line);font-size:14px"><span style="color:var(--accent);letter-spacing:.2em;font-size:12px">会場</span><span>関西大学 千里山キャンパス<br><span style="font-size:12px;color:var(--text-3)">〒564-8680 大阪府吹田市山手町3丁目3-35</span></span></div>
       <div style="display:grid;grid-template-columns:110px 1fr;gap:8px 20px;padding:16px 0;border-bottom:1px solid var(--line);font-size:14px"><span style="color:var(--accent);letter-spacing:.2em;font-size:12px">入場</span><span>入場無料・どなたでもご来場いただけます</span></div>
-      <div style="display:grid;grid-template-columns:110px 1fr;gap:8px 20px;padding:16px 0;border-bottom:1px solid var(--line);font-size:14px"><span style="color:var(--accent);letter-spacing:.2em;font-size:12px">主催</span><span>祭典実行委員会</span></div>
+      <div style="display:grid;grid-template-columns:110px 1fr;gap:8px 20px;padding:16px 0;border-bottom:1px solid var(--line);font-size:14px"><span style="color:var(--accent);letter-spacing:.2em;font-size:12px">主催</span><span>統一学園祭執行委員会</span></div>
     </div>
     <div data-reveal style="position:relative;border-radius:6px;overflow:hidden;min-height:340px">
       <img src="uploads/toitu-sozai-2.jpg" alt="昼のステージと観客" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
@@ -263,14 +270,14 @@ summary{cursor:pointer}summary::-webkit-details-marker{display:none}
 <!-- ================= STAGE / FOOD ================= -->
 <section data-screen-label="企画" style="max-width:1100px;margin:0 auto;padding:clamp(44px,7vw,72px) clamp(20px,4vw,36px);border-bottom:1px solid var(--line)">
   <div data-reveal>
-    <div style="font-family:'Shippori Mincho B1',serif;font-size:26px;letter-spacing:.2em">企画</div>
+    <div style="font-family:'Zen Old Mincho',serif;font-size:26px;letter-spacing:.2em">企画</div>
     <div style="font-size:10px;letter-spacing:.3em;color:var(--accent);margin-top:6px">PROGRAM</div>
   </div>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:36px">
     <div id="stage" data-reveal style="scroll-margin-top:20px;position:relative;border:1px solid var(--line-strong);border-radius:6px;overflow:hidden;background:var(--bg-2)">
       <div style="height:220px;overflow:hidden;position:relative"><img src="uploads/toitu-sozai-6.jpg" alt="夜のステージ演奏" style="width:100%;height:100%;object-fit:cover"><div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,var(--card-fade))"></div></div>
       <div style="padding:22px 24px 26px">
-        <div style="font-family:'Shippori Mincho B1',serif;font-size:20px;letter-spacing:.15em">ステージ企画・タイムテーブル</div>
+        <div style="font-family:'Zen Old Mincho',serif;font-size:20px;letter-spacing:.15em">ステージ企画・タイムテーブル</div>
         <p style="margin:12px 0 0;font-size:13px;line-height:1.9;color:var(--text-2)">音楽・ダンス・パフォーマンスなど、両日にわたってステージ企画を開催予定。タイムテーブルは決定次第、このページで公開します。</p>
         <div style="display:inline-block;margin-top:16px;font-size:11px;letter-spacing:.2em;padding:6px 14px;border:1px solid var(--accent-border);color:var(--accent);border-radius:3px">COMING SOON — 準備中</div>
       </div>
@@ -278,7 +285,7 @@ summary{cursor:pointer}summary::-webkit-details-marker{display:none}
     <div id="food" data-reveal style="scroll-margin-top:20px;position:relative;border:1px solid var(--line-strong);border-radius:6px;overflow:hidden;background:var(--bg-2)">
       <div style="height:220px;overflow:hidden;position:relative"><img src="uploads/toitu-sozai-8.jpg" alt="キャンパスの賑わい" style="width:100%;height:100%;object-fit:cover"><div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,var(--card-fade))"></div></div>
       <div style="padding:22px 24px 26px">
-        <div style="font-family:'Shippori Mincho B1',serif;font-size:20px;letter-spacing:.15em">模擬店・出店一覧</div>
+        <div style="font-family:'Zen Old Mincho',serif;font-size:20px;letter-spacing:.15em">模擬店・出店一覧</div>
         <p style="margin:12px 0 0;font-size:13px;line-height:1.9;color:var(--text-2)">学生団体による模擬店が多数出店予定。出店一覧はカテゴリから検索できる一覧ページとして公開予定です。</p>
         <div style="display:inline-block;margin-top:16px;font-size:11px;letter-spacing:.2em;padding:6px 14px;border:1px solid var(--accent-border);color:var(--accent);border-radius:3px">COMING SOON — 準備中</div>
       </div>
@@ -289,7 +296,7 @@ summary{cursor:pointer}summary::-webkit-details-marker{display:none}
 <!-- ================= ACCESS ================= -->
 <section id="access" data-screen-label="アクセス" style="scroll-margin-top:20px;max-width:1100px;margin:0 auto;padding:clamp(44px,7vw,72px) clamp(20px,4vw,36px);border-bottom:1px solid var(--line)">
   <div data-reveal>
-    <div style="font-family:'Shippori Mincho B1',serif;font-size:26px;letter-spacing:.2em">アクセス</div>
+    <div style="font-family:'Zen Old Mincho',serif;font-size:26px;letter-spacing:.2em">アクセス</div>
     <div style="font-size:10px;letter-spacing:.3em;color:var(--accent);margin-top:6px">ACCESS</div>
   </div>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:40px;margin-top:36px;align-items:start">
@@ -299,7 +306,7 @@ summary{cursor:pointer}summary::-webkit-details-marker{display:none}
     <div data-reveal style="display:flex;flex-direction:column;gap:22px">
       <div>
         <div style="font-size:12px;letter-spacing:.25em;color:var(--accent);margin-bottom:8px">会場</div>
-        <div style="font-family:'Shippori Mincho B1',serif;font-size:18px;letter-spacing:.1em">関西大学 千里山キャンパス</div>
+        <div style="font-family:'Zen Old Mincho',serif;font-size:18px;letter-spacing:.1em">関西大学 千里山キャンパス</div>
         <div style="font-size:13px;color:var(--text-2);margin-top:6px">〒564-8680 大阪府吹田市山手町3丁目3-35</div>
       </div>
       <div style="border-top:1px solid var(--line-strong);padding-top:20px">
@@ -317,12 +324,12 @@ summary{cursor:pointer}summary::-webkit-details-marker{display:none}
 <!-- ================= FAQ ================= -->
 <section id="faq" data-screen-label="注意事項・FAQ" style="scroll-margin-top:20px;max-width:1100px;margin:0 auto;padding:clamp(44px,7vw,72px) clamp(20px,4vw,36px)">
   <div data-reveal>
-    <div style="font-family:'Shippori Mincho B1',serif;font-size:26px;letter-spacing:.2em">来場者への注意事項・FAQ</div>
+    <div style="font-family:'Zen Old Mincho',serif;font-size:26px;letter-spacing:.2em">来場者への注意事項・FAQ</div>
     <div style="font-size:10px;letter-spacing:.3em;color:var(--accent);margin-top:6px">NOTICE / FAQ</div>
   </div>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:40px;margin-top:36px;align-items:start">
     <div data-reveal style="border:1px solid var(--panel-border);border-radius:6px;padding:26px 28px;background:linear-gradient(160deg,var(--panel-a),var(--panel-b))">
-      <div style="font-family:'Shippori Mincho B1',serif;font-size:17px;letter-spacing:.15em;margin-bottom:16px">ご来場にあたってのお願い</div>
+      <div style="font-family:'Zen Old Mincho',serif;font-size:17px;letter-spacing:.15em;margin-bottom:16px">ご来場にあたってのお願い</div>
       <ul style="margin:0;padding:0 0 0 1.2em;display:flex;flex-direction:column;gap:10px;font-size:13px;line-height:1.8;color:var(--text-1)">
         <li>ごみは分別のうえ、所定のごみステーションへお願いします。</li>
         <li>キャンパス内は指定場所を除き禁煙です。</li>
@@ -334,8 +341,8 @@ summary{cursor:pointer}summary::-webkit-details-marker{display:none}
     <div data-reveal style="display:flex;flex-direction:column;gap:10px">
       <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="4">
         <details style="border:1px solid var(--line-strong);border-radius:5px;background:var(--bg-2);padding:0 18px">
-          <summary style="display:flex;gap:14px;align-items:baseline;padding:15px 0;font-size:13.5px;color:var(--text);list-style:none"><span style="font-family:'Shippori Mincho B1',serif;color:var(--accent)">Q</span>{{ f.q }}</summary>
-          <div style="display:flex;gap:14px;align-items:baseline;padding:0 0 16px;font-size:13px;line-height:1.9;color:var(--text-2)"><span style="font-family:'Shippori Mincho B1',serif;color:var(--text-3)">A</span><span>{{ f.a }}</span></div>
+          <summary style="display:flex;gap:14px;align-items:baseline;padding:15px 0;font-size:13.5px;color:var(--text);list-style:none"><span style="font-family:'Zen Old Mincho',serif;color:var(--accent)">Q</span>{{ f.q }}</summary>
+          <div style="display:flex;gap:14px;align-items:baseline;padding:0 0 16px;font-size:13px;line-height:1.9;color:var(--text-2)"><span style="font-family:'Zen Old Mincho',serif;color:var(--text-3)">A</span><span>{{ f.a }}</span></div>
         </details>
       </sc-for>
     </div>
@@ -347,16 +354,16 @@ summary{cursor:pointer}summary::-webkit-details-marker{display:none}
   <div style="max-width:1100px;margin:0 auto;padding:36px clamp(20px,4vw,36px);display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap">
     <div>
       <div style="font-family:'Yuji Syuku',serif;font-size:24px">統一祭</div>
-      <div style="font-size:11px;color:var(--text-3);margin-top:8px;line-height:1.8">関西大学 統一祭 XXXX ／ 主催: 祭典実行委員会<br>〒564-8680 大阪府吹田市山手町3丁目3-35</div>
+      <div style="font-size:11px;color:var(--text-3);margin-top:8px;line-height:1.8">関西大学統一学園祭 ／ 主催: 統一学園祭執行委員会<br>〒564-8680 大阪府吹田市山手町3丁目3-35</div>
     </div>
     <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;font-size:10.5px;color:var(--text-3)">
-      <span>© 祭典実行委員会</span>
+      <span>© 統一学園祭執行委員会</span>
       <span>ページ制作:Versear</span>
     </div>
   </div>
   <!-- 制作クレジットの巨大ワードマーク(textLengthでコンテンツ幅ピッタリに伸ばす) -->
   <svg viewBox="0 0 700 125" preserveAspectRatio="none" aria-hidden="true" style="display:block;width:100%;height:auto;padding:0 clamp(20px,4vw,36px) 14px;box-sizing:border-box">
-    <text x="0" y="112" textLength="700" lengthAdjust="spacingAndGlyphs" fill="currentColor" style="font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:140px">Versear</text>
+    <text x="0" y="112" textLength="700" lengthAdjust="spacingAndGlyphs" fill="currentColor" style="font-family:'Zen Kaku Gothic New',sans-serif;font-weight:900;font-size:140px">Versear</text>
   </svg>
 </footer>
 
@@ -420,15 +427,15 @@ class Component extends DCLogic {
     const navItems = NAV_ITEMS;
     const news = [
       { date: '2026.07.15', tag: '重要', tagBorder: 'var(--accent-strong)', tagColor: 'var(--accent)', text: '公式サイトを公開しました' },
-      { date: 'XXXX.XX.XX', tag: '募集', tagBorder: 'var(--tag-border)', tagColor: 'var(--text-2)', text: '模擬店出店団体の募集を開始しました' },
-      { date: '2026.07.01', tag: 'お知らせ', tagBorder: 'var(--tag-border)', tagColor: 'var(--text-2)', text: '今年のスローガンが「疾風」に決定しました' },
+      { date: '2026.08.02', tag: '募集', tagBorder: 'var(--tag-border)', tagColor: 'var(--text-2)', text: '模擬店の1次募集を締め切りました' },
+      { date: '2026.07.01', tag: 'お知らせ', tagBorder: 'var(--tag-border)', tagColor: 'var(--text-2)', text: '今年のスローガンが「旋風」に決定しました' },
     ];
     const faqs = [
       { q: '入場料はかかりますか？', a: '入場無料です。チケット等は不要で、どなたでもご来場いただけます。' },
       { q: '雨天の場合は開催されますか？', a: '雨天決行です。ただし荒天の場合は一部企画を中止・変更する場合があります。最新情報はお知らせ欄でご確認ください。' },
       { q: '駐車場・駐輪場はありますか？', a: '来場者用の駐車場はございません。公共交通機関をご利用ください。' },
       { q: 'ペットを連れて入場できますか？', a: '混雑時の安全確保のため、ペット同伴でのご入場はご遠慮いただいております(補助犬を除く)。' },
-      { q: '落とし物・迷子はどこに問い合わせればよいですか？', a: '当日は本部テントにて落とし物・迷子の対応を行います。開催後は祭典実行委員会までお問い合わせください。' },
+      { q: '落とし物・迷子はどこに問い合わせればよいですか？', a: '当日は本部テントにて落とし物・迷子の対応を行います。開催後は統一学園祭執行委員会までお問い合わせください。' },
     ];
     return {
       navItems,
@@ -452,9 +459,30 @@ class Countdown extends React.Component {
   componentDidMount() { this.timer = setInterval(() => this.setState({ now: Date.now() }), 1000); }
   componentWillUnmount() { clearInterval(this.timer); }
   render() {
-    // 開催日: 2026-11-01 11:00 JST 開幕 — この瞬間にカウントがちょうど0になる
-    const target = new Date('2026-11-01T11:00:00+09:00').getTime();
-    const diff = Math.max(0, target - this.state.now);
+    // 開幕: 2026-11-01 11:00 JST(この瞬間カウントが0)/ 閉幕: 最終日11-04の終わり
+    const start = new Date('2026-11-01T11:00:00+09:00').getTime();
+    const end = new Date('2026-11-05T00:00:00+09:00').getTime();
+    const now = this.state.now;
+    const label = (t) => React.createElement('div', { style: { fontSize: '11px', letterSpacing: '.3em', color: '#a89ae0' } }, t);
+    const note = (t) => React.createElement('div', { className: 'cd-note', style: { fontSize: '10px', color: 'rgba(255,255,255,.4)' } }, t);
+    if (now >= end) {
+      // 閉幕後
+      return React.createElement(React.Fragment, null,
+        label('THANK YOU'),
+        React.createElement('div', { className: 'cd', style: { fontSize: '17px', letterSpacing: '.14em' } }, '閉幕しました。ご来場ありがとうございました'),
+        note('また来年お会いしましょう')
+      );
+    }
+    if (now >= start) {
+      // 開催期間中
+      return React.createElement(React.Fragment, null,
+        label('NOW OPEN'),
+        React.createElement('div', { className: 'cd', style: { fontSize: '20px', letterSpacing: '.2em' } }, 'ただいま開催中！'),
+        note('11.4(水)まで開催')
+      );
+    }
+    // 開催前はカウントダウン表示
+    const diff = start - now;
     const pad = (n) => String(n).padStart(2, '0');
     const parts = [
       [Math.floor(diff / 86400000), '日'],
@@ -462,13 +490,17 @@ class Countdown extends React.Component {
       [pad(Math.floor(diff % 3600000 / 60000)), '分'],
       [pad(Math.floor(diff % 60000 / 1000)), '秒'],
     ];
-    return React.createElement(
-      'div',
-      { className: 'cd' },
-      parts.map(([v, unit], i) => React.createElement(
-        'span', { key: i, className: 'cd-num' }, String(v),
-        React.createElement('span', { className: 'cd-unit' }, unit)
-      ))
+    return React.createElement(React.Fragment, null,
+      label('開催まで COUNTDOWN'),
+      React.createElement(
+        'div',
+        { className: 'cd' },
+        parts.map(([v, unit], i) => React.createElement(
+          'span', { key: i, className: 'cd-num' }, String(v),
+          React.createElement('span', { className: 'cd-unit' }, unit)
+        ))
+      ),
+      note('2026.11.1 11:00 開幕')
     );
   }
 }
@@ -529,13 +561,13 @@ function mountRotaryDial(items) {
   let anim = null;    // スナップアニメのタイマー
   let open = false;
   const mod = (n, m) => ((n % m) + m) % m;
-  const selIndex = () => mod(Math.round(-R / STEP), N);
+  const selIndex = () => mod(Math.round(R / STEP), N);
 
   function layout() {
     wave.style.transform = 'rotate(' + R + 'deg)';
     const sel = selIndex();
     btns.forEach(function (b, i) {
-      const a = (PTR + i * STEP + R) * Math.PI / 180;
+      const a = (PTR - i * STEP + R) * Math.PI / 180;
       b.style.left = (C + LR * Math.cos(a)) + 'px';
       b.style.top = (C + LR * Math.sin(a)) + 'px';
       b.classList.toggle('on', i === sel);
@@ -573,7 +605,7 @@ function mountRotaryDial(items) {
   let syncTarget = 0;
   function syncToScroll() {
     syncTarget = nearestIdx();
-    R = -syncTarget * STEP;
+    R = syncTarget * STEP;
   }
   // ページのスクロール位置にダイヤルを追従させて回す(開いている間・指で操作中は除く)
   function onScroll() {
@@ -581,7 +613,7 @@ function mountRotaryDial(items) {
     const i = nearestIdx();
     if (i === syncTarget) return;
     syncTarget = i;
-    let t = -i * STEP; // 現在角に最も近い同値へ回す
+    let t = i * STEP; // 現在角に最も近い同値へ回す
     while (t - R > 180) t -= 360;
     while (t - R < -180) t += 360;
     animateTo(t);
@@ -610,10 +642,10 @@ function mountRotaryDial(items) {
     if (!dragging) return;
     const dy = e.clientY - lastY;
     lastY = e.clientY;
-    const prevDetent = Math.round(-R / STEP);
-    R += dy * PX2DEG; moved += Math.abs(dy);
+    const prevDetent = Math.round(R / STEP);
+    R -= dy * PX2DEG; moved += Math.abs(dy);
     // カチッと感: 目盛りをまたいだら振動(対応端末のみ)
-    if (Math.round(-R / STEP) !== prevDetent && navigator.vibrate) { try { navigator.vibrate(8); } catch (err) {} }
+    if (Math.round(R / STEP) !== prevDetent && navigator.vibrate) { try { navigator.vibrate(8); } catch (err) {} }
     layout();
   });
   disc.addEventListener('pointerup', function () {
@@ -622,7 +654,7 @@ function mountRotaryDial(items) {
     const tapBtn = moved < 6 ? downTarget : null; // 縦移動がほぼ無ければラベルのタップ扱い
     let target;
     if (tapBtn) {
-      let t = -(+tapBtn.dataset.i) * STEP; // そのラベルが選択位置に来る回転角(現在角に最も近い同値へ)
+      let t = (+tapBtn.dataset.i) * STEP; // そのラベルが選択位置に来る回転角(現在角に最も近い同値へ)
       while (t - R > 180) t -= 360;
       while (t - R < -180) t += 360;
       target = t;
