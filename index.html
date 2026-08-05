@@ -183,7 +183,7 @@ summary{cursor:pointer}summary::-webkit-details-marker{display:none}
 
 <!-- ================= HERO ================= -->
 <header class="hero" data-screen-label="トップ">
-  <img src="uploads/toitu-sozai-1.jpg" alt="統一祭の夜を彩る花火" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;animation:slowZoom 24s ease-in-out infinite alternate">
+  <img src="uploads/toitu-sozai-1.jpg" alt="統一学園祭の夜を彩る花火" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;animation:slowZoom 24s ease-in-out infinite alternate">
   <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,6,10,.6) 0%,rgba(6,6,10,.15) 40%,rgba(6,6,10,.85) 100%)"></div>
 
   <div style="position:absolute;top:0;left:0;right:0;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px clamp(20px,4vw,36px)">
@@ -220,7 +220,7 @@ summary{cursor:pointer}summary::-webkit-details-marker{display:none}
   <div class="hero-date" style="position:absolute;left:clamp(20px,4vw,36px);bottom:110px;display:flex;flex-direction:column;gap:8px">
     <div style="width:44px;height:3px;background:linear-gradient(90deg,#6b5ca5,#3c5aa8)"></div>
     <div style="font-family:'Zen Old Mincho',serif;font-size:clamp(16px,2.2vw,19px);letter-spacing:.18em;color:#fff">2026年11月1日(日)〜11月4日(水)</div>
-    <div style="font-size:12px;letter-spacing:.14em;color:rgba(255,255,255,.65)">関西大学 千里山キャンパス ／ 主催: 統一学園祭執行委員会</div>
+    <div style="font-size:12px;letter-spacing:.14em;color:rgba(255,255,255,.65)">関西大学 千里山キャンパス ／ 主催: 統一学園祭実行委員会</div>
   </div>
 
   <div style="position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:14px clamp(20px,4vw,36px);background:rgba(10,10,14,.72);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);border-top:1px solid rgba(168,154,224,.25)">
@@ -236,10 +236,10 @@ summary{cursor:pointer}summary::-webkit-details-marker{display:none}
   </div>
   <div data-reveal style="display:flex;flex-direction:column">
     <sc-for list="{{ news }}" as="n" hint-placeholder-count="3">
-      <div style="display:flex;gap:18px;align-items:baseline;flex-wrap:wrap;padding:14px 0;border-bottom:1px solid var(--line);font-size:13.5px;color:var(--text-1)">
-        <span style="font-family:ui-monospace,monospace;font-size:11px;color:var(--text-3)">{{ n.date }}</span>
-        <span style="font-size:10px;padding:2px 8px;border:1px solid {{ n.tagBorder }};color:{{ n.tagColor }};border-radius:2px">{{ n.tag }}</span>
-        <span>{{ n.text }}</span>
+      <div style="display:flex;gap:clamp(10px,2.5vw,18px);align-items:baseline;flex-wrap:nowrap;padding:14px 0;border-bottom:1px solid var(--line);font-size:13.5px;color:var(--text-1)">
+        <span style="flex-shrink:0;font-family:ui-monospace,monospace;font-size:11px;color:var(--text-3)">{{ n.date }}</span>
+        <span style="flex-shrink:0;white-space:nowrap;font-size:10px;padding:2px 8px;border:1px solid {{ n.tagBorder }};color:{{ n.tagColor }};border-radius:2px">{{ n.tag }}</span>
+        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ n.text }}</span>
       </div>
     </sc-for>
   </div>
@@ -257,12 +257,12 @@ summary{cursor:pointer}summary::-webkit-details-marker{display:none}
       <div style="display:grid;grid-template-columns:110px 1fr;gap:8px 20px;padding:16px 0;border-bottom:1px solid var(--line);font-size:14px"><span style="color:var(--accent);letter-spacing:.2em;font-size:12px">日程</span><span>2026年11月1日(日)〜11月4日(水)<br><span style="font-size:12px;color:var(--text-3)">11:00開幕(終了時刻は企画により異なります)</span></span></div>
       <div style="display:grid;grid-template-columns:110px 1fr;gap:8px 20px;padding:16px 0;border-bottom:1px solid var(--line);font-size:14px"><span style="color:var(--accent);letter-spacing:.2em;font-size:12px">会場</span><span>関西大学 千里山キャンパス<br><span style="font-size:12px;color:var(--text-3)">〒564-8680 大阪府吹田市山手町3丁目3-35</span></span></div>
       <div style="display:grid;grid-template-columns:110px 1fr;gap:8px 20px;padding:16px 0;border-bottom:1px solid var(--line);font-size:14px"><span style="color:var(--accent);letter-spacing:.2em;font-size:12px">入場</span><span>入場無料・どなたでもご来場いただけます</span></div>
-      <div style="display:grid;grid-template-columns:110px 1fr;gap:8px 20px;padding:16px 0;border-bottom:1px solid var(--line);font-size:14px"><span style="color:var(--accent);letter-spacing:.2em;font-size:12px">主催</span><span>統一学園祭執行委員会</span></div>
+      <div style="display:grid;grid-template-columns:110px 1fr;gap:8px 20px;padding:16px 0;border-bottom:1px solid var(--line);font-size:14px"><span style="color:var(--accent);letter-spacing:.2em;font-size:12px">主催</span><span>統一学園祭実行委員会</span></div>
     </div>
     <div data-reveal style="position:relative;border-radius:6px;overflow:hidden;min-height:340px">
       <img src="uploads/toitu-sozai-2.jpg" alt="昼のステージと観客" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
       <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(6,6,10,.7))"></div>
-      <div style="position:absolute;left:18px;bottom:14px;font-size:11px;letter-spacing:.2em;color:rgba(255,255,255,.75)">昨年の統一祭より</div>
+      <div style="position:absolute;left:18px;bottom:14px;font-size:11px;letter-spacing:.2em;color:rgba(255,255,255,.75)">昨年の統一学園祭より</div>
     </div>
   </div>
 </section>
@@ -353,11 +353,11 @@ summary{cursor:pointer}summary::-webkit-details-marker{display:none}
 <footer style="border-top:1px solid var(--line);background:var(--bg-3)">
   <div style="max-width:1100px;margin:0 auto;padding:36px clamp(20px,4vw,36px);display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap">
     <div>
-      <div style="font-family:'Yuji Syuku',serif;font-size:24px">統一祭</div>
-      <div style="font-size:11px;color:var(--text-3);margin-top:8px;line-height:1.8">関西大学統一学園祭 ／ 主催: 統一学園祭執行委員会<br>〒564-8680 大阪府吹田市山手町3丁目3-35</div>
+      <div style="font-family:'Yuji Syuku',serif;font-size:24px">統一学園祭</div>
+      <div style="font-size:11px;color:var(--text-3);margin-top:8px;line-height:1.8">関西大学統一学園祭 ／ 主催: 統一学園祭実行委員会<br>〒564-8680 大阪府吹田市山手町3丁目3-35</div>
     </div>
     <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;font-size:10.5px;color:var(--text-3)">
-      <span>© 統一学園祭執行委員会</span>
+      <span>© 統一学園祭実行委員会</span>
       <span>ページ制作:Versear</span>
     </div>
   </div>
@@ -435,7 +435,7 @@ class Component extends DCLogic {
       { q: '雨天の場合は開催されますか？', a: '雨天決行です。ただし荒天の場合は一部企画を中止・変更する場合があります。最新情報はお知らせ欄でご確認ください。' },
       { q: '駐車場・駐輪場はありますか？', a: '来場者用の駐車場はございません。公共交通機関をご利用ください。' },
       { q: 'ペットを連れて入場できますか？', a: '混雑時の安全確保のため、ペット同伴でのご入場はご遠慮いただいております(補助犬を除く)。' },
-      { q: '落とし物・迷子はどこに問い合わせればよいですか？', a: '当日は本部テントにて落とし物・迷子の対応を行います。開催後は統一学園祭執行委員会までお問い合わせください。' },
+      { q: '落とし物・迷子はどこに問い合わせればよいですか？', a: '当日は本部テントにて落とし物・迷子の対応を行います。開催後は統一学園祭実行委員会までお問い合わせください。' },
     ];
     return {
       navItems,
