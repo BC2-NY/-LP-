@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>中央ステージ タイムテーブル | 関西大学統一学園祭2026「旋風」</title>
+<meta name="description" content="関西大学統一学園祭2026「旋風」中央ステージのタイムテーブル。11月1日(日)〜11月4日(水)の出演団体と出演時間を日別に掲載しています。">
+<link rel="canonical" href="https://kandai-gakuensai.com/timetable.html">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="関西大学統一学園祭">
+<meta property="og:title" content="中央ステージ タイムテーブル | 関西大学統一学園祭2026「旋風」">
+<meta property="og:description" content="11月1日(日)〜11月4日(水)の中央ステージ出演団体と出演時間。">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:url" content="https://kandai-gakuensai.com/timetable.html">
+<meta property="og:image" content="https://kandai-gakuensai.com/uploads/toitu-sozai-1.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%236b5ca5'/><text x='32' y='46' font-size='38' text-anchor='middle' fill='%23fff' font-family='serif'>祭</text></svg>">
+<meta name="theme-color" content="#0a0a0d">
+<script>
+// テーマ初期化(トップページと同じキーを共有): localStorage > OS設定 の優先で描画前に確定させる
+(function () {
+  var KEY = 'toitsu-theme';
+  function apply(t) {
+    document.documentElement.dataset.theme = t;
+    var m = document.querySelector('meta[name="theme-color"]');
+    if (m) m.setAttribute('content', t === 'light' ? '#f7f5f1' : '#0a0a0d');
+  }
+  var saved = null;
+  try { saved = localStorage.getItem(KEY); } catch (e) {}
+  var mq = window.matchMedia('(prefers-color-scheme: light)');
+  apply(saved === 'light' || saved === 'dark' ? saved : (mq.matches ? 'light' : 'dark'));
+  window.__toitsuToggleTheme = function () {
+    var next = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+    apply(next);
+    try { localStorage.setItem(KEY, next); } catch (e) {}
+  };
+  document.documentElement.classList.add('js');
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Yuji+Syuku&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ==== テーマ変数(トップページと同じ値) ==== */
+:root{
+  color-scheme:dark;
+  --bg:#0a0a0d;--bg-2:#111013;--bg-3:#08080b;
+  --text:#fff;--text-1:rgba(255,255,255,.88);--text-2:rgba(255,255,255,.62);--text-3:rgba(255,255,255,.45);
+  --line:rgba(255,255,255,.09);--line-strong:rgba(255,255,255,.14);
+  --accent:#a89ae0;--accent-strong:#6b5ca5;--accent-border:rgba(168,154,224,.5);
+  --link:#a89ae0;--link-hover:#c5bbee;
+  --now-bg:rgba(107,92,165,.22);
+  --sel-bg:#f3a8c8;--sel-fg:#2a1830;--sel-glow:rgba(243,168,200,.55);
+}
+[data-theme=light]{
+  color-scheme:light;
+  --bg:#f7f5f1;--bg-2:#fffefb;--bg-3:#efece5;
+  --text:#23212b;--text-1:rgba(35,33,43,.92);--text-2:rgba(35,33,43,.68);--text-3:rgba(35,33,43,.52);
+  --line:rgba(35,33,43,.12);--line-strong:rgba(35,33,43,.2);
+  --accent:#5c4d99;--accent-strong:#6b5ca5;--accent-border:rgba(107,92,165,.45);
+  --link:#5c4d99;--link-hover:#3f3277;
+  --now-bg:rgba(107,92,165,.12);
+  --sel-bg:#ffc9de;--sel-fg:#5a2440;--sel-glow:rgba(255,150,190,.5);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Zen Maru Gothic",system-ui,sans-serif;-webkit-text-size-adjust:100%}
+a{color:var(--link);text-decoration:none}a:hover{color:var(--link-hover)}
+::selection{background:var(--sel-bg);color:var(--sel-fg);text-shadow:0 0 6px var(--sel-glow)}
+.wrap{max-width:760px;margin:0 auto;padding:0 clamp(20px,4vw,36px)}
+
+/* ヘッダー */
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 0;border-bottom:1px solid var(--line)}
+.top-logo{font-family:'Yuji Syuku',serif;font-size:clamp(17px,4.2vw,22px);color:var(--text);white-space:nowrap}
+.top-right{display:flex;align-items:center;gap:14px}
+.back{font-size:12px;letter-spacing:.12em;white-space:nowrap}
+.theme-toggle{width:34px;height:34px;flex-shrink:0;border-radius:50%;border:1px solid var(--line-strong);background:transparent;color:var(--text);cursor:pointer;font-size:15px;line-height:1;padding:0}
+.theme-toggle .tt-moon{display:none}
+[data-theme=light] .theme-toggle .tt-sun{display:none}
+[data-theme=light] .theme-toggle .tt-moon{display:inline}
+
+/* 見出し */
+.head{padding:clamp(36px,7vw,60px) 0 24px}
+h1{margin:0;font-family:'Dela Gothic One',sans-serif;font-weight:400;font-size:clamp(23px,5.4vw,30px);letter-spacing:.04em;line-height:1.5}
+.head-en{font-size:10px;letter-spacing:.18em;color:var(--accent);margin-top:6px}
+.head-note{margin:18px 0 0;font-size:12.5px;line-height:1.9;color:var(--text-2)}
+
+/* 日付タブ(JS有効時のみ表示) */
+.tabs{display:none}
+.js .tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;position:sticky;top:0;z-index:5;background:var(--bg);padding:12px 0}
+.tab{border:1px solid var(--line-strong);background:var(--bg-2);color:var(--text-2);border-radius:6px;padding:10px 4px;cursor:pointer;font-family:inherit;line-height:1.3;-webkit-tap-highlight-color:transparent}
+.tab b{display:block;font-family:'Dela Gothic One',sans-serif;font-weight:400;font-size:clamp(16px,4.4vw,19px);color:var(--text)}
+.tab span{font-size:11px;letter-spacing:.08em}
+.tab[aria-selected=true]{border-color:var(--accent-strong);background:var(--accent-strong)}
+.tab[aria-selected=true] b,.tab[aria-selected=true] span{color:#fff}
+.tab .today{display:block;font-size:9.5px;letter-spacing:.14em;margin-top:2px;color:var(--accent)}
+.tab[aria-selected=true] .today{color:#fff}
+
+/* 日別の出演一覧 */
+.day{padding:8px 0 28px}
+.js .day[hidden]{display:none}
+.day h2{margin:20px 0 6px;font-family:'Dela Gothic One',sans-serif;font-weight:400;font-size:19px;letter-spacing:.04em}
+.js .day h2{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.acts{list-style:none;margin:0;padding:0}
+.act{display:grid;grid-template-columns:7.6em 1fr;align-items:center;gap:14px;padding:16px 12px;border-bottom:1px solid var(--line);border-radius:4px}
+.act time{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;color:var(--text-2);letter-spacing:.02em;white-space:nowrap}
+.act .name{font-size:15px;color:var(--text-1);line-height:1.5}
+.act.special .name{font-family:'Dela Gothic One',sans-serif;font-weight:400;color:var(--accent);letter-spacing:.02em}
+.act .badge{display:none;margin-left:8px;font-size:10px;letter-spacing:.14em;padding:2px 7px;border-radius:2px;background:var(--accent-strong);color:#fff;vertical-align:2px}
+.act.now{background:var(--now-bg)}
+.act.now .badge{display:inline-block}
+.act.done{opacity:.45}
+
+.foot{margin-top:24px;padding:28px 0 40px;border-top:1px solid var(--line);font-size:11px;color:var(--text-3);line-height:1.9}
+@media(max-width:420px){
+  .act{grid-template-columns:1fr;gap:4px;padding:14px 10px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="top-logo" href="./">関西大学統一学園祭</a>
+    <div class="top-right">
+      <a class="back" href="./#stage">← トップへ戻る</a>
+      <button class="theme-toggle" type="button" onclick="window.__toitsuToggleTheme()" aria-label="ライトモードとダークモードを切り替え"><span class="tt-sun">☀︎</span><span class="tt-moon">☾</span></button>
+    </div>
+  </header>
+
+  <main>
+    <div class="head">
+      <h1>中央ステージ<br>タイムテーブル</h1>
+      <div class="head-en">CENTRAL STAGE TIMETABLE</div>
+      <p class="head-note">2026年11月1日(日)〜11月4日(水)に中央ステージで行われる企画の出演団体と時間です。進行状況により時間が前後する場合があります。最新情報はトップページのお知らせをご確認ください。</p>
+    </div>
+
+    <div class="tabs" role="tablist" aria-label="開催日">
+      <button class="tab" role="tab" id="tab-d1" aria-controls="d1" data-day="d1" type="button"><b>11/1</b><span>日</span></button>
+      <button class="tab" role="tab" id="tab-d2" aria-controls="d2" data-day="d2" type="button"><b>11/2</b><span>月</span></button>
+      <button class="tab" role="tab" id="tab-d3" aria-controls="d3" data-day="d3" type="button"><b>11/3</b><span>火・祝</span></button>
+      <button class="tab" role="tab" id="tab-d4" aria-controls="d4" data-day="d4" type="button"><b>11/4</b><span>水</span></button>
+    </div>
+
+    <!-- 出演データ: 「2026中央ステージタイムテーブル.xlsx」より(準備・撤収時間、後夜祭準備、片付けは非掲載) -->
+    <section class="day" id="d1" role="tabpanel" aria-labelledby="tab-d1" data-date="2026-11-01">
+      <h2>11月1日(日)</h2>
+      <ol class="acts">
+        <li class="act special" data-s="12:00" data-e="12:25"><time>12:00 – 12:25</time><span class="name">オープニングセレモニー<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="12:25" data-e="14:35"><time>12:25 – 14:35</time><span class="name">KANDAI DANCE FESTIVAL<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="14:35" data-e="15:05"><time>14:35 – 15:05</time><span class="name">Bis<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="15:05" data-e="15:35"><time>15:05 – 15:35</time><span class="name">HUMAN BEING<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="15:35" data-e="16:00"><time>15:35 – 16:00</time><span class="name">ぺるぺる<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="16:00" data-e="17:00"><time>16:00 – 17:00</time><span class="name">軽音Ⅰ部<span class="badge">NOW</span></span></li>
+      </ol>
+    </section>
+
+    <section class="day" id="d2" role="tabpanel" aria-labelledby="tab-d2" data-date="2026-11-02">
+      <h2>11月2日(月)</h2>
+      <ol class="acts">
+        <li class="act" data-s="10:00" data-e="11:00"><time>10:00 – 11:00</time><span class="name">Clazy In You<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="11:00" data-e="11:30"><time>11:00 – 11:30</time><span class="name">kitty eye<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="11:30" data-e="11:50"><time>11:30 – 11:50</time><span class="name">JAC研<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="11:50" data-e="12:20"><time>11:50 – 12:20</time><span class="name">ラブライブ<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="12:20" data-e="12:55"><time>12:20 – 12:55</time><span class="name">飛舞人<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="12:55" data-e="13:35"><time>12:55 – 13:35</time><span class="name">mixpackage<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="13:35" data-e="14:15"><time>13:35 – 14:15</time><span class="name">brooklyn304<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="14:15" data-e="15:15"><time>14:15 – 15:15</time><span class="name">CLAIRS<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="15:15" data-e="16:15"><time>15:15 – 16:15</time><span class="name">文化会書道部<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="16:15" data-e="17:00"><time>16:15 – 17:00</time><span class="name">SBC<span class="badge">NOW</span></span></li>
+      </ol>
+    </section>
+
+    <section class="day" id="d3" role="tabpanel" aria-labelledby="tab-d3" data-date="2026-11-03">
+      <h2>11月3日(火・祝)</h2>
+      <ol class="acts">
+        <li class="act" data-s="10:00" data-e="10:40"><time>10:00 – 10:40</time><span class="name">軽音Ⅱ部<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="10:40" data-e="11:20"><time>10:40 – 11:20</time><span class="name">groove<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="11:20" data-e="11:45"><time>11:20 – 11:45</time><span class="name">千里山シェルター<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="11:45" data-e="12:15"><time>11:45 – 12:15</time><span class="name">Tiny village<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="12:15" data-e="12:40"><time>12:15 – 12:40</time><span class="name">LMA<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="12:40" data-e="13:05"><time>12:40 – 13:05</time><span class="name">POP研<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="13:05" data-e="13:30"><time>13:05 – 13:30</time><span class="name">Mountain Dew<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="13:30" data-e="14:00"><time>13:30 – 14:00</time><span class="name">葦<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="14:00" data-e="14:50"><time>14:00 – 14:50</time><span class="name">軽音Ⅰ部<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="14:50" data-e="15:30"><time>14:50 – 15:30</time><span class="name">10TXHX<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="15:30" data-e="17:00"><time>15:30 – 17:00</time><span class="name">漢舞<span class="badge">NOW</span></span></li>
+      </ol>
+    </section>
+
+    <section class="day" id="d4" role="tabpanel" aria-labelledby="tab-d4" data-date="2026-11-04">
+      <h2>11月4日(水)</h2>
+      <ol class="acts">
+        <li class="act" data-s="10:00" data-e="10:25"><time>10:00 – 10:25</time><span class="name">軽音サークル Banditz<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="10:25" data-e="10:55"><time>10:25 – 10:55</time><span class="name">ZERO<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="10:55" data-e="11:50"><time>10:55 – 11:50</time><span class="name">軽音Ⅰ部<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="11:50" data-e="15:00"><time>11:50 – 15:00</time><span class="name">KU.ROCKFEVER<span class="badge">NOW</span></span></li>
+        <li class="act special" data-s="16:00" data-e="19:00"><time>16:00 – 19:00</time><span class="name">後夜祭<span class="badge">NOW</span></span></li>
+      </ol>
+    </section>
+  </main>
+
+  <footer class="foot">関西大学統一学園祭 ／ 主催: 統一学園祭実行委員会<br>© 統一学園祭実行委員会</footer>
+</div>
+
+<script>
+// 日付タブの切替と「出演中」表示。データはすべて上のHTMLにあり、JSは表示の切替だけを行う
+(function () {
+  var tabs = [].slice.call(document.querySelectorAll('.tab'));
+  var days = [].slice.call(document.querySelectorAll('.day'));
+  var at = function (date, hm) { return new Date(date + 'T' + hm + ':00+09:00').getTime(); };
+  // 日本時間での今日(YYYY-MM-DD)
+  var todayJST = function () { return new Date(Date.now() + 9 * 3600000).toISOString().slice(0, 10); };
+
+  function select(id, push) {
+    tabs.forEach(function (t) {
+      var on = t.dataset.day === id;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+    });
+    days.forEach(function (d) { d.hidden = d.id !== id; });
+    if (push && history.replaceState) history.replaceState(null, '', '#' + id);
+  }
+  tabs.forEach(function (t, i) {
+    t.addEventListener('click', function () { select(t.dataset.day, true); });
+    // 左右キーでタブ移動
+    t.addEventListener('keydown', function (e) {
+      var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (!d) return;
+      var n = tabs[(i + d + tabs.length) % tabs.length];
+      n.focus(); select(n.dataset.day, true);
+    });
+  });
+
+  // 開催当日はその日のタブに「TODAY」を付け、出演中の枠を強調・終わった枠を薄くする
+  function mark() {
+    var now = Date.now(), today = todayJST();
+    days.forEach(function (d) {
+      var date = d.dataset.date;
+      var tab = document.getElementById('tab-' + d.id);
+      var flag = tab.querySelector('.today');
+      if (date === today && !flag) tab.insertAdjacentHTML('beforeend', '<span class="today">TODAY</span>');
+      if (date !== today && flag) flag.remove();
+      [].forEach.call(d.querySelectorAll('.act'), function (a) {
+        var s = at(date, a.dataset.s), e = at(date, a.dataset.e);
+        a.classList.toggle('now', now >= s && now < e);
+        a.classList.toggle('done', now >= e);
+      });
+    });
+  }
+
+  // 初期タブ: URLの#d1〜#d4 > 開催当日 > 初日
+  var hash = location.hash.slice(1);
+  var todayDay = days.filter(function (d) { return d.dataset.date === todayJST(); })[0];
+  select(document.getElementById(hash) && /^d[1-4]$/.test(hash) ? hash : (todayDay ? todayDay.id : 'd1'), false);
+  mark();
+  setInterval(mark, 30000);
+})();
+</script>
+</body>
+</html>
