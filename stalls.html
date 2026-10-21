@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>模擬店・出店一覧 | 関西大学統一学園祭2026「旋風」</title>
+<meta name="description" content="関西大学統一学園祭2026「旋風」の模擬店・出店一覧。11月1日(日)〜11月4日(水)の出店団体とメニューを、日程・エリア別に掲載しています。メニュー名や団体名で検索できます。">
+<link rel="canonical" href="https://kandai-gakuensai.com/stalls.html">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="関西大学統一学園祭">
+<meta property="og:title" content="模擬店・出店一覧 | 関西大学統一学園祭2026「旋風」">
+<meta property="og:description" content="11月1日(日)〜11月4日(水)の模擬店の出店団体とメニュー。会場マップ付き。">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:url" content="https://kandai-gakuensai.com/stalls.html">
+<meta property="og:image" content="https://kandai-gakuensai.com/uploads/stalls-map-1.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%236b5ca5'/><text x='32' y='46' font-size='38' text-anchor='middle' fill='%23fff' font-family='serif'>祭</text></svg>">
+<meta name="theme-color" content="#0a0a0d">
+<script>
+// テーマ初期化(トップページと同じキーを共有): localStorage > OS設定 の優先で描画前に確定させる
+(function () {
+  var KEY = 'toitsu-theme';
+  function apply(t) {
+    document.documentElement.dataset.theme = t;
+    var m = document.querySelector('meta[name="theme-color"]');
+    if (m) m.setAttribute('content', t === 'light' ? '#f7f5f1' : '#0a0a0d');
+  }
+  var saved = null;
+  try { saved = localStorage.getItem(KEY); } catch (e) {}
+  var mq = window.matchMedia('(prefers-color-scheme: light)');
+  apply(saved === 'light' || saved === 'dark' ? saved : (mq.matches ? 'light' : 'dark'));
+  window.__toitsuToggleTheme = function () {
+    var next = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+    apply(next);
+    try { localStorage.setItem(KEY, next); } catch (e) {}
+  };
+  document.documentElement.classList.add('js');
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Yuji+Syuku&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ==== テーマ変数(トップページと同じ値) ==== */
+:root{
+  color-scheme:dark;
+  --bg:#0a0a0d;--bg-2:#111013;--bg-3:#08080b;
+  --text:#fff;--text-1:rgba(255,255,255,.88);--text-2:rgba(255,255,255,.62);--text-3:rgba(255,255,255,.45);
+  --line:rgba(255,255,255,.09);--line-strong:rgba(255,255,255,.14);
+  --accent:#a89ae0;--accent-strong:#6b5ca5;--accent-border:rgba(168,154,224,.5);
+  --link:#a89ae0;--link-hover:#c5bbee;
+  --pink:#f3a8c8;
+  --sel-bg:#f3a8c8;--sel-fg:#2a1830;--sel-glow:rgba(243,168,200,.55);
+}
+[data-theme=light]{
+  color-scheme:light;
+  --bg:#f7f5f1;--bg-2:#fffefb;--bg-3:#efece5;
+  --text:#23212b;--text-1:rgba(35,33,43,.92);--text-2:rgba(35,33,43,.68);--text-3:rgba(35,33,43,.52);
+  --line:rgba(35,33,43,.12);--line-strong:rgba(35,33,43,.2);
+  --accent:#5c4d99;--accent-strong:#6b5ca5;--accent-border:rgba(107,92,165,.45);
+  --link:#5c4d99;--link-hover:#3f3277;
+  --pink:#c2457d;
+  --sel-bg:#ffc9de;--sel-fg:#5a2440;--sel-glow:rgba(255,150,190,.5);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Zen Maru Gothic",system-ui,sans-serif;-webkit-text-size-adjust:100%}
+a{color:var(--link);text-decoration:none}a:hover{color:var(--link-hover)}
+::selection{background:var(--sel-bg);color:var(--sel-fg);text-shadow:0 0 6px var(--sel-glow)}
+.wrap{max-width:760px;margin:0 auto;padding:0 clamp(20px,4vw,36px)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ヘッダー */
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 0;border-bottom:1px solid var(--line)}
+.top-logo{font-family:'Yuji Syuku',serif;font-size:clamp(17px,4.2vw,22px);color:var(--text);white-space:nowrap}
+.top-right{display:flex;align-items:center;gap:14px}
+.back{font-size:12px;letter-spacing:.12em;white-space:nowrap}
+.theme-toggle{width:34px;height:34px;flex-shrink:0;border-radius:50%;border:1px solid var(--line-strong);background:transparent;color:var(--text);cursor:pointer;font-size:15px;line-height:1;padding:0}
+.theme-toggle .tt-moon{display:none}
+[data-theme=light] .theme-toggle .tt-sun{display:none}
+[data-theme=light] .theme-toggle .tt-moon{display:inline}
+
+/* 見出し */
+.head{padding:clamp(36px,7vw,60px) 0 20px}
+h1{margin:0;font-family:'Dela Gothic One',sans-serif;font-weight:400;font-size:clamp(23px,5.4vw,30px);letter-spacing:.04em;line-height:1.5}
+.head-en{font-size:10px;letter-spacing:.18em;color:var(--accent);margin-top:6px}
+.head-note{margin:16px 0 0;font-size:12.5px;line-height:1.9;color:var(--text-2)}
+
+/* 日程タブ・検索・ジャンル(JS有効時のみ。スクロールしても上に残る) */
+.tools{display:none}
+.js .tools{display:block;position:sticky;top:0;z-index:5;background:var(--bg);padding:12px 0 10px;border-bottom:1px solid var(--line)}
+.tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.tab{border:1px solid var(--line-strong);background:var(--bg-2);color:var(--text-2);border-radius:8px;padding:9px 4px;cursor:pointer;font-family:inherit;line-height:1.3;-webkit-tap-highlight-color:transparent}
+.tab b{display:block;font-family:'Dela Gothic One',sans-serif;font-weight:400;font-size:clamp(15px,4.2vw,18px);color:var(--text)}
+.tab span{font-size:11px;letter-spacing:.06em}
+.tab[aria-selected=true]{border-color:var(--accent-strong);background:var(--accent-strong)}
+.tab[aria-selected=true] b,.tab[aria-selected=true] span{color:#fff}
+.search{position:relative;margin-top:10px}
+.search input{width:100%;background:var(--bg-2);border:1px solid var(--line-strong);color:var(--text);border-radius:8px;padding:11px 38px 11px 14px;font-size:16px;font-family:inherit;-webkit-appearance:none;appearance:none}
+.search input::placeholder{color:var(--text-3)}
+.search input::-webkit-search-cancel-button{-webkit-appearance:none;appearance:none}
+.search input:focus{outline:none;border-color:var(--accent)}
+.search .clear{position:absolute;right:6px;top:50%;transform:translateY(-50%);width:30px;height:30px;border:0;border-radius:50%;background:transparent;color:var(--text-2);font-size:18px;cursor:pointer;display:none}
+.search.has .clear{display:block}
+.chips{display:flex;gap:6px;overflow-x:auto;margin-top:10px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex-shrink:0;border:1px solid var(--line-strong);background:transparent;color:var(--text-2);border-radius:999px;padding:6px 14px;font-size:13px;font-family:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.chip[aria-pressed=true]{background:var(--text);border-color:var(--text);color:var(--bg)}
+.count{margin-top:8px;font-size:11.5px;color:var(--text-3)}
+
+/* 日程ごとの一覧 */
+.period{padding:4px 0 32px}
+.js .period[hidden]{display:none}
+.period-title{margin:22px 0 4px;font-family:'Dela Gothic One',sans-serif;font-weight:400;font-size:19px;letter-spacing:.04em}
+.js .period-title{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.hours{margin:16px 0 0;font-size:13px;color:var(--text-1)}
+.hours em{font-style:normal;color:var(--pink)}
+
+/* 会場マップ */
+.map{display:block;width:100%;margin:14px 0 4px;padding:0;border:1px solid var(--line-strong);border-radius:10px;overflow:hidden;background:#f3e2b3;cursor:zoom-in;position:relative}
+.map img{display:block;width:100%;height:auto}
+.filtering .map{display:none}
+.map-cap{position:absolute;right:8px;bottom:8px;font-size:11.5px;padding:5px 10px;border-radius:999px;background:rgba(10,10,13,.78);color:#fff}
+
+/* エリア別の一覧 */
+.area{margin-top:22px}
+.area[hidden]{display:none}
+.area h3{display:flex;align-items:center;gap:8px;margin:0 0 4px;font-size:13px;font-weight:700;letter-spacing:.06em;color:var(--text-2)}
+.area h3 i{width:10px;height:10px;border-radius:3px;background:var(--c)}
+.stalls{list-style:none;margin:0;padding:0}
+.stall{display:grid;grid-template-columns:48px 1fr;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line)}
+.stall[hidden]{display:none}
+.tent{display:flex;align-items:center;justify-content:center;height:34px;border-radius:7px;background:var(--c);color:#1d1b22;font-size:13px;font-weight:700;letter-spacing:.02em}
+.menu{display:block;font-size:15.5px;font-weight:500;color:var(--text);line-height:1.45}
+.org{display:block;font-size:12px;color:var(--text-2);margin-top:1px;line-height:1.5}
+.note{display:inline-block;margin-left:6px;font-size:10.5px;font-weight:500;padding:1px 7px;border-radius:3px;border:1px solid var(--pink);color:var(--pink);vertical-align:1px}
+.empty{display:none;padding:28px 0;text-align:center;font-size:13px;color:var(--text-2)}
+
+/* マップ拡大表示 */
+.viewer{position:fixed;inset:0;z-index:50;background:rgba(6,6,9,.94);display:flex;flex-direction:column}
+.viewer[hidden]{display:none}
+.viewer-bar{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px;color:#fff;font-size:13px}
+.viewer-bar div{display:flex;gap:8px}
+.viewer-bar button{min-width:40px;height:40px;border-radius:20px;border:1px solid rgba(255,255,255,.3);background:transparent;color:#fff;font-size:18px;font-family:inherit;cursor:pointer;padding:0 12px}
+.viewer-scroll{flex:1;overflow:auto;-webkit-overflow-scrolling:touch;display:flex}
+.viewer-scroll img{display:block;margin:auto;width:100%;height:auto;max-width:none;flex-shrink:0}
+
+.foot{margin-top:12px;padding:28px 0 40px;border-top:1px solid var(--line);font-size:11px;color:var(--text-3);line-height:1.9}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="top-logo" href="./">関西大学統一学園祭</a>
+    <div class="top-right">
+      <a class="back" href="./#food">← トップへ戻る</a>
+      <button class="theme-toggle" type="button" onclick="window.__toitsuToggleTheme()" aria-label="ライトモードとダークモードを切り替え"><span class="tt-sun">☀︎</span><span class="tt-moon">☾</span></button>
+    </div>
+  </header>
+
+  <main>
+    <div class="head">
+      <h1>模擬店・出店一覧</h1>
+      <div class="head-en">FOOD STALLS</div>
+      <p class="head-note">学生団体による模擬店の一覧です。1・2日目と3・4日目で出店団体が入れ替わります。メニューや団体名で検索できます。内容は変更になる場合があります。</p>
+    </div>
+
+    <div class="tools">
+      <div class="tabs" role="tablist" aria-label="日程">
+        <button class="tab" role="tab" id="tab-p1" aria-controls="p1" data-p="p1" type="button"><b>11/1・11/2</b><span>1・2日目</span></button>
+        <button class="tab" role="tab" id="tab-p2" aria-controls="p2" data-p="p2" type="button"><b>11/3・11/4</b><span>3・4日目</span></button>
+      </div>
+      <div class="search">
+        <label class="sr" for="q">メニュー名・団体名で検索</label>
+        <input id="q" type="search" placeholder="たこ焼き、ワッフル、ゼミ名など" autocomplete="off" enterkeyhint="search">
+        <button class="clear" type="button" aria-label="検索語を消す">×</button>
+      </div>
+      <div class="chips" role="group" aria-label="ジャンル">
+        <button class="chip" type="button" data-cat="" aria-pressed="true">すべて</button>
+        <button class="chip" type="button" data-cat="meal" aria-pressed="false">ごはん・軽食</button>
+        <button class="chip" type="button" data-cat="sweet" aria-pressed="false">スイーツ・おやつ</button>
+        <button class="chip" type="button" data-cat="drink" aria-pressed="false">ドリンク</button>
+        <button class="chip" type="button" data-cat="play" aria-pressed="false">あそび・その他</button>
+      </div>
+      <div class="count" aria-live="polite"></div>
+    </div>
+
+    <!-- 出店データ: 「模擬店MAP」画像(1・2日目 / 3・4日目)より -->
+    <section class="period" id="p1" role="tabpanel" aria-labelledby="tab-p1">
+      <h2 class="period-title">1・2日目(11月1日・2日)</h2>
+      <p class="hours">営業時間 10:00〜16:00</p>
+      <a class="map" href="uploads/stalls-map-1.jpg" data-title="模擬店マップ 1・2日目(11/1・11/2)"><img src="uploads/stalls-map-1.jpg" alt="模擬店マップ 1・2日目(11/1・11/2)" width="1254" height="528" loading="lazy" decoding="async"><span class="map-cap">マップを拡大</span></a>
+      <div class="area" style="--c:#e6dc5a">
+        <h3><i></i>経商エリア</h3>
+        <ul class="stalls">
+          <li class="stall" data-cat="meal"><span class="tent">1A</span><span><span class="menu">トッポギ</span><span class="org">沈ゼミ</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">1B</span><span><span class="menu">トッポギ</span><span class="org">10TXHX</span></span></li>
+          <li class="stall" data-cat="sweet"><span class="tent">2A</span><span><span class="menu">ポップコーン</span><span class="org">26卒</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">2B</span><span><span class="menu">フランクフルト</span><span class="org">BEGIN</span></span></li>
+          <li class="stall" data-cat="drink"><span class="tent">3A</span><span><span class="menu">ドリンク</span><span class="org">Café BIGBANG</span></span></li>
+          <li class="stall" data-cat="sweet" data-y="だんご やき"><span class="tent">3B</span><span><span class="menu">焼きみたらし団子</span><span class="org">関大STEP</span></span></li>
+          <li class="stall" data-cat="drink"><span class="tent">4A</span><span><span class="menu">ラムネ</span><span class="org">Bro&#x27;s</span></span></li>
+          <li class="stall" data-cat="meal" data-y="やき やきそば"><span class="tent">4B</span><span><span class="menu">焼きそば</span><span class="org">関口ゼミによるりくこのやきそばやさん</span></span></li>
+          <li class="stall" data-cat="sweet" data-y="あげ"><span class="tent">5A</span><span><span class="menu">揚げパン</span><span class="org">FULLHOUSE</span></span></li>
+          <li class="stall" data-cat="meal" data-y="あげ ぎょうざ"><span class="tent">5B</span><span><span class="menu">揚げ餃子</span><span class="org">KFGテニスクラブ</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">6A</span><span><span class="menu">タコス</span><span class="org">PADDLEs</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">6B</span><span><span class="menu">ハッシュドポテト</span><span class="org">KUBA</span></span></li>
+          <li class="stall" data-cat="sweet"><span class="tent">7A</span><span><span class="menu">ワッフル</span><span class="org">ギタークラブ</span></span></li>
+          <li class="stall" data-cat="meal" data-y="ぎょうざ"><span class="tent">7B</span><span><span class="menu">餃子</span><span class="org">HANZEON</span></span></li>
+          <li class="stall" data-cat="meal" data-y="やき やきそば"><span class="tent">8A</span><span><span class="menu">焼きそば</span><span class="org">MILEN</span></span></li>
+          <li class="stall" data-cat="sweet"><span class="tent">8B</span><span><span class="menu">チュロス</span><span class="org">KU NEXPO</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">9A</span><span><span class="menu">カリカリベーコン</span><span class="org">MCS</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">9B</span><span><span class="menu">スープ</span><span class="org">吹奏楽サークル Bis 1</span></span></li>
+          <li class="stall" data-cat="sweet"><span class="tent">10A</span><span><span class="menu">チュロス</span><span class="org">吹奏楽サークル Bis 2</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">10B</span><span><span class="menu">サムギョプサル</span><span class="org">Al Balón 1</span></span></li>
+        </ul>
+      </div>
+      <div class="area" style="--c:#7fae55">
+        <h3><i></i>メインエリア</h3>
+        <ul class="stalls">
+          <li class="stall" data-cat="meal" data-y="いため やき"><span class="tent">11A</span><span><span class="menu">イカ焼きもやし炒め</span><span class="org">イカ焼</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">11B</span><span><span class="menu">たこせん</span><span class="org">北原聡ゼミ3回生</span></span></li>
+          <li class="stall" data-cat="meal" data-y="やき やきとり"><span class="tent">12A</span><span><span class="menu">焼き鳥</span><span class="org">Mariko Shirasu</span></span></li>
+          <li class="stall" data-cat="drink"><span class="tent">12B</span><span><span class="menu">ラムネ</span><span class="org">天文同好会 Cancer</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">13A</span><span><span class="menu">フライドポテト</span><span class="org">SHAKE</span></span></li>
+          <li class="stall" data-cat="sweet"><span class="tent">13B</span><span><span class="menu">ポップコーン</span><span class="org">KUリンク</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">14A</span><span><span class="menu">フランクフルト</span><span class="org">グラスホッパー</span></span></li>
+          <li class="stall" data-cat="sweet" data-y="あげ"><span class="tent">14B</span><span><span class="menu">揚げパン</span><span class="org">Lot-Union</span></span></li>
+          <li class="stall" data-cat="meal" data-y="あぶらそば"><span class="tent">15A</span><span><span class="menu">油そば</span><span class="org">軽音1部油そば部</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">15B</span><span><span class="menu">フランクフルト</span><span class="org">アンビリーバブルズ</span></span></li>
+          <li class="stall" data-cat="meal" data-y="ぎょうざ"><span class="tent">16A</span><span><span class="menu">餃子</span><span class="org">かんくら1</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">16B</span><span><span class="menu">たこせん</span><span class="org">かんくら2</span></span></li>
+          <li class="stall" data-cat="play" data-y="のと めいさんひん"><span class="tent">17A</span><span><span class="menu">能登名産品</span><span class="org">商学部岩本ゼミ</span></span></li>
+          <li class="stall" data-cat="sweet"><span class="tent">17B</span><span><span class="menu">わたがし</span><span class="org">キャップ 野球サークル</span></span></li>
+          <li class="stall" data-cat="sweet"><span class="tent">18A</span><span><span class="menu">クレープ</span><span class="org">関大ランナーズ</span></span></li>
+          <li class="stall" data-cat="sweet"><span class="tent">18B</span><span><span class="menu">きなこパン</span><span class="org">friends</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">19A</span><span><span class="menu">フランクフルト</span><span class="org">ご立派フランク</span></span></li>
+          <li class="stall" data-cat="sweet"><span class="tent">19B</span><span><span class="menu">チュロス</span><span class="org">チュロス警察24時</span></span></li>
+        </ul>
+      </div>
+      <div class="area" style="--c:#6cb4df">
+        <h3><i></i>工学エリア</h3>
+        <ul class="stalls">
+          <li class="stall" data-cat="sweet"><span class="tent">20A</span><span><span class="menu">ワッフル</span><span class="org">バンフ4回</span></span></li>
+          <li class="stall" data-cat="sweet" data-y="しらたま"><span class="tent">20B</span><span><span class="menu">白玉</span><span class="org">F.C. TRIOS</span></span></li>
+          <li class="stall" data-cat="meal" data-y="ぎょうざ すいぎょうざ"><span class="tent">21A</span><span><span class="menu">水餃子</span><span class="org">PACMAN</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">21B</span><span><span class="menu">ホットドッグ</span><span class="org">Al Balón 2</span></span></li>
+          <li class="stall" data-cat="drink"><span class="tent">22A</span><span><span class="menu">カラフルドリンク</span><span class="org">やまちゃんと愉快な仲間たち</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">22B</span><span><span class="menu">フランクフルト</span><span class="org">人間健康学部祭典実行委員会</span></span></li>
+          <li class="stall" data-cat="meal" data-y="あげ"><span class="tent">23A</span><span><span class="menu">揚げパスタ</span><span class="org">あげパスタ佐々木</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">23B</span><span><span class="menu">たこせん</span><span class="org">Lovingwind</span></span></li>
+          <li class="stall" data-cat="meal" data-y="じろうけい やき やきそば"><span class="tent">24A</span><span><span class="menu">二郎系焼きそば</span><span class="org">ラーメン同好会</span></span></li>
+          <li class="stall" data-cat="meal" data-y="やき やきとり"><span class="tent">24B</span><span><span class="menu">焼き鳥</span><span class="org">LIX</span></span></li>
+          <li class="stall" data-cat="drink sweet" data-y="ようがし わがし"><span class="tent">25A</span><span><span class="menu">ドリンク、洋菓子、和菓子</span><span class="org">関西大学統一学園祭実行委員会OB・OG会</span></span></li>
+          <li class="stall" data-cat="drink sweet" data-y="ようがし わがし"><span class="tent">25B</span><span><span class="menu">ドリンク、洋菓子、和菓子</span><span class="org">関西大学統一学園祭実行委員会OB・OG会</span></span></li>
+        </ul>
+      </div>
+      <div class="area" style="--c:#e2a9cf">
+        <h3><i></i>凜風エリア</h3>
+        <ul class="stalls">
+          <li class="stall" data-cat="meal"><span class="tent">26A</span><span><span class="menu">あったかそうめん</span><span class="org">奥村ゼミ</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">26B</span><span><span class="menu">チーズボール</span><span class="org">競技かるたサークル</span></span></li>
+          <li class="stall" data-cat="drink"><span class="tent">27A</span><span><span class="menu">クラフトコーラ</span><span class="org">しーば井上</span></span></li>
+          <li class="stall" data-cat="sweet"><span class="tent">27B</span><span><span class="menu">チュロス</span><span class="org">NOBLESSE</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">28A</span><span><span class="menu">フランクフルト</span><span class="org">サッカー</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">28B</span><span><span class="menu">たこせん</span><span class="org">ユースホステルクラブ</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">29A</span><span><span class="menu">トッポギ</span><span class="org">cookies</span></span></li>
+          <li class="stall" data-cat="drink"><span class="tent">29B</span><span><span class="menu">ラムネ</span><span class="org">スキューバダイビング同好会</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">30A</span><span><span class="menu">まぜそば</span><span class="org">Shuttle☆Run</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">30B</span><span><span class="menu">たこせん</span><span class="org">FINE</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">31A</span><span><span class="menu">からあげ</span><span class="org">ピックルボールチーム WHALESS</span></span></li>
+          <li class="stall" data-cat="meal" data-y="しょうろんぽう"><span class="tent">31B</span><span><span class="menu">小籠包</span><span class="org">ジョニくら</span></span></li>
+          <li class="stall" data-cat="meal" data-y="ぎょうざ すいぎょうざ"><span class="tent">32A</span><span><span class="menu">水餃子スープ</span><span class="org">英語研究部</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">32B</span><span><span class="menu">ソトックソトク</span><span class="org">てぃもクラ</span></span></li>
+          <li class="stall" data-cat="play"><span class="tent" style="--c:#e8a35e">1</span><span><span class="menu">バルーンアートショップ<span class="note">11/2のみ</span></span><span class="org">関西大学大道芸サークル</span></span></li>
+          <li class="stall" data-cat="play"><span class="tent" style="--c:#e8a35e">2</span><span><span class="menu">スーパーボールすくい</span><span class="org">ユネスコ研究部</span></span></li>
+          <li class="stall" data-cat="play" data-y="しゃてき"><span class="tent" style="--c:#e8a35e">3</span><span><span class="menu">射的</span><span class="org">関西大学サバイバルゲームサークル</span></span></li>
+        </ul>
+      </div>
+      <div class="area" style="--c:#5cbcae">
+        <h3><i></i>芝生エリア</h3>
+        <ul class="stalls">
+          <li class="stall" data-cat="meal" data-y="ぎょうざ やき"><span class="tent">33A</span><span><span class="menu">焼き餃子</span><span class="org">テコンドーサークル</span></span></li>
+          <li class="stall" data-cat="drink"><span class="tent">33B</span><span><span class="menu">カラフルソーダドリンク</span><span class="org">ボランティアセンター学生スタッフ</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">34A</span><span><span class="menu">うどん</span><span class="org">葦の葉倶楽部</span></span></li>
+          <li class="stall" data-cat="sweet"><span class="tent">34B</span><span><span class="menu">ベビーカステラ</span><span class="org">ルシーダテニスクラブ</span></span></li>
+          <li class="stall" data-cat="sweet"><span class="tent">35A</span><span><span class="menu">チュロス</span><span class="org">学生チーム&quot;漢舞&quot;</span></span></li>
+          <li class="stall" data-cat="meal" data-y="あげ ぎょうざ"><span class="tent">35B</span><span><span class="menu">揚げ餃子</span><span class="org">基礎スキー同好会</span></span></li>
+          <li class="stall" data-cat="sweet"><span class="tent">36A</span><span><span class="menu">ポップコーン</span><span class="org">ダイナマイトポップコーン製作委員会</span></span></li>
+          <li class="stall" data-cat="drink"><span class="tent">36B</span><span><span class="menu">カフェドリンク</span><span class="org">sweet☆spot</span></span></li>
+          <li class="stall" data-cat="sweet" data-y="あげ"><span class="tent">37A</span><span><span class="menu">揚げドーナツ</span><span class="org">cafe de 関大</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">37B</span><span><span class="menu">パリパリスティック</span><span class="org">料理サークル「うまい房」</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">38A</span><span><span class="menu">からあげ</span><span class="org">音楽映像団体 MUVA</span></span></li>
+          <li class="stall" data-cat="drink"><span class="tent">38B</span><span><span class="menu">コーヒー</span><span class="org">コーヒー研究会</span></span></li>
+          <li class="stall" data-cat="sweet"><span class="tent">39A</span><span><span class="menu">ワッフル</span><span class="org">生協学生サポートチーム1</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">39B</span><span><span class="menu">フライドポテト</span><span class="org">生協学生サポートチーム2</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">40A</span><span><span class="menu">フランクフルト</span><span class="org">イエローサブマリン</span></span></li>
+          <li class="stall" data-cat="sweet" data-y="あげ"><span class="tent">40B</span><span><span class="menu">揚げパン</span><span class="org">安田ゼミ4回生</span></span></li>
+          <li class="stall" data-cat="meal" data-y="ぎょうざ"><span class="tent">41A</span><span><span class="menu">餃子</span><span class="org">MTK</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">41B</span><span><span class="menu">ホットドッグ</span><span class="org">バドミントン部</span></span></li>
+        </ul>
+      </div>
+      <div class="area" style="--c:#e3d39b">
+        <h3><i></i>法文エリア</h3>
+        <ul class="stalls">
+          <li class="stall" data-cat="sweet" data-y="くろみつ だんご"><span class="tent">42A</span><span><span class="menu">みたらし・黒蜜きなこ団子</span><span class="org">茶道部</span></span></li>
+          <li class="stall" data-cat="meal" data-y="ぎょうざ すいぎょうざ"><span class="tent">42B</span><span><span class="menu">水餃子</span><span class="org">中国語研究部</span></span></li>
+          <li class="stall" data-cat="meal" data-y="やき やきとり"><span class="tent">43A</span><span><span class="menu">焼き鳥</span><span class="org">Persona Perdida</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">43B</span><span><span class="menu">フライドポテト</span><span class="org">徳山ゼミ</span></span></li>
+          <li class="stall" data-cat="drink"><span class="tent">44A</span><span><span class="menu">ラムネ</span><span class="org">服部ローンテニスクラブ</span></span></li>
+          <li class="stall" data-cat="sweet"><span class="tent">44B</span><span><span class="menu">ぜんざい</span><span class="org">写真部デジタルパート</span></span></li>
+          <li class="stall" data-cat="sweet" data-y="とうにゅう"><span class="tent">45A</span><span><span class="menu">豆乳プチパンケーキ</span><span class="org">学生団体KUMC</span></span></li>
+          <li class="stall" data-cat="sweet" data-y="だんご"><span class="tent">45B</span><span><span class="menu">みたらし団子</span><span class="org">剣道クラブ有鄰会</span></span></li>
+          <li class="stall" data-cat="sweet"><span class="tent">46A</span><span><span class="menu">ワッフル</span><span class="org">児童文化研究サークルあかとんぼ</span></span></li>
+          <li class="stall" data-cat="meal" data-y="やき やきとり"><span class="tent">46B</span><span><span class="menu">焼き鳥</span><span class="org">証券研究部</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">47A</span><span><span class="menu">フランクフルト</span><span class="org">MDL</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">47B</span><span><span class="menu">マンドゥ</span><span class="org">SDGsキャンパスサポーター</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">48A</span><span><span class="menu">ミーゴレン</span><span class="org">海外調査研究部</span></span></li>
+          <li class="stall" data-cat="drink"><span class="tent">48B</span><span><span class="menu">ポーションアイスジュース</span><span class="org">会計学術研究部</span></span></li>
+          <li class="stall" data-cat="drink"><span class="tent">49A</span><span><span class="menu">アイスティー</span><span class="org">稲葉ゼミ</span></span></li>
+          <li class="stall" data-cat="drink"><span class="tent">49B</span><span><span class="menu">レモネード</span><span class="org">混声合唱団「葦」</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">50A</span><span><span class="menu">フライドポテト</span><span class="org">Milty</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">50B</span><span><span class="menu">フランクフルト</span><span class="org">BORA BORA</span></span></li>
+        </ul>
+      </div>
+    </section>
+    <section class="period" id="p2" role="tabpanel" aria-labelledby="tab-p2">
+      <h2 class="period-title">3・4日目(11月3日・4日)</h2>
+      <p class="hours">営業時間 10:00〜16:00 <em>※最終日11/4は14:30まで</em></p>
+      <a class="map" href="uploads/stalls-map-2.jpg" data-title="模擬店マップ 3・4日目(11/3・11/4)"><img src="uploads/stalls-map-2.jpg" alt="模擬店マップ 3・4日目(11/3・11/4)" width="1254" height="528" loading="lazy" decoding="async"><span class="map-cap">マップを拡大</span></a>
+      <div class="area" style="--c:#e6dc5a">
+        <h3><i></i>経商エリア</h3>
+        <ul class="stalls">
+          <li class="stall" data-cat="meal" data-y="まーらーたん"><span class="tent">1A</span><span><span class="menu">麻辣湯</span><span class="org">外祭</span></span></li>
+          <li class="stall" data-cat="sweet" data-y="あげ いまがわやき やき"><span class="tent">1B</span><span><span class="menu">揚げ焼き今川焼き</span><span class="org">バックパッキング同好会</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">2A</span><span><span class="menu">カリカリチーズスティック</span><span class="org">松田ゼミ</span></span></li>
+          <li class="stall" data-cat="sweet"><span class="tent">2B</span><span><span class="menu">チュロス</span><span class="org">Clazy In You</span></span></li>
+          <li class="stall" data-cat="meal" data-y="ぎょうざ"><span class="tent">3A</span><span><span class="menu">餃子</span><span class="org">F.C.TRIOS(4回)</span></span></li>
+          <li class="stall" data-cat="meal" data-y="やき やきとり"><span class="tent">3B</span><span><span class="menu">焼き鳥</span><span class="org">千里山フレンズ</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">4A</span><span><span class="menu">フランクフルト</span><span class="org">FCミルセン</span></span></li>
+          <li class="stall" data-cat="meal" data-y="ぎょうざ すいぎょうざ"><span class="tent">4B</span><span><span class="menu">水餃子</span><span class="org">J-CaJa</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">5A</span><span><span class="menu">トルネードポテト</span><span class="org">商学部ゼミナール協議会</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">5B</span><span><span class="menu">ナゲット</span><span class="org">KANDAI DPE</span></span></li>
+          <li class="stall" data-cat="sweet" data-y="てづくり ひとくち"><span class="tent">6A</span><span><span class="menu">一口手作りもっちゅりん</span><span class="org">Kandai Young Vision</span></span></li>
+          <li class="stall" data-cat="sweet"><span class="tent">6B</span><span><span class="menu">チュロス</span><span class="org">SCtiquitaca</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">7A</span><span><span class="menu">うどん</span><span class="org">斎藤ゼミ3回生</span></span></li>
+          <li class="stall" data-cat="sweet"><span class="tent">7B</span><span><span class="menu">ワッフル</span><span class="org">斎藤ゼミ4回生</span></span></li>
+          <li class="stall" data-cat="meal" data-y="やき やきとり"><span class="tent">8A</span><span><span class="menu">焼き鳥</span><span class="org">Trinity</span></span></li>
+          <li class="stall" data-cat="sweet" data-y="だがし"><span class="tent">8B</span><span><span class="menu">駄菓子</span><span class="org">軽音サークル MCBB</span></span></li>
+          <li class="stall" data-cat="drink" data-y="とくせい"><span class="tent">9A</span><span><span class="menu">特製ドリンク</span><span class="org">チェゼミ</span></span></li>
+          <li class="stall" data-cat="sweet"><span class="tent">9B</span><span><span class="menu">ドーナツ</span><span class="org">フラッシングメドウ</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">10A</span><span><span class="menu">ホットドッグ</span><span class="org">ポートピア関大前</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">10B</span><span><span class="menu">サムギョプサル</span><span class="org">Al Balón 1</span></span></li>
+        </ul>
+      </div>
+      <div class="area" style="--c:#7fae55">
+        <h3><i></i>メインエリア</h3>
+        <ul class="stalls">
+          <li class="stall" data-cat="meal" data-y="いため やき"><span class="tent">11A</span><span><span class="menu">イカ焼きもやし炒め</span><span class="org">イカ焼</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">11B</span><span><span class="menu">フランクフルト</span><span class="org">関西大学 Banditz</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">12A</span><span><span class="menu">ぎょうざ</span><span class="org">らぴっと</span></span></li>
+          <li class="stall" data-cat="meal" data-y="やき やきそば"><span class="tent">12B</span><span><span class="menu">焼きそば</span><span class="org">焼きそばガチガチ</span></span></li>
+          <li class="stall" data-cat="sweet"><span class="tent">13A</span><span><span class="menu">チュロス</span><span class="org">スペイン語研究会</span></span></li>
+          <li class="stall" data-cat="drink"><span class="tent">13B</span><span><span class="menu">レモネード</span><span class="org">坂本ゼミ</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">14A</span><span><span class="menu">トッポギ</span><span class="org">古川ゼミ</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">14B</span><span><span class="menu">ウインナー焼</span><span class="org">史学研究部</span></span></li>
+          <li class="stall" data-cat="meal" data-y="やき やきとり"><span class="tent">15A</span><span><span class="menu">焼き鳥</span><span class="org">バレーボール同好会</span></span></li>
+          <li class="stall" data-cat="sweet"><span class="tent">15B</span><span><span class="menu">ポップコーン</span><span class="org">文学部祭典実行委員会OBOG</span></span></li>
+          <li class="stall" data-cat="sweet"><span class="tent">16A</span><span><span class="menu">ハワイアンパンケーキ</span><span class="org">フラサークル Lino</span></span></li>
+          <li class="stall" data-cat="sweet"><span class="tent">16B</span><span><span class="menu">ポップコーン</span><span class="org">映像研究会</span></span></li>
+          <li class="stall" data-cat="sweet"><span class="tent">17A</span><span><span class="menu">ワッフル</span><span class="org">2部バレーボール同好会</span></span></li>
+          <li class="stall" data-cat="sweet" data-y="わたがし"><span class="tent">17B</span><span><span class="menu">綿菓子</span><span class="org">トライアスロンサークル INFINITY</span></span></li>
+          <li class="stall" data-cat="meal" data-y="やき"><span class="tent">18A</span><span><span class="menu">たこ焼き・たこせん</span><span class="org">山住ゼミ</span></span></li>
+          <li class="stall" data-cat="sweet"><span class="tent">18B</span><span><span class="menu">きなこパン</span><span class="org">friends</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">19A</span><span><span class="menu">フランクフルト</span><span class="org">ご立派フランク</span></span></li>
+          <li class="stall" data-cat="sweet"><span class="tent">19B</span><span><span class="menu">チュロス</span><span class="org">チュロス警察24時</span></span></li>
+        </ul>
+      </div>
+      <div class="area" style="--c:#6cb4df">
+        <h3><i></i>工学エリア</h3>
+        <ul class="stalls">
+          <li class="stall" data-cat="meal" data-y="やき やきそば"><span class="tent">20A</span><span><span class="menu">焼きそば</span><span class="org">ごいごいかん!</span></span></li>
+          <li class="stall" data-cat="drink" data-y="もうこ"><span class="tent">20B</span><span><span class="menu">猛虎スカッシュ</span><span class="org">関大猛虎サークル</span></span></li>
+          <li class="stall" data-cat="sweet" data-y="あげ"><span class="tent">21A</span><span><span class="menu">揚げパン</span><span class="org">頑張っていきま商祭</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">21B</span><span><span class="menu">ホットドッグ</span><span class="org">Al Balón 2</span></span></li>
+          <li class="stall" data-cat="drink"><span class="tent">22A</span><span><span class="menu">カラフルドリンク</span><span class="org">やまちゃんと愉快な仲間たち</span></span></li>
+          <li class="stall" data-cat="sweet"><span class="tent">22B</span><span><span class="menu">クロッフル</span><span class="org">児童文化サークル「うぶ」</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">23A</span><span><span class="menu">フランクフルト</span><span class="org">榊原ゼミ</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">23B</span><span><span class="menu">トルティーヤ</span><span class="org">タコ素晴(タコスバル)</span></span></li>
+          <li class="stall" data-cat="sweet"><span class="tent">24A</span><span><span class="menu">おいもボール</span><span class="org">さつまいも愛好会</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">24B</span><span><span class="menu">ソトクソトク</span><span class="org">ハンドボールサークル漢送</span></span></li>
+          <li class="stall" data-cat="meal" data-y="しょうろんぽう"><span class="tent">25A</span><span><span class="menu">小籠包</span><span class="org">佐々木ゼミ</span></span></li>
+          <li class="stall" data-cat="sweet"><span class="tent">25B</span><span><span class="menu">ポップコーン</span><span class="org">後藤ゼミ</span></span></li>
+        </ul>
+      </div>
+      <div class="area" style="--c:#e2a9cf">
+        <h3><i></i>凜風エリア</h3>
+        <ul class="stalls">
+          <li class="stall" data-cat="sweet"><span class="tent">26A</span><span><span class="menu">クッキー</span><span class="org">ともきおじさんのクッキー</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">26B</span><span><span class="menu">ホットドッグ</span><span class="org">経済学部ゼミナール協議会</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">27A</span><span><span class="menu">ラーメン</span><span class="org">ラーメンサークル「津々浦々」</span></span></li>
+          <li class="stall" data-cat="sweet" data-y="やき"><span class="tent">27B</span><span><span class="menu">たい焼き</span><span class="org">書道部</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">28A</span><span><span class="menu">トルティーヤ</span><span class="org">横山ゼミ</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">28B</span><span><span class="menu">フランクフルト</span><span class="org">FC.Tweede</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">29A</span><span><span class="menu">トッポギ</span><span class="org">cookies</span></span></li>
+          <li class="stall" data-cat="drink"><span class="tent">29B</span><span><span class="menu">レモネード</span><span class="org">商23 STAND</span></span></li>
+          <li class="stall" data-cat="sweet" data-y="とうにゅう"><span class="tent">30A</span><span><span class="menu">豆乳ワッフル</span><span class="org">Japan Anime Culture研究会</span></span></li>
+          <li class="stall" data-cat="sweet"><span class="tent">30B</span><span><span class="menu">ベビーカステラ</span><span class="org">soul beat crew</span></span></li>
+          <li class="stall" data-cat="sweet"><span class="tent">31A</span><span><span class="menu">チュロス</span><span class="org">ボランティアサークルチャレンジャー</span></span></li>
+          <li class="stall" data-cat="meal" data-y="やき やきそば"><span class="tent">31B</span><span><span class="menu">焼きそば</span><span class="org">侑BOSS</span></span></li>
+          <li class="stall" data-cat="sweet"><span class="tent">32A</span><span><span class="menu">ポップコーン</span><span class="org">食品栄養化学研究室</span></span></li>
+          <li class="stall" data-cat="meal" data-y="やき"><span class="tent">32B</span><span><span class="menu">イカ焼き</span><span class="org">Nexus Volley</span></span></li>
+          <li class="stall" data-cat="play"><span class="tent" style="--c:#e8a35e">1</span><span><span class="menu">バルーンアートショップ<span class="note">11/3のみ</span></span><span class="org">関西大学大道芸サークル</span></span></li>
+          <li class="stall" data-cat="play" data-y="しゃてき"><span class="tent" style="--c:#e8a35e">3</span><span><span class="menu">射的<span class="note">11/3のみ</span></span><span class="org">ガンアリーナ関大</span></span></li>
+        </ul>
+      </div>
+      <div class="area" style="--c:#5cbcae">
+        <h3><i></i>芝生エリア</h3>
+        <ul class="stalls">
+          <li class="stall" data-cat="sweet" data-y="あげ"><span class="tent">33A</span><span><span class="menu">揚げパン</span><span class="org">PICMINTON</span></span></li>
+          <li class="stall" data-cat="drink"><span class="tent">33B</span><span><span class="menu">レモンティー</span><span class="org">西岡ゼミ</span></span></li>
+          <li class="stall" data-cat="sweet"><span class="tent">34A</span><span><span class="menu">シューアイス</span><span class="org">マスコミュニケーション学研究部</span></span></li>
+          <li class="stall" data-cat="sweet"><span class="tent">34B</span><span><span class="menu">ベビーカステラ</span><span class="org">写真部フィルムパート</span></span></li>
+          <li class="stall" data-cat="sweet"><span class="tent">35A</span><span><span class="menu">スナックミックス</span><span class="org">Labios</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">35B</span><span><span class="menu">フライドポテト</span><span class="org">千里山法律学会</span></span></li>
+          <li class="stall" data-cat="sweet"><span class="tent">36A</span><span><span class="menu">チュロス</span><span class="org">法律相談所</span></span></li>
+          <li class="stall" data-cat="meal" data-y="ぎょうざ やき"><span class="tent">36B</span><span><span class="menu">焼き餃子</span><span class="org">北川ゼミ</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">37A</span><span><span class="menu">フランクフルト</span><span class="org">友田ゼミ</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">37B</span><span><span class="menu">シャカシャカポテト</span><span class="org">昭和レトロ同好会</span></span></li>
+          <li class="stall" data-cat="sweet"><span class="tent">38A</span><span><span class="menu">ワッフル</span><span class="org">劉ゼミ</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">38B</span><span><span class="menu">ホットドッグ</span><span class="org">旅行隊</span></span></li>
+          <li class="stall" data-cat="meal" data-y="やき"><span class="tent">39A</span><span><span class="menu">たこ焼き</span><span class="org">山本ゼミ</span></span></li>
+          <li class="stall" data-cat="sweet" data-y="あげ"><span class="tent">39B</span><span><span class="menu">揚げパン</span><span class="org">元関大一高女バレー</span></span></li>
+          <li class="stall" data-cat="drink"><span class="tent">40A</span><span><span class="menu">ラムネ</span><span class="org">速記部</span></span></li>
+          <li class="stall" data-cat="meal" data-y="やき やきとり"><span class="tent">40B</span><span><span class="menu">焼き鳥</span><span class="org">加藤ゼミ</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">41A</span><span><span class="menu">フランクフルト</span><span class="org">千葉ゼミ</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">41B</span><span><span class="menu">うどん</span><span class="org">ruffian</span></span></li>
+        </ul>
+      </div>
+      <div class="area" style="--c:#e3d39b">
+        <h3><i></i>法文エリア</h3>
+        <ul class="stalls">
+          <li class="stall" data-cat="meal" data-y="たまこんにゃく"><span class="tent">42A</span><span><span class="menu">玉こんにゃく</span><span class="org">現代文学研究部</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">42B</span><span><span class="menu">わんこホットドッグ</span><span class="org">動物愛すの会</span></span></li>
+          <li class="stall" data-cat="meal" data-y="そば"><span class="tent">43A</span><span><span class="menu">蕎麦</span><span class="org">FF</span></span></li>
+          <li class="stall" data-cat="sweet" data-y="だんご"><span class="tent">43B</span><span><span class="menu">団子</span><span class="org">上野ゼミ</span></span></li>
+          <li class="stall" data-cat="sweet" data-y="かんこく やき"><span class="tent">44A</span><span><span class="menu">韓国カルメ焼き</span><span class="org">韓国人留学生会</span></span></li>
+          <li class="stall" data-cat="sweet"><span class="tent">44B</span><span><span class="menu">ポップコーン</span><span class="org">新熊ゼミ</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">45A</span><span><span class="menu">フランクフルト</span><span class="org">杉本ゼミ</span></span></li>
+          <li class="stall" data-cat="sweet" data-y="まっちゃ"><span class="tent">45B</span><span><span class="menu">抹茶クレープ</span><span class="org">抹茶サークル</span></span></li>
+          <li class="stall" data-cat="meal" data-y="やき やきとり"><span class="tent">46A</span><span><span class="menu">焼き鳥</span><span class="org">生協学生企画室</span></span></li>
+          <li class="stall" data-cat="meal"><span class="tent">46B</span><span><span class="menu">トッポギ</span><span class="org">いろは。</span></span></li>
+          <li class="stall" data-cat="sweet"><span class="tent">47A</span><span><span class="menu">ワッフル</span><span class="org">上妻ゼミ</span></span></li>
+          <li class="stall" data-cat="drink"><span class="tent">47B</span><span><span class="menu">レモンティーソーダ</span><span class="org">西岡ゼミ</span></span></li>
+        </ul>
+      </div>
+    </section>
+    <p class="empty">条件に合うお店が見つかりませんでした。別の言葉で検索してみてください。</p>
+  </main>
+
+  <footer class="foot">関西大学統一学園祭 ／ 主催: 統一学園祭実行委員会<br>© 統一学園祭実行委員会</footer>
+</div>
+
+<div class="viewer" hidden role="dialog" aria-modal="true" aria-label="会場マップ">
+  <div class="viewer-bar">
+    <span class="viewer-title">会場マップ</span>
+    <div>
+      <button type="button" class="zoom" aria-label="拡大・縮小">＋</button>
+      <button type="button" class="close" aria-label="閉じる">×</button>
+    </div>
+  </div>
+  <div class="viewer-scroll"><img alt=""></div>
+</div>
+
+<script>
+// 日程タブ・検索・ジャンル絞り込み・マップ拡大。データはすべて上のHTMLにあり、JSは表示の切替だけを行う
+(function () {
+  var periods = [].slice.call(document.querySelectorAll('.period'));
+  var tabs = [].slice.call(document.querySelectorAll('.tab'));
+  var chips = [].slice.call(document.querySelectorAll('.chip'));
+  var q = document.getElementById('q');
+  var search = q.parentNode;
+  var countEl = document.querySelector('.count');
+  var emptyEl = document.querySelector('.empty');
+  var current = 'p1', cat = '';
+
+  // 検索用に正規化: カタカナ→ひらがな、英字は小文字、空白・記号の揺れを除く
+  function norm(s) {
+    return s.toLowerCase()
+      .replace(/[ァ-ヶ]/g, function (c) { return String.fromCharCode(c.charCodeAt(0) - 0x60); })
+      .replace(/[\s・、,.()（）「」"'☆!！ー〜~-]/g, '');
+  }
+  var rows = [].slice.call(document.querySelectorAll('.stall'));
+  rows.forEach(function (r) { r._k = norm(r.textContent + ' ' + (r.dataset.y || '')); });
+
+  function apply() {
+    var words = q.value.split(/[\s　]+/).map(norm).filter(Boolean);
+    search.classList.toggle('has', q.value !== '');
+    var shown = 0;
+    var p = document.getElementById(current);
+    [].forEach.call(p.querySelectorAll('.area'), function (a) {
+      var any = false;
+      [].forEach.call(a.querySelectorAll('.stall'), function (r) {
+        var ok = (!cat || (' ' + r.dataset.cat + ' ').indexOf(' ' + cat + ' ') >= 0) &&
+                 words.every(function (w) { return r._k.indexOf(w) >= 0; });
+        r.hidden = !ok;
+        if (ok) { any = true; shown++; }
+      });
+      a.hidden = !any;
+    });
+    var filtering = words.length || cat;
+    // 検索・絞り込み中は結果がすぐ見えるようマップを隠す
+    p.classList.toggle('filtering', !!filtering);
+    countEl.textContent = filtering ? shown + '件見つかりました' : '全' + shown + '店';
+    emptyEl.style.display = shown ? 'none' : 'block';
+  }
+
+  function select(id, push) {
+    current = id;
+    tabs.forEach(function (t) {
+      var on = t.dataset.p === id;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+    });
+    periods.forEach(function (p) { p.hidden = p.id !== id; });
+    if (push && history.replaceState) history.replaceState(null, '', '#' + id);
+    apply();
+  }
+  tabs.forEach(function (t) { t.addEventListener('click', function () { select(t.dataset.p, true); }); });
+  chips.forEach(function (c) {
+    c.addEventListener('click', function () {
+      cat = c.dataset.cat;
+      chips.forEach(function (x) { x.setAttribute('aria-pressed', x === c ? 'true' : 'false'); });
+      apply();
+    });
+  });
+  q.addEventListener('input', apply);
+  search.querySelector('.clear').addEventListener('click', function () { q.value = ''; apply(); q.focus(); });
+
+  // マップ拡大表示: タップで全画面。縦向きのスマホでは最初から画面の高さいっぱいに拡大し、左右にスクロールして見る
+  var viewer = document.querySelector('.viewer');
+  var vimg = viewer.querySelector('img');
+  var scroller = viewer.querySelector('.viewer-scroll');
+  var zoomBtn = viewer.querySelector('.zoom');
+  var zoomed = false;
+  function setZoom(z) {
+    zoomed = z;
+    var fitH = scroller.clientHeight * 1254 / 528;  // 地図の高さを画面の高さに合わせたときの幅
+    vimg.style.width = z ? Math.max(fitH, window.innerWidth * 2) + 'px' : '100%';
+    zoomBtn.textContent = z ? '－' : '＋';
+    scroller.scrollLeft = (scroller.scrollWidth - scroller.clientWidth) / 2;
+    scroller.scrollTop = (scroller.scrollHeight - scroller.clientHeight) / 2;
+  }
+  [].forEach.call(document.querySelectorAll('.map'), function (m) {
+    m.addEventListener('click', function (e) {
+      e.preventDefault();
+      vimg.src = m.getAttribute('href');
+      vimg.alt = m.querySelector('img').alt;
+      viewer.querySelector('.viewer-title').textContent = m.dataset.title;
+      viewer.hidden = false;
+      setZoom(window.innerWidth < window.innerHeight);
+      document.body.style.overflow = 'hidden';
+      viewer.querySelector('.close').focus();
+    });
+  });
+  function closeViewer() { viewer.hidden = true; document.body.style.overflow = ''; }
+  vimg.addEventListener('load', function () { setZoom(zoomed); });  // 読み込み後に中央へ合わせ直す
+  zoomBtn.addEventListener('click', function () { setZoom(!zoomed); });
+  viewer.querySelector('.close').addEventListener('click', closeViewer);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !viewer.hidden) closeViewer(); });
+
+  // 初期タブ: URLの#p1/#p2 > 開催日(日本時間で11/3以降なら3・4日目) > 1・2日目
+  var hash = location.hash.slice(1);
+  var today = new Date(Date.now() + 9 * 3600000).toISOString().slice(0, 10);
+  select(hash === 'p1' || hash === 'p2' ? hash : (today >= '2026-11-03' ? 'p2' : 'p1'), false);
+})();
+</script>
+</body>
+</html>
