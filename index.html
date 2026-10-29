@@ -207,6 +207,17 @@ summary{cursor:pointer}summary::-webkit-details-marker{display:none}
 .mobile-menu{position:fixed;inset:0;z-index:1000;background:rgba(8,8,11,.96);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px}
 .mobile-menu a{font-size:16px;letter-spacing:.1em;color:rgba(255,255,255,.9)}
 .mobile-menu-close{position:absolute;top:16px;right:20px;background:none;border:0;color:#fff;font-size:32px;line-height:1;cursor:pointer;padding:10px;-webkit-tap-highlight-color:transparent}
+/* デジタルパンフレットのダウンロードボタン(PCナビ・スマホメニュー共通) */
+.site-nav{align-items:center}
+.pamph-dl{display:inline-flex;align-items:center;gap:6px;white-space:nowrap;padding:6px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.45);background:rgba(255,255,255,.08);color:#fff;transition:background .25s ease}
+.pamph-dl::before{content:"↓";font-size:1.05em;line-height:1}
+.pamph-dl:hover{background:rgba(255,255,255,.2)}
+.mobile-menu .pamph-dl{margin-top:8px;padding:12px 22px;font-size:15px;color:#fff}
+/* 全文ラベルが収まらないPC幅では、テーマ切替と同じ丸いアイコンボタンにする */
+@media(min-width:861px) and (max-width:1239px){
+  .site-nav .pamph-dl{width:34px;height:34px;padding:0;justify-content:center;font-size:15px}
+  .site-nav .pamph-dl-text{display:none}
+}
 @media(max-width:860px){
   .site-nav{display:none!important}
   .nav-toggle{display:flex}
@@ -260,6 +271,7 @@ summary{cursor:pointer}summary::-webkit-details-marker{display:none}
         <sc-for list="{{ navItems }}" as="m" hint-placeholder-count="6">
           <a href="{{ m.href }}" style="color:{{ m.color }}">{{ m.label }}</a>
         </sc-for>
+        <a class="pamph-dl" href="downloads/pamphlet.pdf" download="関西大学統一学園祭_デジタルパンフレット.pdf" aria-label="デジタルパンフレットをダウンロード" title="デジタルパンフレットをダウンロード(PDF・約31MB)"><span class="pamph-dl-text">デジタルパンフレットをダウンロード</span></a>
       </nav>
       <button class="theme-toggle" type="button" onclick="{{ toggleTheme }}" aria-label="ライトモードとダークモードを切り替え" title="表示モード切り替え"><span class="tt-sun">☀︎</span><span class="tt-moon">☾</span></button>
       <button class="nav-toggle" type="button" onclick="{{ toggleMenu }}" aria-label="メニューを開く" aria-expanded="{{ menuOpen }}">
@@ -274,6 +286,7 @@ summary{cursor:pointer}summary::-webkit-details-marker{display:none}
       <sc-for list="{{ navItems }}" as="m" hint-placeholder-count="6">
         <a href="{{ m.href }}" onclick="{{ closeMenu }}">{{ m.label }}</a>
       </sc-for>
+      <a class="pamph-dl" href="downloads/pamphlet.pdf" download="関西大学統一学園祭_デジタルパンフレット.pdf" onclick="{{ closeMenu }}">デジタルパンフレットをダウンロード</a>
     </div>
   </sc-if>
 
