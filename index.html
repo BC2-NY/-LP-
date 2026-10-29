@@ -213,6 +213,27 @@ summary{cursor:pointer}summary::-webkit-details-marker{display:none}
 .pamph-dl::before{content:"↓";font-size:1.05em;line-height:1}
 .pamph-dl:hover{background:rgba(255,255,255,.2)}
 .mobile-menu .pamph-dl{margin-top:8px;padding:12px 22px;font-size:15px;color:#fff}
+/* ゲスト告知(チケット型)。左が日付の半券、右が本文 */
+.guest{display:grid;grid-template-columns:200px 1fr;border:1px solid var(--line-strong);border-radius:6px;background:var(--bg-2);overflow:hidden}
+.guest-stub{position:relative;background:var(--accent-strong);color:#fff;padding:24px 22px;display:flex;flex-direction:column;justify-content:space-between;gap:18px}
+.guest-stub::after{content:"";position:absolute;top:0;bottom:0;right:-1px;border-right:2px dashed var(--bg-2)}
+.guest-kind{font-size:12px;letter-spacing:.1em}
+.guest-date{font-family:'Dela Gothic One',sans-serif;font-size:40px;line-height:1}
+.guest-date small{font-size:15px;margin:0 1px}
+.guest-event{font-size:13px;letter-spacing:.06em;line-height:1.6}
+.guest-body{padding:24px clamp(20px,3vw,32px) 26px}
+.guest-pre{font-size:13px;color:var(--text-2)}
+.guest-body h3{margin:6px 0 0;font-weight:400;font-family:'Dela Gothic One',sans-serif;font-size:clamp(19px,2.6vw,24px);line-height:1.5;letter-spacing:.03em}
+.guest-body h3 span{display:inline-block} /* 見出しを語の区切りで折り返す */
+.guest-body p{margin:14px 0 0;font-size:13.5px;line-height:1.95;color:var(--text-1)}
+.guest-body .nw{white-space:nowrap}
+@media(max-width:640px){
+  .guest{grid-template-columns:1fr}
+  .guest-stub{flex-direction:row;align-items:flex-end;flex-wrap:wrap;gap:6px 14px;padding:18px 20px}
+  .guest-kind{width:100%}
+  .guest-date{font-size:32px}
+  .guest-stub::after{top:auto;left:0;right:0;bottom:-1px;border-right:0;border-bottom:2px dashed var(--bg-2)}
+}
 /* 全文ラベルが収まらないPC幅では、テーマ切替と同じ丸いアイコンボタンにする */
 @media(min-width:861px) and (max-width:1239px){
   .site-nav .pamph-dl{width:34px;height:34px;padding:0;justify-content:center;font-size:15px}
@@ -320,6 +341,24 @@ summary{cursor:pointer}summary::-webkit-details-marker{display:none}
         <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ n.text }}</span>
       </div>
     </sc-for>
+  </div>
+</section>
+
+<!-- ================= GUEST ================= -->
+<section id="guest" data-screen-label="ゲスト" style="scroll-margin-top:20px;max-width:1100px;margin:0 auto;padding:clamp(36px,5vw,52px) clamp(20px,4vw,36px);border-bottom:1px solid var(--line)">
+  <div class="guest" data-reveal>
+    <div class="guest-stub">
+      <div class="guest-kind">スペシャルゲスト</div>
+      <div class="guest-date">11<small>月</small>1<small>日(日)</small></div>
+      <div class="guest-event">オープニングセレモニー</div>
+    </div>
+    <div class="guest-body">
+      <div class="guest-pre">関大卒業生・南海キャンディーズ</div>
+      <h3><span>山里亮太さんが</span><span>統一学園祭に登場！</span></h3>
+      <p>関西大学卒業生アンバサダーとして、<span class="nw">11月1日(日)</span>のオープニングセレモニーに出演！<br>さらに、ミニトークショーも開催します。</p>
+      <p>今年の統一学園祭を、ぜひ会場でお楽しみください！</p>
+      <a href="timetable.html" style="display:inline-block;margin-top:18px;font-size:12px;letter-spacing:.1em;padding:9px 18px;border-radius:3px;background:var(--accent-strong);color:#fff">学園祭の詳細はこちら →</a>
+    </div>
   </div>
 </section>
 
