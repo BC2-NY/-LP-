@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>中央ステージ タイムテーブル | 関西大学統一学園祭2026「旋風」</title>
-<meta name="description" content="関西大学統一学園祭2026「旋風」中央ステージのタイムテーブル。11月1日(日)〜11月4日(水)の出演団体と出演時間を日別に掲載しています。">
+<title>ステージ タイムテーブル | 関西大学統一学園祭2026「旋風」</title>
+<meta name="description" content="関西大学統一学園祭2026「旋風」のステージタイムテーブル。悠久の庭 中央ステージ・あすかの庭ステージ・経商工社ステージ・雨天時(千里ホールA)の出演団体と出演時間を、11月1日(日)〜11月4日(水)の日別に掲載しています。">
 <link rel="canonical" href="https://kandai-gakuensai.com/timetable.html">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="関西大学統一学園祭">
-<meta property="og:title" content="中央ステージ タイムテーブル | 関西大学統一学園祭2026「旋風」">
-<meta property="og:description" content="11月1日(日)〜11月4日(水)の中央ステージ出演団体と出演時間。">
+<meta property="og:title" content="ステージ タイムテーブル | 関西大学統一学園祭2026「旋風」">
+<meta property="og:description" content="11月1日(日)〜11月4日(水)の各ステージの出演団体と出演時間。">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:url" content="https://kandai-gakuensai.com/timetable.html">
 <meta property="og:image" content="https://kandai-gakuensai.com/uploads/toitu-sozai-1.jpg">
@@ -85,22 +85,26 @@ h1{margin:0;font-family:'Dela Gothic One',sans-serif;font-weight:400;font-size:c
 .head-en{font-size:10px;letter-spacing:.18em;color:var(--accent);margin-top:6px}
 .head-note{margin:18px 0 0;font-size:12.5px;line-height:1.9;color:var(--text-2)}
 
-/* 日付タブ(JS有効時のみ表示) */
-.tabs{display:none}
-.js .tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;position:sticky;top:0;z-index:5;background:var(--bg);padding:12px 0}
+/* ステージ・日付の切替タブ(JS有効時のみ表示)。2段まとめて画面上部に固定する */
+.switch{display:none}
+.js .switch{display:grid;gap:8px;position:sticky;top:0;z-index:5;background:var(--bg);padding:12px 0}
+.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
 .tab{border:1px solid var(--line-strong);background:var(--bg-2);color:var(--text-2);border-radius:6px;padding:10px 4px;cursor:pointer;font-family:inherit;line-height:1.3;-webkit-tap-highlight-color:transparent}
 .tab b{display:block;font-family:'Dela Gothic One',sans-serif;font-weight:400;font-size:clamp(16px,4.4vw,19px);color:var(--text)}
 .tab span{font-size:11px;letter-spacing:.08em}
+.stage-tabs .tab b{font-size:clamp(12.5px,3.5vw,15px);letter-spacing:.02em;white-space:nowrap}
+.stage-tabs .tab span{font-size:10.5px;letter-spacing:.04em;white-space:nowrap}
 .tab[aria-selected=true]{border-color:var(--accent-strong);background:var(--accent-strong)}
 .tab[aria-selected=true] b,.tab[aria-selected=true] span{color:#fff}
 .tab .today{display:block;font-size:9.5px;letter-spacing:.14em;margin-top:2px;color:var(--accent)}
 .tab[aria-selected=true] .today{color:#fff}
 
-/* 日別の出演一覧 */
+/* ステージ×日別の出演一覧 */
 .day{padding:8px 0 28px}
 .js .day[hidden]{display:none}
 .day h2{margin:20px 0 6px;font-family:'Dela Gothic One',sans-serif;font-weight:400;font-size:19px;letter-spacing:.04em}
 .js .day h2{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.day-note{margin:8px 0 4px;font-size:12px;line-height:1.8;color:var(--text-2)}
 .acts{list-style:none;margin:0;padding:0}
 .act{display:grid;grid-template-columns:7.6em 1fr;align-items:center;gap:14px;padding:16px 12px;border-bottom:1px solid var(--line);border-radius:4px}
 .act time{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;color:var(--text-2);letter-spacing:.02em;white-space:nowrap}
@@ -129,72 +133,224 @@ h1{margin:0;font-family:'Dela Gothic One',sans-serif;font-weight:400;font-size:c
 
   <main>
     <div class="head">
-      <h1>中央ステージ<br>タイムテーブル</h1>
-      <div class="head-en">CENTRAL STAGE TIMETABLE</div>
-      <p class="head-note">2026年11月1日(日)〜11月4日(水)に中央ステージで行われる企画の出演団体と時間です。進行状況により時間が前後する場合があります。最新情報はトップページのお知らせをご確認ください。</p>
+      <h1>ステージ<br>タイムテーブル</h1>
+      <div class="head-en">STAGE TIMETABLE</div>
+      <p class="head-note">2026年11月1日(日)〜11月4日(水)に各ステージで行われる企画の出演団体と時間です。ステージと日付を選んでご覧ください。進行状況により時間が前後する場合があります。最新情報はトップページのお知らせをご確認ください。</p>
     </div>
 
-    <div class="tabs" role="tablist" aria-label="開催日">
-      <button class="tab" role="tab" id="tab-d1" aria-controls="d1" data-day="d1" type="button"><b>11/1</b><span>日</span></button>
-      <button class="tab" role="tab" id="tab-d2" aria-controls="d2" data-day="d2" type="button"><b>11/2</b><span>月</span></button>
-      <button class="tab" role="tab" id="tab-d3" aria-controls="d3" data-day="d3" type="button"><b>11/3</b><span>火・祝</span></button>
-      <button class="tab" role="tab" id="tab-d4" aria-controls="d4" data-day="d4" type="button"><b>11/4</b><span>水</span></button>
+    <div class="switch">
+      <div class="tabs stage-tabs" role="tablist" aria-label="ステージ">
+        <button class="tab" role="tab" data-stage="center" type="button"><b>中央ステージ</b><span>悠久の庭</span></button>
+        <button class="tab" role="tab" data-stage="asuka" type="button"><b>あすかの庭</b><span>ステージ</span></button>
+        <button class="tab" role="tab" data-stage="keisho" type="button"><b>経商工社</b><span>ステージ</span></button>
+        <button class="tab" role="tab" data-stage="rain" type="button"><b>雨天時</b><span>千里ホールA</span></button>
+      </div>
+      <div class="tabs day-tabs" role="tablist" aria-label="開催日">
+        <button class="tab" role="tab" id="tab-d1" data-day="d1" type="button"><b>11/1</b><span>日</span></button>
+        <button class="tab" role="tab" id="tab-d2" data-day="d2" type="button"><b>11/2</b><span>月</span></button>
+        <button class="tab" role="tab" id="tab-d3" data-day="d3" type="button"><b>11/3</b><span>火・祝</span></button>
+        <button class="tab" role="tab" id="tab-d4" data-day="d4" type="button"><b>11/4</b><span>水</span></button>
+      </div>
     </div>
 
-    <!-- 出演データ: 「2026中央ステージタイムテーブル.xlsx」より(準備・撤収時間、後夜祭準備、片付けは非掲載) -->
-    <section class="day" id="d1" role="tabpanel" aria-labelledby="tab-d1" data-date="2026-11-01">
-      <h2>11月1日(日)</h2>
+    <!-- 出演データ: デジタルパンフレット「ステージ企画 タイムスケジュール」「雨天時スケジュール」より -->
+
+    <!-- ===== 悠久の庭 中央ステージ ===== -->
+    <section class="day" id="center-d1" role="tabpanel" data-stage="center" data-day="d1" data-date="2026-11-01">
+      <h2>悠久の庭 中央ステージ 11月1日(日)</h2>
       <ol class="acts">
         <li class="act special" data-s="12:00" data-e="12:25"><time>12:00 – 12:25</time><span class="name">オープニングセレモニー<span class="badge">NOW</span></span></li>
         <li class="act" data-s="12:25" data-e="14:35"><time>12:25 – 14:35</time><span class="name">KANDAI DANCE FESTIVAL<span class="badge">NOW</span></span></li>
-        <li class="act" data-s="14:35" data-e="15:05"><time>14:35 – 15:05</time><span class="name">Bis<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="14:35" data-e="15:05"><time>14:35 – 15:05</time><span class="name">吹奏楽サークルBis<span class="badge">NOW</span></span></li>
         <li class="act" data-s="15:05" data-e="15:35"><time>15:05 – 15:35</time><span class="name">HUMAN BEING<span class="badge">NOW</span></span></li>
-        <li class="act" data-s="15:35" data-e="16:00"><time>15:35 – 16:00</time><span class="name">ぺるぺる<span class="badge">NOW</span></span></li>
-        <li class="act" data-s="16:00" data-e="17:00"><time>16:00 – 17:00</time><span class="name">軽音Ⅰ部<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="15:35" data-e="16:00"><time>15:35 – 16:00</time><span class="name">Persona Perdida(ぺるぺる)<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="16:00" data-e="17:00"><time>16:00 – 17:00</time><span class="name">文化会軽音楽部Ⅰ部パート<span class="badge">NOW</span></span></li>
       </ol>
     </section>
 
-    <section class="day" id="d2" role="tabpanel" aria-labelledby="tab-d2" data-date="2026-11-02">
-      <h2>11月2日(月)</h2>
+    <section class="day" id="center-d2" role="tabpanel" data-stage="center" data-day="d2" data-date="2026-11-02">
+      <h2>悠久の庭 中央ステージ 11月2日(月)</h2>
       <ol class="acts">
-        <li class="act" data-s="10:00" data-e="11:00"><time>10:00 – 11:00</time><span class="name">Clazy In You<span class="badge">NOW</span></span></li>
-        <li class="act" data-s="11:00" data-e="11:30"><time>11:00 – 11:30</time><span class="name">kitty eye<span class="badge">NOW</span></span></li>
-        <li class="act" data-s="11:30" data-e="11:50"><time>11:30 – 11:50</time><span class="name">JAC研<span class="badge">NOW</span></span></li>
-        <li class="act" data-s="11:50" data-e="12:20"><time>11:50 – 12:20</time><span class="name">ラブライブ<span class="badge">NOW</span></span></li>
-        <li class="act" data-s="12:20" data-e="12:55"><time>12:20 – 12:55</time><span class="name">飛舞人<span class="badge">NOW</span></span></li>
-        <li class="act" data-s="12:55" data-e="13:35"><time>12:55 – 13:35</time><span class="name">mixpackage<span class="badge">NOW</span></span></li>
-        <li class="act" data-s="13:35" data-e="14:15"><time>13:35 – 14:15</time><span class="name">brooklyn304<span class="badge">NOW</span></span></li>
-        <li class="act" data-s="14:15" data-e="15:15"><time>14:15 – 15:15</time><span class="name">CLAIRS<span class="badge">NOW</span></span></li>
-        <li class="act" data-s="15:15" data-e="16:15"><time>15:15 – 16:15</time><span class="name">文化会書道部<span class="badge">NOW</span></span></li>
-        <li class="act" data-s="16:15" data-e="17:00"><time>16:15 – 17:00</time><span class="name">SBC<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="10:00" data-e="11:00"><time>10:00 – 11:00</time><span class="name">Crazy In You<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="11:00" data-e="11:30"><time>11:00 – 11:30</time><span class="name">アイドルコピーダンスサークルKitty eye<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="11:30" data-e="11:50"><time>11:30 – 11:50</time><span class="name">Japan Anime Culture研究会<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="11:50" data-e="12:20"><time>11:50 – 12:20</time><span class="name">関西大学ラブライ部<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="12:20" data-e="12:55"><time>12:20 – 12:55</time><span class="name">有閑踊り子一座飛舞人<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="12:55" data-e="13:35"><time>12:55 – 13:35</time><span class="name">関西大学ダブルダッチ会mix package<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="13:35" data-e="14:15"><time>13:35 – 14:15</time><span class="name">関西大学アカペラサークルBrooklyn304<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="14:15" data-e="15:15"><time>14:15 – 15:15</time><span class="name">チアリーディング同好会CLAIRS<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="15:15" data-e="16:15"><time>15:15 – 16:15</time><span class="name">関西大学文化会書道部<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="16:15" data-e="17:00"><time>16:15 – 17:00</time><span class="name">Soul Beat Crew<span class="badge">NOW</span></span></li>
       </ol>
     </section>
 
-    <section class="day" id="d3" role="tabpanel" aria-labelledby="tab-d3" data-date="2026-11-03">
-      <h2>11月3日(火・祝)</h2>
+    <section class="day" id="center-d3" role="tabpanel" data-stage="center" data-day="d3" data-date="2026-11-03">
+      <h2>悠久の庭 中央ステージ 11月3日(火・祝)</h2>
       <ol class="acts">
-        <li class="act" data-s="10:00" data-e="10:40"><time>10:00 – 10:40</time><span class="name">軽音Ⅱ部<span class="badge">NOW</span></span></li>
-        <li class="act" data-s="10:40" data-e="11:20"><time>10:40 – 11:20</time><span class="name">groove<span class="badge">NOW</span></span></li>
-        <li class="act" data-s="11:20" data-e="11:45"><time>11:20 – 11:45</time><span class="name">千里山シェルター<span class="badge">NOW</span></span></li>
-        <li class="act" data-s="11:45" data-e="12:15"><time>11:45 – 12:15</time><span class="name">Tiny village<span class="badge">NOW</span></span></li>
-        <li class="act" data-s="12:15" data-e="12:40"><time>12:15 – 12:40</time><span class="name">LMA<span class="badge">NOW</span></span></li>
-        <li class="act" data-s="12:40" data-e="13:05"><time>12:40 – 13:05</time><span class="name">POP研<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="10:00" data-e="10:40"><time>10:00 – 10:40</time><span class="name">文化会軽音楽部Ⅱ部パート<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="10:40" data-e="11:20"><time>10:40 – 11:20</time><span class="name">関西大学軽音サークルgroove<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="11:20" data-e="11:45"><time>11:20 – 11:45</time><span class="name">関西大学軽音サークル千里山シェルター<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="11:45" data-e="12:15"><time>11:45 – 12:15</time><span class="name">Tiny Village Big Band<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="12:15" data-e="12:40"><time>12:15 – 12:40</time><span class="name">民謡研究会LMA<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="12:40" data-e="13:05"><time>12:40 – 13:05</time><span class="name">文化会ポピュラーミュージック創作研究会<span class="badge">NOW</span></span></li>
         <li class="act" data-s="13:05" data-e="13:30"><time>13:05 – 13:30</time><span class="name">Mountain Dew<span class="badge">NOW</span></span></li>
-        <li class="act" data-s="13:30" data-e="14:00"><time>13:30 – 14:00</time><span class="name">葦<span class="badge">NOW</span></span></li>
-        <li class="act" data-s="14:00" data-e="14:50"><time>14:00 – 14:50</time><span class="name">軽音Ⅰ部<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="13:30" data-e="14:00"><time>13:30 – 14:00</time><span class="name">関西大学文化会 混声合唱団「葦」<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="14:00" data-e="14:50"><time>14:00 – 14:50</time><span class="name">文化会軽音楽部Ⅰ部パート<span class="badge">NOW</span></span></li>
         <li class="act" data-s="14:50" data-e="15:30"><time>14:50 – 15:30</time><span class="name">10TXHX<span class="badge">NOW</span></span></li>
-        <li class="act" data-s="15:30" data-e="17:00"><time>15:30 – 17:00</time><span class="name">漢舞<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="15:30" data-e="17:00"><time>15:30 – 17:00</time><span class="name">関西大学学生チーム"漢舞"<span class="badge">NOW</span></span></li>
       </ol>
     </section>
 
-    <section class="day" id="d4" role="tabpanel" aria-labelledby="tab-d4" data-date="2026-11-04">
-      <h2>11月4日(水)</h2>
+    <section class="day" id="center-d4" role="tabpanel" data-stage="center" data-day="d4" data-date="2026-11-04">
+      <h2>悠久の庭 中央ステージ 11月4日(水)</h2>
       <ol class="acts">
-        <li class="act" data-s="10:00" data-e="10:25"><time>10:00 – 10:25</time><span class="name">軽音サークル Banditz<span class="badge">NOW</span></span></li>
-        <li class="act" data-s="10:25" data-e="10:55"><time>10:25 – 10:55</time><span class="name">ZERO<span class="badge">NOW</span></span></li>
-        <li class="act" data-s="10:55" data-e="11:50"><time>10:55 – 11:50</time><span class="name">軽音Ⅰ部<span class="badge">NOW</span></span></li>
-        <li class="act" data-s="11:50" data-e="15:00"><time>11:50 – 15:00</time><span class="name">KU.ROCKFEVER<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="10:00" data-e="10:25"><time>10:00 – 10:25</time><span class="name">軽音サークルBanditz<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="10:25" data-e="10:55"><time>10:25 – 10:55</time><span class="name">MusicSyndicateZERO<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="10:55" data-e="11:50"><time>10:55 – 11:50</time><span class="name">文化会軽音楽部Ⅰ部パート<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="11:50" data-e="15:00"><time>11:50 – 15:00</time><span class="name">K.U. ROCKFEVER<span class="badge">NOW</span></span></li>
         <li class="act special" data-s="16:00" data-e="19:00"><time>16:00 – 19:00</time><span class="name">後夜祭<span class="badge">NOW</span></span></li>
+      </ol>
+    </section>
+
+    <!-- ===== あすかの庭ステージ ===== -->
+    <section class="day" id="asuka-d1" role="tabpanel" data-stage="asuka" data-day="d1" data-date="2026-11-01">
+      <h2>あすかの庭ステージ 11月1日(日)</h2>
+      <ol class="acts">
+        <li class="act special" data-s="12:40" data-e="13:20"><time>12:40 – 13:20</time><span class="name">あすかの庭オープニングセレモニー<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="13:30" data-e="14:30"><time>13:30 – 14:30</time><span class="name">外国語学部祭典実行委員会<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="14:35" data-e="15:05"><time>14:35 – 15:05</time><span class="name">有閑踊り子一座飛舞人<span class="badge">NOW</span></span></li>
+      </ol>
+    </section>
+
+    <section class="day" id="asuka-d2" role="tabpanel" data-stage="asuka" data-day="d2" data-date="2026-11-02">
+      <h2>あすかの庭ステージ 11月2日(月)</h2>
+      <ol class="acts">
+        <li class="act" data-s="10:20" data-e="10:50"><time>10:20 – 10:50</time><span class="name">ビジネスデータサイエンス学部祭典実行委員会<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="10:55" data-e="11:40"><time>10:55 – 11:40</time><span class="name">体育会合気道部<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="11:45" data-e="12:45"><time>11:45 – 12:45</time><span class="name">総合情報学部祭典実行委員会<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="12:50" data-e="13:50"><time>12:50 – 13:50</time><span class="name">政策創造学部祭典実行委員会<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="13:55" data-e="14:55"><time>13:55 – 14:55</time><span class="name">人間健康学部祭典実行委員会<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="15:00" data-e="15:30"><time>15:00 – 15:30</time><span class="name">関西大学学生チーム"漢舞"<span class="badge">NOW</span></span></li>
+      </ol>
+    </section>
+
+    <section class="day" id="asuka-d3" role="tabpanel" data-stage="asuka" data-day="d3" data-date="2026-11-03">
+      <h2>あすかの庭ステージ 11月3日(火・祝)</h2>
+      <ol class="acts">
+        <li class="act" data-s="10:30" data-e="11:30"><time>10:30 – 11:30</time><span class="name">社会安全学部祭典実行委員会<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="11:35" data-e="12:35"><time>11:35 – 12:35</time><span class="name">文学部祭典実行委員会<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="12:40" data-e="13:40"><time>12:40 – 13:40</time><span class="name">Crazy In You<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="13:45" data-e="14:25"><time>13:45 – 14:25</time><span class="name">吹奏楽サークルBis<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="14:30" data-e="15:30"><time>14:30 – 15:30</time><span class="name">アイドルコピーダンスサークルKitty eye<span class="badge">NOW</span></span></li>
+      </ol>
+    </section>
+
+    <section class="day" id="asuka-d4" role="tabpanel" data-stage="asuka" data-day="d4" data-date="2026-11-04">
+      <h2>あすかの庭ステージ 11月4日(水)</h2>
+      <ol class="acts">
+        <li class="act" data-s="10:30" data-e="11:30"><time>10:30 – 11:30</time><span class="name">文学部祭典実行委員会<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="11:40" data-e="12:40"><time>11:40 – 12:40</time><span class="name">法学部祭典実行委員会<span class="badge">NOW</span></span></li>
+        <li class="act special" data-s="12:50" data-e="13:10"><time>12:50 – 13:10</time><span class="name">あすかの庭エンディングセレモニー<span class="badge">NOW</span></span></li>
+        <li class="act special" data-s="13:30" data-e="14:30"><time>13:30 – 14:30</time><span class="name">経商工社・あすかの庭 合同エンディングセレモニー<span class="badge">NOW</span></span></li>
+      </ol>
+    </section>
+
+    <!-- ===== 経商工社ステージ ===== -->
+    <section class="day" id="keisho-d1" role="tabpanel" data-stage="keisho" data-day="d1" data-date="2026-11-01">
+      <h2>経商工社ステージ 11月1日(日)</h2>
+      <ol class="acts">
+        <li class="act special" data-s="12:30" data-e="13:00"><time>12:30 – 13:00</time><span class="name">経商工社ステージオープニングセレモニー<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="13:05" data-e="14:05"><time>13:05 – 14:05</time><span class="name">商学部祭実行委員会<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="14:30" data-e="15:30"><time>14:30 – 15:30</time><span class="name">経済学部学園祭実行委員会<span class="badge">NOW</span></span></li>
+      </ol>
+    </section>
+
+    <section class="day" id="keisho-d2" role="tabpanel" data-stage="keisho" data-day="d2" data-date="2026-11-02">
+      <h2>経商工社ステージ 11月2日(月)</h2>
+      <ol class="acts">
+        <li class="act" data-s="10:50" data-e="11:50"><time>10:50 – 11:50</time><span class="name">商学部祭実行委員会<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="12:00" data-e="12:30"><time>12:00 – 12:30</time><span class="name">法学部祭典実行委員会<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="12:40" data-e="13:10"><time>12:40 – 13:10</time><span class="name">関西大学大道芸サークルジャグりま専科<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="13:20" data-e="14:20"><time>13:20 – 14:20</time><span class="name">10TXHX<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="14:30" data-e="15:10"><time>14:30 – 15:10</time><span class="name">理工系学部祭実行委員会<span class="badge">NOW</span></span></li>
+      </ol>
+    </section>
+
+    <section class="day" id="keisho-d3" role="tabpanel" data-stage="keisho" data-day="d3" data-date="2026-11-03">
+      <h2>経商工社ステージ 11月3日(火・祝)</h2>
+      <ol class="acts">
+        <li class="act" data-s="10:30" data-e="11:30"><time>10:30 – 11:30</time><span class="name">商学部祭実行委員会<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="11:40" data-e="12:40"><time>11:40 – 12:40</time><span class="name">10TXHX<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="12:50" data-e="13:50"><time>12:50 – 13:50</time><span class="name">社会学部祭実行委員会<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="14:00" data-e="14:30"><time>14:00 – 14:30</time><span class="name">政策創造学部祭典実行委員会<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="14:35" data-e="15:15"><time>14:35 – 15:15</time><span class="name">総合情報学部祭典実行委員会<span class="badge">NOW</span></span></li>
+      </ol>
+    </section>
+
+    <section class="day" id="keisho-d4" role="tabpanel" data-stage="keisho" data-day="d4" data-date="2026-11-04">
+      <h2>経商工社ステージ 11月4日(水)</h2>
+      <ol class="acts">
+        <li class="act" data-s="10:10" data-e="11:10"><time>10:10 – 11:10</time><span class="name">Crazy In You<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="11:20" data-e="12:00"><time>11:20 – 12:00</time><span class="name">理工系学部祭実行委員会<span class="badge">NOW</span></span></li>
+        <li class="act special" data-s="12:10" data-e="12:40"><time>12:10 – 12:40</time><span class="name">経商工社ステージエンディングセレモニー<span class="badge">NOW</span></span></li>
+      </ol>
+    </section>
+
+    <!-- ===== 雨天時(第1学舎 千里ホールA) ===== -->
+    <section class="day" id="rain-d1" role="tabpanel" data-stage="rain" data-day="d1" data-date="2026-11-01">
+      <h2>雨天時スケジュール(第1学舎 千里ホールA) 11月1日(日)</h2>
+      <p class="day-note">雨天の場合に第1学舎 千里ホールAで行うスケジュールです。</p>
+      <ol class="acts">
+        <li class="act" data-s="12:30" data-e="13:30"><time>12:30 – 13:30</time><span class="name">商学部祭実行委員会<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="13:35" data-e="14:25"><time>13:35 – 14:25</time><span class="name">外国語学部祭典実行委員会<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="14:30" data-e="14:50"><time>14:30 – 14:50</time><span class="name">有閑踊り子一座飛舞人<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="14:55" data-e="15:40"><time>14:55 – 15:40</time><span class="name">経済学部学園祭実行委員会<span class="badge">NOW</span></span></li>
+      </ol>
+    </section>
+
+    <section class="day" id="rain-d2" role="tabpanel" data-stage="rain" data-day="d2" data-date="2026-11-02">
+      <h2>雨天時スケジュール(第1学舎 千里ホールA) 11月2日(月)</h2>
+      <p class="day-note">雨天の場合に第1学舎 千里ホールAで行うスケジュールです。</p>
+      <ol class="acts">
+        <li class="act" data-s="10:20" data-e="10:40"><time>10:20 – 10:40</time><span class="name">ビジネスデータサイエンス学部祭典実行委員会<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="10:45" data-e="11:30"><time>10:45 – 11:30</time><span class="name">商学部祭実行委員会<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="11:35" data-e="12:05"><time>11:35 – 12:05</time><span class="name">総合情報学部祭典実行委員会<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="12:10" data-e="12:30"><time>12:10 – 12:30</time><span class="name">法学部祭典実行委員会<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="12:35" data-e="12:55"><time>12:35 – 12:55</time><span class="name">関西大学大道芸サークルジャグりま専科<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="13:00" data-e="13:30"><time>13:00 – 13:30</time><span class="name">政策創造学部祭典実行委員会<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="13:35" data-e="14:05"><time>13:35 – 14:05</time><span class="name">10TXHX<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="14:10" data-e="14:50"><time>14:10 – 14:50</time><span class="name">人間健康学部祭典実行委員会<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="14:55" data-e="15:15"><time>14:55 – 15:15</time><span class="name">理工系学部祭実行委員会<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="15:20" data-e="15:40"><time>15:20 – 15:40</time><span class="name">関西大学学生チーム"漢舞"<span class="badge">NOW</span></span></li>
+      </ol>
+    </section>
+
+    <section class="day" id="rain-d3" role="tabpanel" data-stage="rain" data-day="d3" data-date="2026-11-03">
+      <h2>雨天時スケジュール(第1学舎 千里ホールA) 11月3日(火・祝)</h2>
+      <p class="day-note">雨天の場合に第1学舎 千里ホールAで行うスケジュールです。</p>
+      <ol class="acts">
+        <li class="act" data-s="10:15" data-e="10:45"><time>10:15 – 10:45</time><span class="name">社会安全学部祭典実行委員会<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="10:50" data-e="11:30"><time>10:50 – 11:30</time><span class="name">商学部祭実行委員会<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="11:35" data-e="12:05"><time>11:35 – 12:05</time><span class="name">文学部祭典実行委員会<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="12:10" data-e="12:40"><time>12:10 – 12:40</time><span class="name">10TXHX<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="12:45" data-e="13:05"><time>12:45 – 13:05</time><span class="name">Crazy In You<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="13:10" data-e="13:50"><time>13:10 – 13:50</time><span class="name">社会学部祭実行委員会<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="13:55" data-e="14:20"><time>13:55 – 14:20</time><span class="name">吹奏楽サークルBis<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="14:25" data-e="14:45"><time>14:25 – 14:45</time><span class="name">政策創造学部祭典実行委員会<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="14:50" data-e="15:10"><time>14:50 – 15:10</time><span class="name">総合情報学部祭典実行委員会<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="15:15" data-e="15:45"><time>15:15 – 15:45</time><span class="name">Kitty eye<span class="badge">NOW</span></span></li>
+      </ol>
+    </section>
+
+    <section class="day" id="rain-d4" role="tabpanel" data-stage="rain" data-day="d4" data-date="2026-11-04">
+      <h2>雨天時スケジュール(第1学舎 千里ホールA) 11月4日(水)</h2>
+      <p class="day-note">雨天の場合に第1学舎 千里ホールAで行うスケジュールです。</p>
+      <ol class="acts">
+        <li class="act" data-s="10:15" data-e="11:05"><time>10:15 – 11:05</time><span class="name">Crazy In You<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="11:10" data-e="12:00"><time>11:10 – 12:00</time><span class="name">文学部祭典実行委員会<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="12:05" data-e="12:35"><time>12:05 – 12:35</time><span class="name">理工系学部祭実行委員会<span class="badge">NOW</span></span></li>
+        <li class="act" data-s="12:40" data-e="13:30"><time>12:40 – 13:30</time><span class="name">法学部祭典実行委員会<span class="badge">NOW</span></span></li>
+        <li class="act special" data-s="13:40" data-e="14:40"><time>13:40 – 14:40</time><span class="name">合同エンディングセレモニー<span class="badge">NOW</span></span></li>
       </ol>
     </section>
   </main>
@@ -203,43 +359,53 @@ h1{margin:0;font-family:'Dela Gothic One',sans-serif;font-weight:400;font-size:c
 </div>
 
 <script>
-// 日付タブの切替と「出演中」表示。データはすべて上のHTMLにあり、JSは表示の切替だけを行う
+// ステージ・日付タブの切替と「出演中」表示。データはすべて上のHTMLにあり、JSは表示の切替だけを行う
 (function () {
-  var tabs = [].slice.call(document.querySelectorAll('.tab'));
+  var stageTabs = [].slice.call(document.querySelectorAll('.stage-tabs .tab'));
+  var dayTabs = [].slice.call(document.querySelectorAll('.day-tabs .tab'));
   var days = [].slice.call(document.querySelectorAll('.day'));
+  var cur = { stage: 'center', day: 'd1' };
   var at = function (date, hm) { return new Date(date + 'T' + hm + ':00+09:00').getTime(); };
   // 日本時間での今日(YYYY-MM-DD)
   var todayJST = function () { return new Date(Date.now() + 9 * 3600000).toISOString().slice(0, 10); };
 
-  function select(id, push) {
-    tabs.forEach(function (t) {
-      var on = t.dataset.day === id;
+  function select(stage, day, push) {
+    cur = { stage: stage, day: day };
+    var id = stage + '-' + day;
+    stageTabs.concat(dayTabs).forEach(function (t) {
+      var on = t.dataset.stage ? t.dataset.stage === stage : t.dataset.day === day;
       t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.setAttribute('aria-controls', id);
       t.tabIndex = on ? 0 : -1;
     });
     days.forEach(function (d) { d.hidden = d.id !== id; });
     if (push && history.replaceState) history.replaceState(null, '', '#' + id);
   }
-  tabs.forEach(function (t, i) {
-    t.addEventListener('click', function () { select(t.dataset.day, true); });
-    // 左右キーでタブ移動
-    t.addEventListener('keydown', function (e) {
-      var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
-      if (!d) return;
-      var n = tabs[(i + d + tabs.length) % tabs.length];
-      n.focus(); select(n.dataset.day, true);
+  function pick(t) { select(t.dataset.stage || cur.stage, t.dataset.day || cur.day, true); }
+  [stageTabs, dayTabs].forEach(function (group) {
+    group.forEach(function (t, i) {
+      t.addEventListener('click', function () { pick(t); });
+      // 左右キーで同じ段のタブを移動
+      t.addEventListener('keydown', function (e) {
+        var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+        if (!d) return;
+        var n = group[(i + d + group.length) % group.length];
+        n.focus(); pick(n);
+      });
     });
   });
 
   // 開催当日はその日のタブに「TODAY」を付け、出演中の枠を強調・終わった枠を薄くする
   function mark() {
     var now = Date.now(), today = todayJST();
-    days.forEach(function (d) {
-      var date = d.dataset.date;
-      var tab = document.getElementById('tab-' + d.id);
+    dayTabs.forEach(function (tab) {
+      var date = document.getElementById('center-' + tab.dataset.day).dataset.date;
       var flag = tab.querySelector('.today');
       if (date === today && !flag) tab.insertAdjacentHTML('beforeend', '<span class="today">TODAY</span>');
       if (date !== today && flag) flag.remove();
+    });
+    days.forEach(function (d) {
+      var date = d.dataset.date;
       [].forEach.call(d.querySelectorAll('.act'), function (a) {
         var s = at(date, a.dataset.s), e = at(date, a.dataset.e);
         a.classList.toggle('now', now >= s && now < e);
@@ -248,10 +414,12 @@ h1{margin:0;font-family:'Dela Gothic One',sans-serif;font-weight:400;font-size:c
     });
   }
 
-  // 初期タブ: URLの#d1〜#d4 > 開催当日 > 初日
+  // 初期表示: URLの#asuka-d2など > 旧形式の#d1〜#d4(中央ステージ) > 開催当日 > 初日
   var hash = location.hash.slice(1);
+  var m = /^(?:(center|asuka|keisho|rain)-)?(d[1-4])$/.exec(hash);
   var todayDay = days.filter(function (d) { return d.dataset.date === todayJST(); })[0];
-  select(document.getElementById(hash) && /^d[1-4]$/.test(hash) ? hash : (todayDay ? todayDay.id : 'd1'), false);
+  if (m) select(m[1] || 'center', m[2], false);
+  else select('center', todayDay ? todayDay.dataset.day : 'd1', false);
   mark();
   setInterval(mark, 30000);
 })();
