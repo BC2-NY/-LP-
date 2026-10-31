@@ -86,16 +86,19 @@ h1{margin:0;font-family:'Dela Gothic One',sans-serif;font-weight:400;font-size:c
 .head-en{font-size:10px;letter-spacing:.18em;color:var(--accent);margin-top:6px}
 .head-note{margin:16px 0 0;font-size:12.5px;line-height:1.9;color:var(--text-2)}
 
-/* 日程タブ・検索・ジャンル(JS有効時のみ。スクロールしても上に残る) */
-.tools{display:none}
+/* 日程タブ+マップ(.tools)と、検索・ジャンル(.filters)の2段の固定バー(JS有効時のみ)。
+   下へスクロール中は.filtersを.toolsの裏へスライドして隠し、一覧を広く見せる。上へ少しでも戻すと再表示 */
+.tools,.filters{display:none}
 .js .tools{display:block;position:sticky;top:0;z-index:5;background:var(--bg);padding:12px 0 10px;border-bottom:1px solid var(--line)}
+.js .filters{display:block;position:sticky;top:var(--tools-h,0px);z-index:4;background:var(--bg);padding:10px 0;border-bottom:1px solid var(--line);transition:transform .25s ease,opacity .25s ease}
+.js .filters.away{transform:translateY(-100%);opacity:0;pointer-events:none}
 .tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .tab{border:1px solid var(--line-strong);background:var(--bg-2);color:var(--text-2);border-radius:8px;padding:9px 4px;cursor:pointer;font-family:inherit;line-height:1.3;-webkit-tap-highlight-color:transparent}
 .tab b{display:block;font-family:'Dela Gothic One',sans-serif;font-weight:400;font-size:clamp(15px,4.2vw,18px);color:var(--text)}
 .tab span{font-size:11px;letter-spacing:.06em}
 .tab[aria-selected=true]{border-color:var(--accent-strong);background:var(--accent-strong)}
 .tab[aria-selected=true] b,.tab[aria-selected=true] span{color:#fff}
-.search{position:relative;margin-top:10px}
+.search{position:relative}
 .search input{width:100%;background:var(--bg-2);border:1px solid var(--line-strong);color:var(--text);border-radius:8px;padding:11px 38px 11px 14px;font-size:16px;font-family:inherit;-webkit-appearance:none;appearance:none}
 .search input::placeholder{color:var(--text-3)}
 .search input::-webkit-search-cancel-button{-webkit-appearance:none;appearance:none}
@@ -119,8 +122,13 @@ h1{margin:0;font-family:'Dela Gothic One',sans-serif;font-weight:400;font-size:c
 /* 会場マップ */
 .map{display:block;width:100%;margin:14px 0 4px;padding:0;border:1px solid var(--line-strong);border-radius:10px;overflow:hidden;background:#f3e2b3;cursor:zoom-in;position:relative}
 .map img{display:block;width:100%;height:auto}
-.filtering .map{display:none}
 .map-cap{position:absolute;right:8px;bottom:8px;font-size:11.5px;padding:5px 10px;border-radius:999px;background:rgba(10,10,13,.78);color:#fff}
+/* JS有効時はマップを上部の固定バーに移し、スクロール中も場所を確認できるようにする。
+   画面を占めすぎないよう高さに上限を付け、選択中の日程のマップだけを表示する */
+.tools .map{width:fit-content;max-width:100%;margin:10px auto 0}
+.tools .map img{width:auto;max-width:100%;max-height:min(30vh,240px)}
+.tools .map[hidden]{display:none}
+.tools .map-cap{right:6px;bottom:6px;font-size:10.5px;padding:3px 8px}
 
 /* エリア別の一覧 */
 .area{margin-top:22px}
@@ -146,6 +154,11 @@ h1{margin:0;font-family:'Dela Gothic One',sans-serif;font-weight:400;font-size:c
 .viewer-scroll img{display:block;margin:auto;width:100%;height:auto;max-width:none;flex-shrink:0}
 
 .foot{margin-top:12px;padding:28px 0 40px;border-top:1px solid var(--line);font-size:11px;color:var(--text-3);line-height:1.9}
+/* ページ下部の制作クレジットのワードマーク。左右の余白を除いた横幅いっぱいに広げる。
+   Dela Gothic Oneの「Versear」は文字サイズの約4.77倍の幅なので、幅÷4.77を文字サイズにする */
+.wordmark{container-type:inline-size;padding:0 clamp(20px,4vw,36px) clamp(16px,3vw,28px)}
+.wordmark span{display:block;font-family:'Dela Gothic One',sans-serif;font-weight:400;font-size:calc((100vw - 2 * clamp(20px,4vw,36px)) / 4.85);line-height:1;white-space:nowrap;color:var(--text)}
+@supports (width:1cqw){.wordmark span{font-size:calc(100cqw / 4.77)}}
 </style>
 </head>
 <body>
@@ -170,6 +183,8 @@ h1{margin:0;font-family:'Dela Gothic One',sans-serif;font-weight:400;font-size:c
         <button class="tab" role="tab" id="tab-p1" aria-controls="p1" data-p="p1" type="button"><b>11/1・11/2</b><span>1・2日目</span></button>
         <button class="tab" role="tab" id="tab-p2" aria-controls="p2" data-p="p2" type="button"><b>11/3・11/4</b><span>3・4日目</span></button>
       </div>
+    </div>
+    <div class="filters">
       <div class="search">
         <label class="sr" for="q">メニュー名・団体名で検索</label>
         <input id="q" type="search" placeholder="たこ焼き、ワッフル、ゼミ名など" autocomplete="off" enterkeyhint="search">
@@ -460,6 +475,7 @@ h1{margin:0;font-family:'Dela Gothic One',sans-serif;font-weight:400;font-size:c
 
   <footer class="foot">関西大学統一学園祭 ／ 主催: 統一学園祭実行委員会<br>© 統一学園祭実行委員会</footer>
 </div>
+<div class="wordmark"><span>Versear</span></div>
 
 <div class="viewer" hidden role="dialog" aria-modal="true" aria-label="会場マップ">
   <div class="viewer-bar">
@@ -483,6 +499,14 @@ h1{margin:0;font-family:'Dela Gothic One',sans-serif;font-weight:400;font-size:c
   var countEl = document.querySelector('.count');
   var emptyEl = document.querySelector('.empty');
   var current = 'p1', cat = '';
+  // 各日程のマップを固定バー(日程タブの直下)へ移す。JS無効時は各日程の一覧の上に残る
+  var maps = periods.map(function (p) {
+    var m = p.querySelector('.map');
+    m.dataset.p = p.id;
+    m.querySelector('img').removeAttribute('loading');  // 最初から画面上部に見えるので遅延読み込みしない
+    document.querySelector('.tools .tabs').insertAdjacentElement('afterend', m);
+    return m;
+  });
 
   // 検索用に正規化: カタカナ→ひらがな、英字は小文字、空白・記号の揺れを除く
   function norm(s) {
@@ -509,8 +533,6 @@ h1{margin:0;font-family:'Dela Gothic One',sans-serif;font-weight:400;font-size:c
       a.hidden = !any;
     });
     var filtering = words.length || cat;
-    // 検索・絞り込み中は結果がすぐ見えるようマップを隠す
-    p.classList.toggle('filtering', !!filtering);
     countEl.textContent = filtering ? shown + '件見つかりました' : '全' + shown + '店';
     emptyEl.style.display = shown ? 'none' : 'block';
   }
@@ -523,6 +545,7 @@ h1{margin:0;font-family:'Dela Gothic One',sans-serif;font-weight:400;font-size:c
       t.tabIndex = on ? 0 : -1;
     });
     periods.forEach(function (p) { p.hidden = p.id !== id; });
+    maps.forEach(function (m) { m.hidden = m.dataset.p !== id; });
     if (push && history.replaceState) history.replaceState(null, '', '#' + id);
     apply();
   }
@@ -568,6 +591,28 @@ h1{margin:0;font-family:'Dela Gothic One',sans-serif;font-weight:400;font-size:c
   zoomBtn.addEventListener('click', function () { setZoom(!zoomed); });
   viewer.querySelector('.close').addEventListener('click', closeViewer);
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !viewer.hidden) closeViewer(); });
+
+  // 検索・ジャンルの段(.filters)は日程タブ+マップの段(.tools)のすぐ下に貼り付ける。
+  // .toolsの高さはマップ画像の読み込みや画面幅で変わるので、そのたびに合わせ直す
+  var tools = document.querySelector('.tools');
+  var filters = document.querySelector('.filters');
+  function syncToolsH() { document.documentElement.style.setProperty('--tools-h', tools.offsetHeight + 'px'); }
+  syncToolsH();
+  if (window.ResizeObserver) new ResizeObserver(syncToolsH).observe(tools);
+  else window.addEventListener('resize', syncToolsH);
+
+  // 下へスクロール中は.filtersを隠して一覧を広く見せ、上へ戻し始めたら再表示する。
+  // 上部に貼り付く前(ページ先頭付近)と、検索欄に入力中は隠さない
+  var lastY = window.scrollY;
+  function onScroll() {
+    var y = window.scrollY, dy = y - lastY;
+    if (Math.abs(dy) < 6) return;  // 指の細かな揺れでは切り替えない
+    lastY = y;
+    var stuck = filters.getBoundingClientRect().top <= tools.offsetHeight + 1;
+    var hide = dy > 0 && stuck && document.activeElement !== q;
+    filters.classList.toggle('away', hide);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
 
   // 初期タブ: URLの#p1/#p2 > 開催日(日本時間で11/3以降なら3・4日目) > 1・2日目
   var hash = location.hash.slice(1);
