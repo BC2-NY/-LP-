@@ -144,6 +144,15 @@ h1{margin:0;font-family:'Dela Gothic One',sans-serif;font-weight:400;font-size:c
 .note{display:inline-block;margin-left:6px;font-size:10.5px;font-weight:500;padding:1px 7px;border-radius:3px;border:1px solid var(--pink);color:var(--pink);vertical-align:1px}
 .empty{display:none;padding:28px 0;text-align:center;font-size:13px;color:var(--text-2)}
 
+/* ブックマーク(JS有効時のみ)。各行の右端に☆ボタンを付け、保存した店は日程ごとに一覧の先頭へまとめる */
+.js .stall{grid-template-columns:48px 1fr 40px}
+.bm{width:40px;height:40px;margin:-4px -8px -4px 0;justify-self:end;border:0;border-radius:50%;background:transparent;color:var(--text-3);font-size:21px;line-height:1;cursor:pointer;padding:0;font-family:inherit;-webkit-tap-highlight-color:transparent;transition:color .2s ease}
+.bm:hover{color:var(--text-2)}
+.bm[aria-pressed=true]{color:var(--pink)}
+.bm-box{margin-top:22px;padding-bottom:6px}
+.bm-box[hidden]{display:none}
+.bm-box h3{display:flex;align-items:center;gap:6px;margin:0 0 4px;font-size:13px;font-weight:700;letter-spacing:.06em;color:var(--pink)}
+
 /* マップ拡大表示 */
 .viewer{position:fixed;inset:0;z-index:50;background:rgba(6,6,9,.94);display:flex;flex-direction:column}
 .viewer[hidden]{display:none}
@@ -535,7 +544,74 @@ h1{margin:0;font-family:'Dela Gothic One',sans-serif;font-weight:400;font-size:c
     var filtering = words.length || cat;
     countEl.textContent = filtering ? shown + '件見つかりました' : '全' + shown + '店';
     emptyEl.style.display = shown ? 'none' : 'block';
+    // 検索・ジャンル絞り込み中は結果だけを見せたいので、ブックマーク欄は隠す
+    var box = p.querySelector('.bm-box');
+    box.hidden = !!filtering || !box.querySelector('.stall');
   }
+
+  // ===== ブックマーク =====
+  // この端末のlocalStorageにだけ保存する(サーバーには送らない)。
+  // テント番号は日程ごとに別の店なので、キーは「日程:テント番号」(例 p1:3A)
+  var BM_KEY = 'toitsu-stall-bookmarks';
+  var marks = {};
+  function loadMarks() {
+    marks = {};
+    try { (JSON.parse(localStorage.getItem(BM_KEY)) || []).forEach(function (k) { marks[k] = true; }); } catch (e) {}
+  }
+  function saveMarks() {
+    try { localStorage.setItem(BM_KEY, JSON.stringify(Object.keys(marks))); } catch (e) {}
+  }
+  function rowKey(r) { return r.closest('.period').id + ':' + r.querySelector('.tent').textContent; }
+  function setBtn(b, on, r) {
+    b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    b.textContent = on ? '★' : '☆';
+    b.setAttribute('aria-label', r.querySelector('.menu').textContent + '(' + r.querySelector('.org').textContent + ')を' + (on ? 'ブックマークから外す' : 'ブックマークに追加'));
+  }
+  function addBtn(r, key) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'bm';
+    b.dataset.k = key;
+    setBtn(b, !!marks[key], r);
+    r.appendChild(b);
+  }
+  rows.forEach(function (r) { r._bmk = rowKey(r); addBtn(r, r._bmk); });
+
+  // 各日程の先頭(営業時間の下)に「ブックマーク」欄を作る。中身は保存した行の複製で、元の一覧と同じ順に並べる
+  periods.forEach(function (p) {
+    var box = document.createElement('div');
+    box.className = 'bm-box';
+    box.hidden = true;
+    box.innerHTML = '<h3><span aria-hidden="true">★</span>ブックマーク</h3><ul class="stalls"></ul>';
+    p.querySelector('.area').insertAdjacentElement('beforebegin', box);
+  });
+  function renderMarks() {
+    rows.forEach(function (r) { setBtn(r.querySelector('.bm'), !!marks[r._bmk], r); });
+    periods.forEach(function (p) {
+      var ul = p.querySelector('.bm-box .stalls');
+      ul.innerHTML = '';
+      [].forEach.call(p.querySelectorAll('.area .stall'), function (r) {
+        if (!marks[r._bmk]) return;
+        var c = r.cloneNode(true);
+        c.hidden = false;
+        c.style.setProperty('--c', r.closest('.area').style.getPropertyValue('--c'));  // テントの色はエリアから引き継ぐ
+        ul.appendChild(c);
+      });
+    });
+    apply();
+  }
+  // 元の行と、ブックマーク欄の複製のどちらの☆を押しても同じ店を切り替える
+  document.querySelector('main').addEventListener('click', function (e) {
+    var b = e.target.closest ? e.target.closest('.bm') : null;
+    if (!b) return;
+    var k = b.dataset.k;
+    if (marks[k]) delete marks[k]; else marks[k] = true;
+    saveMarks();
+    renderMarks();
+  });
+  // 別のタブで変更されたときも表示を合わせる
+  window.addEventListener('storage', function (e) { if (e.key === BM_KEY) { loadMarks(); renderMarks(); } });
+  loadMarks();
 
   function select(id, push) {
     current = id;
@@ -618,6 +694,7 @@ h1{margin:0;font-family:'Dela Gothic One',sans-serif;font-weight:400;font-size:c
   var hash = location.hash.slice(1);
   var today = new Date(Date.now() + 9 * 3600000).toISOString().slice(0, 10);
   select(hash === 'p1' || hash === 'p2' ? hash : (today >= '2026-11-03' ? 'p2' : 'p1'), false);
+  renderMarks();
 })();
 </script>
 </body>
