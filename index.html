@@ -241,10 +241,31 @@ summary{cursor:pointer}summary::-webkit-details-marker{display:none}
   .guest-date{font-size:32px}
   .guest-stub::after{top:auto;left:0;right:0;bottom:-1px;border-right:0;border-bottom:2px dashed var(--bg-2)}
 }
+/* 3Dキャンパスマップ。ホームではカードだけ置き、ボタンで全画面の地図(iframe)を開く */
+.map-card{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);border:1px solid var(--line-strong);border-radius:6px;overflow:hidden;background:var(--bg-2)}
+.map-card-img{display:block;position:relative;aspect-ratio:16/10;padding:0;border:0;cursor:pointer;background:#c9c9c9}
+.map-card-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.map-card-img:hover img{transform:scale(1.03)}
+.map-card-body{padding:26px clamp(20px,3vw,32px) 28px;display:flex;flex-direction:column;justify-content:center}
+.map-card-body h3{margin:0;font-weight:400;font-family:'Dela Gothic One',sans-serif;font-size:20px;letter-spacing:.05em}
+.map-card-body p{margin:12px 0 0;font-size:13px;line-height:1.9;color:var(--text-2)}
+.map-open{align-self:flex-start;margin-top:18px;font-family:inherit;font-size:12px;letter-spacing:.1em;padding:9px 18px;border:0;border-radius:3px;background:var(--accent-strong);color:#fff;cursor:pointer}
+@media(max-width:640px){.map-card{grid-template-columns:1fr}}
+.map-viewer{position:fixed;inset:0;z-index:1100;display:flex;flex-direction:column;background:#0d1522}
+.map-viewer-bar{flex-shrink:0;display:flex;align-items:center;justify-content:space-between;gap:12px;height:48px;padding:0 8px 0 18px;background:var(--accent-strong);color:#fff;font-size:13px;letter-spacing:.08em}
+.map-viewer-close{display:flex;align-items:center;gap:6px;background:none;border:0;color:#fff;font-family:inherit;font-size:13px;letter-spacing:.08em;padding:10px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.map-viewer-close span{font-size:22px;line-height:1}
+.map-viewer iframe{flex:1;width:100%;border:0;display:block}
 /* 全文ラベルが収まらないPC幅では、テーマ切替と同じ丸いアイコンボタンにする */
-@media(min-width:861px) and (max-width:1239px){
+.site-nav > a{white-space:nowrap}
+@media(min-width:861px) and (max-width:1339px){
   .site-nav .pamph-dl{width:34px;height:34px;padding:0;justify-content:center;font-size:15px}
   .site-nav .pamph-dl-text{display:none}
+}
+/* ナビ7項目が1行に収まらない幅では、ロゴ・項目の間隔・字間を詰める */
+@media(min-width:861px) and (max-width:1120px){
+  .hero-logo{font-size:22px!important}
+  .site-nav{gap:14px!important;font-size:12px!important;letter-spacing:.04em!important}
 }
 @media(max-width:860px){
   .site-nav{display:none!important}
@@ -292,7 +313,7 @@ summary{cursor:pointer}summary::-webkit-details-marker{display:none}
 
   <div style="position:absolute;top:0;left:0;right:0;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px clamp(20px,4vw,36px)">
     <div style="display:flex;align-items:baseline;gap:12px">
-      <span style="font-family:'Yuji Syuku',serif;font-size:clamp(15px,4.5vw,31px);white-space:nowrap;color:#fff">関西大学統一学園祭</span>
+      <span class="hero-logo" style="font-family:'Yuji Syuku',serif;font-size:clamp(15px,4.5vw,31px);white-space:nowrap;color:#fff">関西大学統一学園祭</span>
     </div>
     <div style="display:flex;align-items:center;gap:clamp(14px,2.4vw,26px)">
       <nav class="site-nav" style="display:flex;gap:clamp(14px,2.4vw,26px);font-size:12.5px;letter-spacing:.12em">
@@ -417,6 +438,22 @@ summary{cursor:pointer}summary::-webkit-details-marker{display:none}
   </div>
 </section>
 
+<!-- ================= 3D MAP ================= -->
+<section id="map" data-screen-label="3Dマップ" style="scroll-margin-top:20px;max-width:1100px;margin:0 auto;padding:clamp(44px,7vw,72px) clamp(20px,4vw,36px);border-bottom:1px solid var(--line)">
+  <div data-reveal>
+    <h2 style="margin:0;font-weight:400;font-family:'Dela Gothic One',sans-serif;font-size:26px;letter-spacing:.06em">キャンパスマップ</h2>
+    <div style="font-size:10px;letter-spacing:.18em;color:var(--accent);margin-top:6px">CAMPUS MAP</div>
+  </div>
+  <div class="map-card" data-reveal style="margin-top:36px">
+    <button class="map-card-img" type="button" data-map-open aria-label="3Dマップを開く"><img src="uploads/3dmap-thumb.jpg" alt="千里山キャンパスの3Dマップ" width="960" height="600" loading="lazy" decoding="async"></button>
+    <div class="map-card-body">
+      <h3>千里山キャンパス 3Dマップ</h3>
+      <p>キャンパスを立体で見渡せる地図です。回したり拡大したりしながら、学舎や施設の場所を確認できます。施設名で検索することもできます。</p>
+      <button class="map-open" type="button" data-map-open>3Dマップを開く →</button>
+    </div>
+  </div>
+</section>
+
 <!-- ================= ACCESS ================= -->
 <section id="access" data-screen-label="アクセス" style="scroll-margin-top:20px;max-width:1100px;margin:0 auto;padding:clamp(44px,7vw,72px) clamp(20px,4vw,36px);border-bottom:1px solid var(--line)">
   <div data-reveal>
@@ -497,6 +534,7 @@ const NAV_ITEMS = [
   { href: '#about', label: '開催概要', color: 'rgba(255,255,255,.85)' },
   { href: '#stage', label: 'ステージ企画', color: 'rgba(255,255,255,.85)' },
   { href: '#food', label: '模擬店', color: 'rgba(255,255,255,.85)' },
+  { href: '#map', label: '3Dマップ', color: 'rgba(255,255,255,.85)' },
   { href: '#access', label: 'アクセス', color: 'rgba(255,255,255,.85)' },
   { href: '#faq', label: '注意事項・FAQ', color: '#a89ae0' },
 ];
@@ -538,10 +576,12 @@ class Component extends DCLogic {
     els.forEach((el) => this.io.observe(el));
     // 回転ダイヤルナビ(スマホ)。フレームワーク外のDOMとしてbody直下に生成する
     this.dialCleanup = mountRotaryDial(NAV_ITEMS);
+    this.mapCleanup = mountMapViewer();
   }
   componentWillUnmount() {
     if (this.io) this.io.disconnect();
     if (this.dialCleanup) this.dialCleanup();
+    if (this.mapCleanup) this.mapCleanup();
     document.body.style.overflow = '';
   }
 
@@ -627,6 +667,56 @@ class Countdown extends React.Component {
       note('2026.11.1 10:00 開幕')
     );
   }
+}
+
+// ===== 3Dマップの全画面表示 =====
+// [data-map-open]を押すとiframeで開く。重いWebGLなので閉じたらiframeごと破棄する。
+// スマホの戻る操作でも閉じられるよう、開くときに履歴を1つ積む
+const MAP_URL = 'https://secchin2021.github.io/3Dmap/';
+function mountMapViewer() {
+  let viewer = null;
+  function onKey(e) { if (e.key === 'Escape') close(); }
+  function open() {
+    if (viewer) return;
+    viewer = document.createElement('div');
+    viewer.className = 'map-viewer';
+    viewer.setAttribute('role', 'dialog');
+    viewer.setAttribute('aria-label', '千里山キャンパス 3Dマップ');
+    viewer.innerHTML =
+      '<div class="map-viewer-bar"><span>千里山キャンパス 3Dマップ</span>' +
+      '<button class="map-viewer-close" type="button">閉じる<span aria-hidden="true">×</span></button></div>' +
+      '<iframe src="' + MAP_URL + '" title="千里山キャンパス 3Dマップ" allow="fullscreen"></iframe>';
+    viewer.querySelector('.map-viewer-close').addEventListener('click', close);
+    document.body.appendChild(viewer);
+    document.body.style.overflow = 'hidden';
+    document.addEventListener('keydown', onKey);
+    history.pushState({ mapViewer: true }, '');
+    viewer.querySelector('.map-viewer-close').focus();
+  }
+  // 閉じるボタン・Escは積んだ履歴を戻す。実際に閉じるのはpopstate側
+  function close() {
+    if (!viewer) return;
+    if (history.state && history.state.mapViewer) history.back();
+    else remove();
+  }
+  function remove() {
+    if (!viewer) return;
+    viewer.remove();
+    viewer = null;
+    document.body.style.overflow = '';
+    document.removeEventListener('keydown', onKey);
+  }
+  function onClick(e) {
+    const t = e.target.closest ? e.target.closest('[data-map-open]') : null;
+    if (t) { e.preventDefault(); open(); }
+  }
+  document.addEventListener('click', onClick);
+  window.addEventListener('popstate', remove);
+  return function () {
+    document.removeEventListener('click', onClick);
+    window.removeEventListener('popstate', remove);
+    remove();
+  };
 }
 
 // ===== 回転ダイヤルナビ(スマホ・右下) =====
