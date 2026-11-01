@@ -220,27 +220,6 @@ summary{cursor:pointer}summary::-webkit-details-marker{display:none}
 .pamph-dl::before{content:"↓";font-size:1.05em;line-height:1}
 .pamph-dl:hover{background:rgba(255,255,255,.2)}
 .mobile-menu .pamph-dl{margin-top:8px;padding:12px 22px;font-size:15px;color:#fff}
-/* ゲスト告知(チケット型)。左が日付の半券、右が本文 */
-.guest{display:grid;grid-template-columns:200px 1fr;border:1px solid var(--line-strong);border-radius:6px;background:var(--bg-2);overflow:hidden}
-.guest-stub{position:relative;background:var(--accent-strong);color:#fff;padding:24px 22px;display:flex;flex-direction:column;justify-content:space-between;gap:18px}
-.guest-stub::after{content:"";position:absolute;top:0;bottom:0;right:-1px;border-right:2px dashed var(--bg-2)}
-.guest-kind{font-size:12px;letter-spacing:.1em}
-.guest-date{font-family:'Dela Gothic One',sans-serif;font-size:40px;line-height:1}
-.guest-date small{font-size:15px;margin:0 1px}
-.guest-event{font-size:13px;letter-spacing:.06em;line-height:1.6}
-.guest-body{padding:24px clamp(20px,3vw,32px) 26px}
-.guest-pre{font-size:13px;color:var(--text-2)}
-.guest-body h3{margin:6px 0 0;font-weight:400;font-family:'Dela Gothic One',sans-serif;font-size:clamp(19px,2.6vw,24px);line-height:1.5;letter-spacing:.03em}
-.guest-body h3 span{display:inline-block} /* 見出しを語の区切りで折り返す */
-.guest-body p{margin:14px 0 0;font-size:13.5px;line-height:1.95;color:var(--text-1)}
-.guest-body .nw{white-space:nowrap}
-@media(max-width:640px){
-  .guest{grid-template-columns:1fr}
-  .guest-stub{flex-direction:row;align-items:flex-end;flex-wrap:wrap;gap:6px 14px;padding:18px 20px}
-  .guest-kind{width:100%}
-  .guest-date{font-size:32px}
-  .guest-stub::after{top:auto;left:0;right:0;bottom:-1px;border-right:0;border-bottom:2px dashed var(--bg-2)}
-}
 /* 3Dキャンパスマップ。ホームではカードだけ置き、ボタンで全画面の地図(iframe)を開く */
 .map-card{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);border:1px solid var(--line-strong);border-radius:6px;overflow:hidden;background:var(--bg-2)}
 .map-card-img{display:block;position:relative;aspect-ratio:16/10;padding:0;border:0;cursor:pointer;background:#c9c9c9}
@@ -286,6 +265,11 @@ summary{cursor:pointer}summary::-webkit-details-marker{display:none}
 /* ==== 回転ダイヤルナビ(スマホ・右下) ==== */
 /* 開閉ボタン。開いている間はダイヤルの軸(ハブ)を兼ねる */
 .dial-fab{position:fixed;right:14px;bottom:14px;z-index:960;width:54px;height:54px;display:none;align-items:center;justify-content:center;border-radius:50%;border:1px solid var(--accent-border);background:var(--accent-strong);color:#fff;cursor:pointer;padding:0;box-shadow:0 4px 16px rgba(0,0,0,.35);-webkit-tap-highlight-color:transparent}
+/* 閉じている間は、ボタンの縁から輪が広がって消えるパルスで存在を知らせる */
+.dial-fab::after{content:"";position:absolute;inset:-1px;border-radius:50%;border:2px solid var(--accent);pointer-events:none;animation:dialPulse 2.4s ease-out infinite}
+.dial-fab.open::after{animation:none;opacity:0}
+@keyframes dialPulse{0%{transform:scale(1);opacity:.75}70%,100%{transform:scale(1.6);opacity:0}}
+@media(prefers-reduced-motion:reduce){.dial-fab::after{animation:none;opacity:0}}
 .dial-fab .df-x{display:none;font-size:24px;line-height:1}
 .dial-fab.open .df-x{display:block}
 .dial-fab.open .df-dial{display:none}
@@ -302,6 +286,11 @@ summary{cursor:pointer}summary::-webkit-details-marker{display:none}
 .dial-label{position:absolute;transform:translate(-50%,-50%);background:none;border:0;padding:6px;margin:0;font-family:inherit;font-size:12.5px;line-height:1.35;letter-spacing:.08em;color:var(--text-2);max-width:7.5em;text-align:center;cursor:pointer;transition:color .2s ease;-webkit-tap-highlight-color:transparent}
 .dial-label.on{color:var(--accent);font-weight:700}
 @media(max-width:860px){.dial-fab{display:flex}}
+/* スマホではページが縦に長くなりすぎるので、開催概要の「昨年の統一学園祭より」の写真を出さない */
+@media(max-width:860px){.about-photo{display:none}}
+/* お知らせ: 1行に収まらない本文は…で切り、行をタップすると全文を折り返して表示する */
+.news-row.long{cursor:pointer;-webkit-tap-highlight-color:transparent}
+.news-row.open .news-text{white-space:normal!important;overflow:visible!important;line-height:1.7}
 @media(min-width:861px){.dial-fab,.dial-wheel{display:none!important}}
 </style>
 </helmet>
@@ -363,30 +352,12 @@ summary{cursor:pointer}summary::-webkit-details-marker{display:none}
   </div>
   <div data-reveal style="display:flex;flex-direction:column">
     <sc-for list="{{ news }}" as="n" hint-placeholder-count="3">
-      <div style="display:flex;gap:clamp(10px,2.5vw,18px);align-items:baseline;flex-wrap:nowrap;padding:14px 0;border-bottom:1px solid var(--line);font-size:13.5px;color:var(--text-1)">
+      <div class="news-row" style="display:flex;gap:clamp(10px,2.5vw,18px);align-items:baseline;flex-wrap:nowrap;padding:14px 0;border-bottom:1px solid var(--line);font-size:13.5px;color:var(--text-1)">
         <span style="flex-shrink:0;font-family:ui-monospace,monospace;font-size:11px;color:var(--text-3)">{{ n.date }}</span>
         <span style="flex-shrink:0;white-space:nowrap;font-size:10px;padding:2px 8px;border:1px solid {{ n.tagBorder }};color:{{ n.tagColor }};border-radius:2px">{{ n.tag }}</span>
-        <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ n.text }}</span>
+        <span class="news-text" style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ n.text }}</span>
       </div>
     </sc-for>
-  </div>
-</section>
-
-<!-- ================= GUEST ================= -->
-<section id="guest" data-screen-label="ゲスト" style="scroll-margin-top:20px;max-width:1100px;margin:0 auto;padding:clamp(36px,5vw,52px) clamp(20px,4vw,36px);border-bottom:1px solid var(--line)">
-  <div class="guest" data-reveal>
-    <div class="guest-stub">
-      <div class="guest-kind">スペシャルゲスト</div>
-      <div class="guest-date">11<small>月</small>1<small>日(日)</small></div>
-      <div class="guest-event">オープニングセレモニー</div>
-    </div>
-    <div class="guest-body">
-      <div class="guest-pre">関大卒業生・南海キャンディーズ</div>
-      <h3><span>山里亮太さんが</span><span>統一学園祭に登場！</span></h3>
-      <p>関西大学卒業生アンバサダーとして、<span class="nw">11月1日(日)</span>のオープニングセレモニーに出演！<br>さらに、ミニトークショーも開催します。</p>
-      <p>今年の統一学園祭を、ぜひ会場でお楽しみください！</p>
-      <a href="timetable.html" style="display:inline-block;margin-top:18px;font-size:12px;letter-spacing:.1em;padding:9px 18px;border-radius:3px;background:var(--accent-strong);color:#fff">学園祭の詳細はこちら →</a>
-    </div>
   </div>
 </section>
 
@@ -404,7 +375,7 @@ summary{cursor:pointer}summary::-webkit-details-marker{display:none}
       <div style="display:grid;grid-template-columns:110px 1fr;gap:8px 20px;padding:16px 0;border-bottom:1px solid var(--line);font-size:14px"><span style="color:var(--accent);letter-spacing:.1em;font-size:12px">入場</span><span>入場無料・どなたでもご来場いただけます</span></div>
       <div style="display:grid;grid-template-columns:110px 1fr;gap:8px 20px;padding:16px 0;border-bottom:1px solid var(--line);font-size:14px"><span style="color:var(--accent);letter-spacing:.1em;font-size:12px">主催</span><span>統一学園祭実行委員会</span></div>
     </div>
-    <div data-reveal style="position:relative;border-radius:6px;overflow:hidden;min-height:340px">
+    <div class="about-photo" data-reveal style="position:relative;border-radius:6px;overflow:hidden;min-height:340px">
       <img src="uploads/toitu-sozai-2.jpg" alt="昨年の統一学園祭、昼のステージと観客" width="1477" height="1108" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
       <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(6,6,10,.7))"></div>
       <div style="position:absolute;left:18px;bottom:14px;font-size:11px;letter-spacing:.1em;color:rgba(255,255,255,.75)">昨年の統一学園祭より</div>
@@ -577,11 +548,13 @@ class Component extends DCLogic {
     // 回転ダイヤルナビ(スマホ)。フレームワーク外のDOMとしてbody直下に生成する
     this.dialCleanup = mountRotaryDial(NAV_ITEMS);
     this.mapCleanup = mountMapViewer();
+    this.newsCleanup = mountNewsExpand();
   }
   componentWillUnmount() {
     if (this.io) this.io.disconnect();
     if (this.dialCleanup) this.dialCleanup();
     if (this.mapCleanup) this.mapCleanup();
+    if (this.newsCleanup) this.newsCleanup();
     document.body.style.overflow = '';
   }
 
@@ -667,6 +640,43 @@ class Countdown extends React.Component {
       note('2026.11.1 10:00 開幕')
     );
   }
+}
+
+// ===== お知らせの全文表示 =====
+// 本文が…で切れている行にだけ.longを付け、タップ(Enter/Space)で全文の折り返し表示と切り替える。
+// 切れるかどうかは画面幅で変わるので、リサイズのたびに判定し直す(開いている行はそのまま)
+function mountNewsExpand() {
+  const rows = [].slice.call(document.querySelectorAll('.news-row'));
+  function mark() {
+    rows.forEach(function (r) {
+      if (r.classList.contains('open')) return;
+      const t = r.querySelector('.news-text');
+      const long = t.scrollWidth > t.clientWidth + 1;
+      r.classList.toggle('long', long);
+      if (long) { r.setAttribute('role', 'button'); r.tabIndex = 0; r.setAttribute('aria-expanded', 'false'); }
+      else { r.removeAttribute('role'); r.removeAttribute('tabindex'); r.removeAttribute('aria-expanded'); }
+    });
+  }
+  function toggle(r) {
+    if (!r.classList.contains('long')) return;
+    const open = r.classList.toggle('open');
+    r.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  const handlers = rows.map(function (r) {
+    const onClick = function () { toggle(r); };
+    const onKey = function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(r); } };
+    r.addEventListener('click', onClick);
+    r.addEventListener('keydown', onKey);
+    return [r, onClick, onKey];
+  });
+  mark();
+  window.addEventListener('resize', mark);
+  // Webフォントの読み込みで文字幅が変わるので、読み込み後にも判定する
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(mark);
+  return function () {
+    window.removeEventListener('resize', mark);
+    handlers.forEach(function (h) { h[0].removeEventListener('click', h[1]); h[0].removeEventListener('keydown', h[2]); });
+  };
 }
 
 // ===== 3Dマップの全画面表示 =====
