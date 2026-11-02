@@ -427,7 +427,7 @@ h1{margin:0;font-family:'Dela Gothic One',sans-serif;font-weight:400;font-size:c
   }
 
   // 雨天で、開いたときに雨天時スケジュールを表示する日(日本時間)。雨の日はここに日付を足す
-  var RAIN_DAYS = ['2026-11-02'];
+  var RAIN_DAYS = [];
   var rainToday = RAIN_DAYS.indexOf(todayJST()) >= 0;
   if (rainToday) document.querySelector('.rain-note').classList.add('on');
 
