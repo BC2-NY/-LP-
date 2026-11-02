@@ -84,6 +84,10 @@ a{color:var(--link);text-decoration:none}a:hover{color:var(--link-hover)}
 h1{margin:0;font-family:'Dela Gothic One',sans-serif;font-weight:400;font-size:clamp(23px,5.4vw,30px);letter-spacing:.04em;line-height:1.5}
 .head-en{font-size:10px;letter-spacing:.18em;color:var(--accent);margin-top:6px}
 .head-note{margin:18px 0 0;font-size:12.5px;line-height:1.9;color:var(--text-2)}
+/* 雨天日のお知らせ(RAIN_DAYSに今日が入っているときだけJSで表示) */
+.rain-note{display:none;margin:0 0 4px;padding:12px 14px;border:1px solid var(--accent-border);border-radius:8px;background:var(--now-bg);font-size:13px;line-height:1.8;color:var(--text-1)}
+.rain-note.on{display:block}
+.rain-note b{color:var(--accent)}
 
 /* ステージ・日付の切替タブ(JS有効時のみ表示)。2段まとめて画面上部に固定する */
 .switch{display:none}
@@ -142,6 +146,8 @@ h1{margin:0;font-family:'Dela Gothic One',sans-serif;font-weight:400;font-size:c
       <div class="head-en">STAGE TIMETABLE</div>
       <p class="head-note">2026年11月1日(日)〜11月4日(水)に各ステージで行われる企画の出演団体と時間です。ステージと日付を選んでご覧ください。進行状況により時間が前後する場合があります。最新情報はトップページのお知らせをご確認ください。</p>
     </div>
+
+    <p class="rain-note" role="status"><b>☂ 本日は雨天の為、イベントスケジュールは雨天時のものをご確認下さい。</b><br>雨天時スケジュールは「雨天時(千里ホールA)」のタブで見られます。</p>
 
     <div class="switch">
       <div class="tabs stage-tabs" role="tablist" aria-label="ステージ">
@@ -420,12 +426,17 @@ h1{margin:0;font-family:'Dela Gothic One',sans-serif;font-weight:400;font-size:c
     });
   }
 
-  // 初期表示: URLの#asuka-d2など > 旧形式の#d1〜#d4(中央ステージ) > 開催当日 > 初日
+  // 雨天で、開いたときに雨天時スケジュールを表示する日(日本時間)。雨の日はここに日付を足す
+  var RAIN_DAYS = ['2026-11-02'];
+  var rainToday = RAIN_DAYS.indexOf(todayJST()) >= 0;
+  if (rainToday) document.querySelector('.rain-note').classList.add('on');
+
+  // 初期表示: URLの#asuka-d2など > 旧形式の#d1〜#d4(中央ステージ) > 開催当日(雨天日なら雨天時) > 初日
   var hash = location.hash.slice(1);
   var m = /^(?:(center|asuka|keisho|rain)-)?(d[1-4])$/.exec(hash);
   var todayDay = days.filter(function (d) { return d.dataset.date === todayJST(); })[0];
   if (m) select(m[1] || 'center', m[2], false);
-  else select('center', todayDay ? todayDay.dataset.day : 'd1', false);
+  else select(rainToday ? 'rain' : 'center', todayDay ? todayDay.dataset.day : 'd1', false);
   mark();
   setInterval(mark, 30000);
 })();
