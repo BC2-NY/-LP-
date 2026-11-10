@@ -163,11 +163,6 @@ h1{margin:0;font-family:'Dela Gothic One',sans-serif;font-weight:400;font-size:c
 .viewer-scroll img{display:block;margin:auto;width:100%;height:auto;max-width:none;flex-shrink:0}
 
 .foot{margin-top:12px;padding:28px 0 40px;border-top:1px solid var(--line);font-size:11px;color:var(--text-3);line-height:1.9}
-/* ページ下部の制作クレジットのワードマーク。左右の余白を除いた横幅いっぱいに広げる。
-   Dela Gothic Oneの「Versear」は文字サイズの約4.77倍の幅なので、幅÷4.77を文字サイズにする */
-.wordmark{container-type:inline-size;padding:0 clamp(20px,4vw,36px) clamp(16px,3vw,28px)}
-.wordmark span{display:block;font-family:'Dela Gothic One',sans-serif;font-weight:400;font-size:calc((100vw - 2 * clamp(20px,4vw,36px)) / 4.85);line-height:1;white-space:nowrap;color:var(--text)}
-@supports (width:1cqw){.wordmark span{font-size:calc(100cqw / 4.77)}}
 </style>
 </head>
 <body>
@@ -484,7 +479,6 @@ h1{margin:0;font-family:'Dela Gothic One',sans-serif;font-weight:400;font-size:c
 
   <footer class="foot">関西大学統一学園祭 ／ 主催: 統一学園祭実行委員会<br>© 統一学園祭実行委員会</footer>
 </div>
-<div class="wordmark"><span>Versear</span></div>
 
 <div class="viewer" hidden role="dialog" aria-modal="true" aria-label="会場マップ">
   <div class="viewer-bar">
