@@ -207,8 +207,13 @@ summary{cursor:pointer}summary::-webkit-details-marker{display:none}
 .mobile-menu{position:fixed;inset:0;z-index:1000;background:rgba(8,8,11,.96);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px}
 .mobile-menu a{font-size:16px;letter-spacing:.1em;color:rgba(255,255,255,.9)}
 .mobile-menu-close{position:absolute;top:16px;right:20px;background:none;border:0;color:#fff;font-size:32px;line-height:1;cursor:pointer;padding:10px;-webkit-tap-highlight-color:transparent}
-/* スマホでは右下の回転ダイヤルボタン(54px+余白)とフッターの文字が重ならないよう、その分だけ下に余白を足す */
-@media(max-width:860px){footer{padding-bottom:48px}}
+/* ページ下部の制作クレジットのワードマーク。左右の余白を除いた横幅いっぱいに広げる。
+   Dela Gothic Oneの「Versear」は文字サイズの約4.77倍の幅なので、幅÷4.77を文字サイズにする */
+.wordmark{container-type:inline-size;padding:0 clamp(20px,4vw,36px) clamp(16px,3vw,28px)}
+.wordmark span{display:block;font-family:'Dela Gothic One',sans-serif;font-weight:400;font-size:calc((100vw - 2 * clamp(20px,4vw,36px)) / 4.85);line-height:1;white-space:nowrap;color:var(--text)}
+@supports (width:1cqw){.wordmark span{font-size:calc(100cqw / 4.77)}}
+/* スマホでは右下の回転ダイヤルボタン(54px+余白)と重ならないよう、その分だけ下に余白を足す */
+@media(max-width:860px){.wordmark{padding-bottom:84px}}
 /* デジタルパンフレットのダウンロードボタン(PCナビ・スマホメニュー共通) */
 .site-nav{align-items:center}
 .pamph-dl{display:inline-flex;align-items:center;gap:6px;white-space:nowrap;padding:6px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.45);background:rgba(255,255,255,.08);color:#fff;transition:background .25s ease}
@@ -488,6 +493,8 @@ summary{cursor:pointer}summary::-webkit-details-marker{display:none}
       <span>ページ制作:総合情報学部学部登録団体Versear</span>
     </div>
   </div>
+  <!-- 制作クレジットのワードマーク -->
+  <div class="wordmark"><span>Versear</span></div>
 </footer>
 
 </x-dc>
