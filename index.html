@@ -269,6 +269,8 @@ summary{cursor:pointer}summary::-webkit-details-marker{display:none}
 /* 閉じている間は、ボタンの縁から輪が広がって消えるパルスで存在を知らせる */
 .dial-fab::after{content:"";position:absolute;inset:-1px;border-radius:50%;border:2px solid var(--accent);pointer-events:none;animation:dialPulse 2.4s ease-out infinite}
 .dial-fab.open::after{animation:none;opacity:0}
+/* 開いている間は×ボタンの上からのスワイプでもダイヤルを回すので、ページのスクロールにしない */
+.dial-fab.open{touch-action:none}
 @keyframes dialPulse{0%{transform:scale(1);opacity:.75}70%,100%{transform:scale(1.6);opacity:0}}
 @media(prefers-reduced-motion:reduce){.dial-fab::after{animation:none;opacity:0}}
 .dial-fab .df-x{display:none;font-size:24px;line-height:1}
@@ -466,7 +468,7 @@ summary{cursor:pointer}summary::-webkit-details-marker{display:none}
     <div style="font-size:10px;letter-spacing:.18em;color:var(--accent);margin-top:6px">NOTICE / FAQ</div>
   </div>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:40px;margin-top:36px;align-items:start">
-    <div data-reveal style="border:1px solid var(--panel-border);border-radius:6px;padding:26px 28px;background:linear-gradient(160deg,var(--panel-a),var(--panel-b))">
+    <div data-reveal style="border:1px solid var(--panel-border);border-radius:6px;padding:26px 28px;background:linear-gradient(160deg,var(--panel-a),var(--panel-b)),var(--bg-2)">
       <h3 style="margin:0 0 16px;font-weight:400;font-family:'Dela Gothic One',sans-serif;font-size:17px;letter-spacing:.05em">ご来場にあたってのお願い</h3>
       <ul style="margin:0;padding:0 0 0 1.2em;display:flex;flex-direction:column;gap:10px;font-size:13px;line-height:1.8;color:var(--text-1)">
         <li>ごみは分別のうえ、所定のごみステーションへお願いします。</li>
@@ -831,9 +833,17 @@ function mountRotaryDial(items) {
     })();
   }
   // ジャンプしてもダイヤルは閉じない(FABの×で閉じるまで開いたまま)
+  // 移動中のスムーズスクロールでダイヤルが途中のセクションへ回ってしまわないよう、
+  // スクロールが止まるまで(最後のscrollから150ms)はスクロール追従を止める
+  let navigating = false, navTimer = 0;
   function go(i) {
     const el = document.querySelector(items[i].href);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    if (!el) return;
+    navigating = true;
+    syncTarget = i;
+    clearTimeout(navTimer);
+    navTimer = setTimeout(function () { navigating = false; }, 1500); // スクロールが起きなかった場合の保険
+    el.scrollIntoView({ behavior: 'smooth' });
   }
   // 今見ているセクション(ビューポート上端に最も近いもの)のindex
   function nearestIdx() {
@@ -854,6 +864,11 @@ function mountRotaryDial(items) {
   }
   // ページのスクロール位置にダイヤルを追従させて回す(開いている間・指で操作中は除く)
   function onScroll() {
+    if (navigating) {
+      clearTimeout(navTimer);
+      navTimer = setTimeout(function () { navigating = false; }, 150);
+      return;
+    }
     if (!open || dragging) return;
     const i = nearestIdx();
     if (i === syncTarget) return;
@@ -871,18 +886,41 @@ function mountRotaryDial(items) {
     fab.setAttribute('aria-label', v ? 'ナビダイヤルを閉じる' : 'セクションナビを開く');
     if (v) { syncToScroll(); layout(); }
   }
-  fab.addEventListener('click', function () { setOpen(!open); });
+  // 勝手に閉じないよう、×ボタンは「その場でのタップ」だけを閉じる操作として扱う。
+  // ・円盤を下へスワイプして指が×ボタンの上で離れると、端末によってはボタンのclickが発生するので、
+  //   スワイプ直後(400ms以内)のclickは無視する
+  // ・開いている間は×ボタンの上から始めたスワイプでも回せるようにし、その場合も閉じない
+  let lastDragEnd = 0;
+  fab.addEventListener('click', function () {
+    if (open && (fabMoved || performance.now() - lastDragEnd < 400)) return;
+    setOpen(!open);
+  });
 
   // 上下スワイプで回転(スクロールと同じ指の動き。縦の移動量を弧の長さとして角度に換算)
   const PX2DEG = 180 / (Math.PI * LR); // 1pxあたりの回転角
-  let dragging = false, moved = 0, lastY = 0, startIdx = 0, downTarget = null;
-  disc.addEventListener('pointerdown', function (e) {
+  let dragging = false, moved = 0, lastY = 0, startIdx = 0, downTarget = null, fabMoved = false;
+  function startDrag(e, el) {
     if (anim) { clearTimeout(anim); anim = null; }
     dragging = true; moved = 0; lastY = e.clientY; startIdx = selIndex();
     downTarget = e.target.closest ? e.target.closest('.dial-label') : null;
-    try { disc.setPointerCapture(e.pointerId); } catch (err) {}
-    e.preventDefault();
+    try { el.setPointerCapture(e.pointerId); } catch (err) {}
+  }
+  disc.addEventListener('pointerdown', function (e) { startDrag(e, disc); e.preventDefault(); });
+  fab.addEventListener('pointerdown', function (e) {
+    fabMoved = false;
+    if (open) startDrag(e, fab);
   });
+  fab.addEventListener('pointermove', function (e) {
+    if (!dragging) return;
+    disc.dispatchEvent(new PointerEvent('pointermove', { clientX: e.clientX, clientY: e.clientY }));
+    if (moved >= 6) fabMoved = true;
+  });
+  fab.addEventListener('pointerup', function () {
+    if (!dragging) return;
+    if (moved < 6) { dragging = false; return; } // ただのタップ → clickで閉じる
+    disc.dispatchEvent(new PointerEvent('pointerup'));
+  });
+  fab.addEventListener('pointercancel', function () { disc.dispatchEvent(new PointerEvent('pointercancel')); });
   disc.addEventListener('pointermove', function (e) {
     if (!dragging) return;
     const dy = e.clientY - lastY;
@@ -896,6 +934,7 @@ function mountRotaryDial(items) {
   disc.addEventListener('pointerup', function () {
     if (!dragging) return;
     dragging = false;
+    if (moved >= 6) lastDragEnd = performance.now();
     const tapBtn = moved < 6 ? downTarget : null; // 縦移動がほぼ無ければラベルのタップ扱い
     let target;
     if (tapBtn) {
