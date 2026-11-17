@@ -111,6 +111,7 @@
   };
 })();
 </script>
+<script src="./geo-bg.js" defer></script>
 <script src="./support.js"></script>
 </head>
 <body>
@@ -291,6 +292,11 @@ summary{cursor:pointer}summary::-webkit-details-marker{display:none}
 /* お知らせ: 1行に収まらない本文は…で切り、行をタップすると全文を折り返して表示する */
 .news-row.long{cursor:pointer;-webkit-tap-highlight-color:transparent}
 .news-row.open .news-text{white-space:normal!important;overflow:visible!important;line-height:1.7}
+/* 該当ページがあるお知らせは、行全体がリンク。右端に→を出す */
+.news-row.link{cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background-color .2s ease}
+.news-row.link::after{content:"→";flex-shrink:0;color:var(--accent);font-size:13px;transition:transform .2s ease}
+.news-row.link:hover .news-text{color:var(--link-hover)}
+.news-row.link:hover::after{transform:translateX(3px)}
 @media(min-width:861px){.dial-fab,.dial-wheel{display:none!important}}
 </style>
 </helmet>
@@ -329,7 +335,7 @@ summary{cursor:pointer}summary::-webkit-details-marker{display:none}
   </sc-if>
 
   <div class="hero-title-wrap" style="position:absolute;top:clamp(90px,14vh,130px);right:clamp(24px,7vw,88px);display:flex;flex-direction:row;gap:clamp(14px,2.4vw,26px);height:min(62vh,440px)">
-    <div style="writing-mode:vertical-rl;font-family:'Zen Maru Gothic',sans-serif;font-weight:500;font-size:clamp(15px,2vw,20px);letter-spacing:.12em;color:rgba(255,255,255,.75)">今年のスローガン「旋風」</div>
+    <div style="writing-mode:vertical-rl;font-family:'Yuji Syuku',serif;font-weight:400;font-size:clamp(15px,2vw,20px);letter-spacing:.12em;color:rgba(255,255,255,.75)">今年のスローガン「旋風」</div>
     <h1 class="hero-main-title" style="margin:0;font-weight:400;writing-mode:vertical-rl;font-family:'Yuji Syuku',serif;white-space:nowrap;line-height:1.05;color:#fff;text-shadow:0 4px 40px rgba(0,0,0,.6)">関西大学統一学園祭</h1>
   </div>
 
@@ -352,7 +358,7 @@ summary{cursor:pointer}summary::-webkit-details-marker{display:none}
   </div>
   <div data-reveal style="display:flex;flex-direction:column">
     <sc-for list="{{ news }}" as="n" hint-placeholder-count="3">
-      <div class="news-row" style="display:flex;gap:clamp(10px,2.5vw,18px);align-items:baseline;flex-wrap:nowrap;padding:14px 0;border-bottom:1px solid var(--line);font-size:13.5px;color:var(--text-1)">
+      <div class="news-row" data-href="{{ n.href }}" style="display:flex;gap:clamp(10px,2.5vw,18px);align-items:baseline;flex-wrap:nowrap;padding:14px 0;border-bottom:1px solid var(--line);font-size:13.5px;color:var(--text-1)">
         <span style="flex-shrink:0;font-family:ui-monospace,monospace;font-size:11px;color:var(--text-3)">{{ n.date }}</span>
         <span style="flex-shrink:0;white-space:nowrap;font-size:10px;padding:2px 8px;border:1px solid {{ n.tagBorder }};color:{{ n.tagColor }};border-radius:2px">{{ n.tag }}</span>
         <span class="news-text" style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ n.text }}</span>
@@ -560,12 +566,13 @@ class Component extends DCLogic {
 
   renderVals() {
     const navItems = NAV_ITEMS;
+    // href: タップしたときの移動先(該当ページが無いものは空)
     const news = [
-      { date: '2026.10.21', tag: 'お知らせ', tagBorder: 'var(--tag-border)', tagColor: 'var(--text-2)', text: '模擬店の出店一覧と会場マップを公開しました' },
-      { date: '2026.10.15', tag: 'お知らせ', tagBorder: 'var(--tag-border)', tagColor: 'var(--text-2)', text: '中央ステージのタイムテーブルを公開しました' },
-      { date: '2026.07.15', tag: '重要', tagBorder: 'var(--accent-strong)', tagColor: 'var(--accent)', text: '公式サイトを公開しました' },
-      { date: '2026.08.02', tag: '募集', tagBorder: 'var(--tag-border)', tagColor: 'var(--text-2)', text: '模擬店の1次募集を締め切りました' },
-      { date: '2026.07.01', tag: 'お知らせ', tagBorder: 'var(--tag-border)', tagColor: 'var(--text-2)', text: '今年のスローガンが「旋風」に決定しました' },
+      { date: '2026.10.21', tag: 'お知らせ', tagBorder: 'var(--tag-border)', tagColor: 'var(--text-2)', text: '模擬店の出店一覧と会場マップを公開しました', href: 'stalls.html' },
+      { date: '2026.10.15', tag: 'お知らせ', tagBorder: 'var(--tag-border)', tagColor: 'var(--text-2)', text: '中央ステージのタイムテーブルを公開しました', href: 'timetable.html' },
+      { date: '2026.07.15', tag: '重要', tagBorder: 'var(--accent-strong)', tagColor: 'var(--accent)', text: '公式サイトを公開しました', href: '' },
+      { date: '2026.08.02', tag: '募集', tagBorder: 'var(--tag-border)', tagColor: 'var(--text-2)', text: '模擬店の1次募集を締め切りました', href: '' },
+      { date: '2026.07.01', tag: 'お知らせ', tagBorder: 'var(--tag-border)', tagColor: 'var(--text-2)', text: '今年のスローガンが「旋風」に決定しました', href: '' },
     ];
     const faqs = [
       { q: '入場料はかかりますか？', a: '入場無料です。チケット等は不要で、どなたでもご来場いただけます。' },
@@ -645,8 +652,21 @@ class Countdown extends React.Component {
 // ===== お知らせの全文表示 =====
 // 本文が…で切れている行にだけ.longを付け、タップ(Enter/Space)で全文の折り返し表示と切り替える。
 // 切れるかどうかは画面幅で変わるので、リサイズのたびに判定し直す(開いている行はそのまま)
+// data-hrefがある行はリンクとして扱い、タップでそのページへ移動する(全文表示はしない)
 function mountNewsExpand() {
-  const rows = [].slice.call(document.querySelectorAll('.news-row'));
+  const all = [].slice.call(document.querySelectorAll('.news-row'));
+  const links = all.filter(function (r) { return r.getAttribute('data-href'); });
+  const rows = all.filter(function (r) { return !r.getAttribute('data-href'); });
+  const linkHandlers = links.map(function (r) {
+    const go = function () { location.href = r.getAttribute('data-href'); };
+    const onKey = function (e) { if (e.key === 'Enter') { e.preventDefault(); go(); } };
+    r.classList.add('link');
+    r.setAttribute('role', 'link');
+    r.tabIndex = 0;
+    r.addEventListener('click', go);
+    r.addEventListener('keydown', onKey);
+    return [r, go, onKey];
+  });
   function mark() {
     rows.forEach(function (r) {
       if (r.classList.contains('open')) return;
@@ -675,9 +695,10 @@ function mountNewsExpand() {
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(mark);
   return function () {
     window.removeEventListener('resize', mark);
-    handlers.forEach(function (h) { h[0].removeEventListener('click', h[1]); h[0].removeEventListener('keydown', h[2]); });
+    handlers.concat(linkHandlers).forEach(function (h) { h[0].removeEventListener('click', h[1]); h[0].removeEventListener('keydown', h[2]); });
   };
 }
+
 
 // ===== 3Dマップの全画面表示 =====
 // [data-map-open]を押すとiframeで開く。重いWebGLなので閉じたらiframeごと破棄する。
